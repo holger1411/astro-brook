@@ -4,8 +4,10 @@
 
 @layer base {
   body {
-    @apply bg-white text-gray-900;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-white text-gray-900 font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1, "ss02" 1, "cv01" 1, "cv03" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   /* Dark mode mit explizit sehr dunklem Grau (#010101) */
@@ -20,6 +22,10 @@
   
   .dark a {
     @apply hover:text-white;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans;
   }
 }
 
