@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostList from '../components/PostList.astro';
+import { getCollection } from 'astro:content';
+
+// Get all blog posts and sort them by date
+const allPosts = await getCollection('posts');
+const sortedPosts = allPosts.sort((a, b) => {
+  return new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf();
+});
+
+// Format posts for the PostList component
+const posts = sortedPosts.map(post => ({
+  ...post,
+  url: `/posts/${post.slug}`,
+  frontmatter: post.data
+}));
+---
+
+<BaseLayout title="Journal">
+  <div class="max-w-3xl mx-auto">
+    <header class="mb-12 text-center">
+      <h1 class="text-5xl mb-4">Journal</h1>
+      <p class="text-xl text-muted-foreground">
+        Explore our latest thoughts, ideas, and stories
+      </p>
+    </header>
+
+    <PostList posts={posts} />
+  </div>
+</BaseLayout>

@@ -1,0 +1,23 @@
+---
+import PostCard from './PostCard.astro';
+
+interface Props {
+  posts: any[];
+  showImages?: boolean;
+  showExcerpt?: boolean;
+  showSeparators?: boolean;
+}
+
+const { posts, showImages = true, showExcerpt = true, showSeparators = false } = Astro.props;
+---
+
+<div class="space-y-6">
+  {posts.map((post, index) => (
+    <>
+      <PostCard post={post} showImage={showImages} showExcerpt={showExcerpt} />
+      {showSeparators && index < posts.length - 1 && (
+        <hr class="border-border" />
+      )}
+    </>
+  ))}
+</div>

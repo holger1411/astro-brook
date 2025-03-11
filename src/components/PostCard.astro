@@ -1,0 +1,64 @@
+---
+import { formatDate } from '../utils/date';
+
+interface Props {
+  post: {
+    slug: string;
+    url: string;
+    frontmatter: {
+      title: string;
+      date: string;
+      excerpt: string;
+      image?: string;
+      tags?: string[];
+    };
+  };
+  showImage?: boolean;
+  showExcerpt?: boolean;
+}
+
+const { post, showImage = true, showExcerpt = true } = Astro.props;
+const { title, date, excerpt, image, tags } = post.frontmatter;
+---
+
+<article class="mb-10">
+  <div class="space-y-2">
+    <div class="text-gray-500 dark:text-gray-400 text-sm">{formatDate(date)}</div>
+    <h2 class="text-4xl">
+      <a href={post.url} class="hover:underline">
+        {title}
+      </a>
+    </h2>
+    {showImage && image && (
+      <a href={post.url} class="block aspect-video overflow-hidden rounded-lg">
+        <img
+          src={image}
+          alt={title}
+          class="w-full h-full object-cover transition-transform hover:scale-105"
+        />
+      </a>
+    )}
+    {showExcerpt && (
+      <>
+        <p class="text-gray-500 dark:text-gray-400">{excerpt}</p>
+        <div>
+          <a href={post.url} class="text-sm font-medium hover:underline">
+            Read more →
+          </a>
+        </div>
+      </>
+    )}
+    {tags && tags.length > 0 && (
+      <div class="flex flex-wrap gap-2 pt-2">
+        {tags.map((tag) => (
+          <a
+            href={`/tags/${tag}`}
+            class="inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700"
+          >
+            {tag}
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</article>

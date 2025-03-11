@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostList from '../components/PostList.astro';
+import { getCollection } from 'astro:content';
+
+// Get all blog posts and sort them by date
+const allPosts = await getCollection('posts');
+const sortedPosts = allPosts.sort((a, b) => {
+  return new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf();
+});
+
+// Show up to 7 posts on the frontpage
+const posts = sortedPosts.slice(0, 7).map(post => ({
+  ...post,
+  url: `/posts/${post.slug}`,
+  frontmatter: post.data
+}));
+---
+
+<BaseLayout title="Welcome">
+  <div class="space-y-16">
+    <section class="text-center py-16">
+      <h1 class="text-6xl mb-6">Welcome to Brook</h1>
+      <p class="text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
+        A minimalist blog template for developers and writers focusing on clean typography and distraction-free
+        reading experience.
+      </p>
+      <a href="/about" class="cta-button">
+        Discover More
+      </a>
+    </section>
+
+    <section>
+      <PostList posts={posts} showImages={false} showExcerpt={false} showSeparators={true} />
+
+      <div class="text-center mt-16">
+        <a href="/journal" class="text-sm font-medium hover:underline">
+          View All Posts →
+        </a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

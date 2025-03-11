@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 128 128">
+  <path fill="#000" d="M64 0C28.7 0 0 28.7 0 64s28.7 64 64 64 64-28.7 64-64S99.3 0 64 0zm0 112c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48z" class="dark:fill-white"/>
+  <path fill="#000" d="M42 42h16v44H42zm28 0h16v44H70z" class="dark:fill-white"/>
+  <style>
+    @media (prefers-color-scheme: dark) {
+      .dark\:fill-white { fill: white; }
+    }
+  </style>
+</svg>
