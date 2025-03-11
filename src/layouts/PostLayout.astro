@@ -1,8 +1,9 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import PostNavigation from '../components/PostNavigation.astro';
 import { formatDate } from '../utils/date';
 
-const { frontmatter, headings } = Astro.props;
+const { frontmatter, headings, prevPost, nextPost } = Astro.props;
 const { title, date, tags, image, excerpt } = frontmatter;
 
 // Estimated reading time
@@ -45,5 +46,7 @@ const readingTime = Math.max(1, Math.ceil(wordCount / WORDS_PER_MINUTE));
     <div class="prose prose-lg dark:prose-invert max-w-none">
       <slot />
     </div>
+
+    <PostNavigation prevPost={prevPost} nextPost={nextPost} />
   </article>
 </BaseLayout>

@@ -1,0 +1,43 @@
+---
+// Definiere die Props für die Komponente
+interface Props {
+  prevPost: {
+    url: string;
+    title: string;
+  } | null;
+  nextPost: {
+    url: string;
+    title: string;
+  } | null;
+}
+
+const { prevPost, nextPost } = Astro.props;
+---
+
+<nav class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+  <div class="flex flex-col sm:flex-row justify-between gap-4">
+    {prevPost ? (
+      <a 
+        href={prevPost.url} 
+        class="group flex flex-col items-start"
+      >
+        <span class="text-sm text-gray-500 dark:text-gray-400">Vorheriger Beitrag</span>
+        <span class="text-lg font-medium group-hover:underline">{prevPost.title}</span>
+      </a>
+    ) : (
+      <div></div>
+    )}
+    
+    {nextPost ? (
+      <a 
+        href={nextPost.url} 
+        class="group flex flex-col items-end text-right"
+      >
+        <span class="text-sm text-gray-500 dark:text-gray-400">Nächster Beitrag</span>
+        <span class="text-lg font-medium group-hover:underline">{nextPost.title}</span>
+      </a>
+    ) : (
+      <div></div>
+    )}
+  </div>
+</nav>

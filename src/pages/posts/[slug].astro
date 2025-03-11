@@ -4,18 +4,41 @@ import PostLayout from '../../layouts/PostLayout.astro';
 
 // Generate static paths for all posts
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('posts');
-  return blogEntries.map(entry => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+  const allPosts = await getCollection('posts');
+  
+  // Sortiere Posts nach Datum (neueste zuerst)
+  const sortedPosts = allPosts.sort((a, b) => 
+    new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
+  );
+
+  return sortedPosts.map((entry, index) => {
+    // Bestimme vorherigen und nächsten Post
+    const prevPost = sortedPosts[index - 1]
+      ? {
+          url: `/posts/${sortedPosts[index - 1].slug}`,
+          title: sortedPosts[index - 1].data.title
+        }
+      : null;
+    
+    const nextPost = sortedPosts[index + 1]
+      ? {
+          url: `/posts/${sortedPosts[index + 1].slug}`,
+          title: sortedPosts[index + 1].data.title
+        }
+      : null;
+
+    return {
+      params: { slug: entry.slug },
+      props: { entry, prevPost, nextPost },
+    };
+  });
 }
 
-// Get the post for this page
-const { entry } = Astro.props;
+// Get the post and navigation data for this page
+const { entry, prevPost, nextPost } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<PostLayout frontmatter={entry.data}>
+<PostLayout frontmatter={entry.data} prevPost={prevPost} nextPost={nextPost}>
   <Content />
 </PostLayout>
