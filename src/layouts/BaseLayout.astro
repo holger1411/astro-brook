@@ -60,6 +60,23 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       
       window.localStorage.setItem('theme', theme);
     </script>
+    
+    <style is:inline>
+      /* Explizite Hintergrundfarbe für Dark Mode (#010101) */
+      .dark body {
+        background-color: #010101;
+      }
+      
+      /* Andere Dark-Mode-spezifische Anpassungen */
+      .dark button#theme-toggle {
+        background-color: #222222;
+      }
+      
+      .dark header, 
+      .dark footer {
+        border-color: #222222;
+      }
+    </style>
   </head>
   <body>
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -70,7 +87,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           <a href="/" class="text-sm hover:underline">Home</a>
           <a href="/journal" class="text-sm hover:underline">Journal</a>
           <a href="/about" class="text-sm hover:underline">About</a>
-          <button id="theme-toggle" aria-label="Toggle theme" class="p-2 rounded-md bg-gray-100 dark:bg-gray-800">
+          <button id="theme-toggle" aria-label="Toggle theme" class="p-2 rounded-md bg-gray-100">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden dark:block">
               <circle cx="12" cy="12" r="5"></circle>
               <line x1="12" y1="1" x2="12" y2="3"></line>

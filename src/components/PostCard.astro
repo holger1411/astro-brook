@@ -53,7 +53,7 @@ const { title, date, excerpt, image, tags } = post.frontmatter;
         {tags.map((tag) => (
           <a
             href={`/tags/${tag}`}
-            class="inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700"
+            class="inline-flex items-center rounded-md bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 hover:bg-gray-200"
           >
             {tag}
           </a>
@@ -62,3 +62,15 @@ const { title, date, excerpt, image, tags } = post.frontmatter;
     )}
   </div>
 </article>
+
+<style>
+  /* Custom styles für Tag-Links im Dark Mode */
+  :global(.dark) article a[href^="/tags/"] {
+    background-color: #222222;
+    color: #e5e7eb;
+  }
+  
+  :global(.dark) article a[href^="/tags/"]:hover {
+    background-color: #333333;
+  }
+</style>
