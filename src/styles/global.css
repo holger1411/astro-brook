@@ -16,6 +16,11 @@
     color: #f3f4f6;
   }
   
+  /* HR im Dark Mode anpassen */
+  .dark hr {
+    border-color: #222222;
+  }
+  
   a {
     @apply transition-colors hover:text-black;
   }
