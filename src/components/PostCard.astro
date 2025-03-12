@@ -24,12 +24,14 @@ const { title, date, excerpt, image, tags } = post.frontmatter;
 
 <article class="mb-10">
   <div class="space-y-2">
-    <div class="text-gray-500 dark:text-gray-400 text-sm">{formatDate(date)}</div>
-    <h2 class="text-4xl">
-      <a href={post.url} class="hover:underline">
-        {title}
-      </a>
-    </h2>
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-2">
+      <h2 class="text-3xl md:text-4xl">
+        <a href={post.url} class="hover:underline">
+          {title}
+        </a>
+      </h2>
+      <div class="text-gray-500 dark:text-gray-400 text-sm shrink-0 sm:ml-4 sm:text-right">{formatDate(date)}</div>
+    </div>
     {showImage && image && (
       <a href={post.url} class="block aspect-video overflow-hidden rounded-lg">
         <img
