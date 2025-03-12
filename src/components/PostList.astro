@@ -6,15 +6,16 @@ interface Props {
   showImages?: boolean;
   showExcerpt?: boolean;
   showSeparators?: boolean;
+  showTags?: boolean;
 }
 
-const { posts, showImages = true, showExcerpt = true, showSeparators = false } = Astro.props;
+const { posts, showImages = true, showExcerpt = true, showSeparators = false, showTags = true } = Astro.props;
 ---
 
 <div class="space-y-6">
   {posts.map((post, index) => (
     <>
-      <PostCard post={post} showImage={showImages} showExcerpt={showExcerpt} />
+      <PostCard post={post} showImage={showImages} showExcerpt={showExcerpt} showTags={showTags} />
       {showSeparators && index < posts.length - 1 && (
         <hr class="border-border" />
       )}
