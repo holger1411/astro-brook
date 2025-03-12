@@ -18,7 +18,8 @@
   
   /* HR und Borders im Dark Mode anpassen */
   .dark hr,
-  .dark article.border-t {
+  .dark article.border-t,
+  .dark div.border-b {
     border-color: #222222;
   }
   
