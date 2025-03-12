@@ -37,7 +37,8 @@
   }
   
   .cta-button:hover {
-    background-color: #333333;
+    background-color: white;
+    color: black;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1);
   }
   
@@ -47,7 +48,8 @@
   }
   
   .dark .cta-button:hover {
-    background-color: #e5e5e5;
+    background-color: #010101;
+    color: white;
     box-shadow: 0 15px 40px rgba(255, 255, 255, 0.07), 0 10px 20px rgba(255, 255, 255, 0.05);
   }
 }
