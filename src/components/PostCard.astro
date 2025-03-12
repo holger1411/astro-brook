@@ -22,15 +22,15 @@ const { post, showImage = true, showExcerpt = true, showTags = true } = Astro.pr
 const { title, date, excerpt, image, tags } = post.frontmatter;
 ---
 
-<article class="mb-[8vh]">
-  <div class="[&>*+*]:mt-[3vh]">
-    <div class="flex flex-col sm:flex-row justify-between items-start gap-2 mb-[3vh]">
+<article class="border-t py-[4vh]">
+  <div class="space-y-2">
+    <div class="flex flex-col sm:flex-row justify-between items-start gap-2 mb-2">
       <h2 class="text-3xl md:text-4xl">
         <a href={post.url} class="hover:underline">
           {title}
         </a>
       </h2>
-      <div class="text-gray-500 dark:text-gray-400 text-sm shrink-0 sm:ml-4 sm:text-right self-start">{formatDate(date)}</div>
+      <div class="text-gray-500 dark:text-gray-400 text-sm shrink-0 sm:ml-4 sm:text-right">{formatDate(date)}</div>
     </div>
     {showImage && image && (
       <a href={post.url} class="block aspect-video overflow-hidden rounded-lg">
@@ -52,7 +52,7 @@ const { title, date, excerpt, image, tags } = post.frontmatter;
       </>
     )}
     {showTags && tags && tags.length > 0 && (
-      <div class="flex flex-wrap gap-2 pt-[2vh]">
+      <div class="flex flex-wrap gap-2 pt-2">
         {tags.map((tag) => (
           <a
             href={`/tags/${tag}`}

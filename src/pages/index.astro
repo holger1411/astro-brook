@@ -18,8 +18,8 @@ const posts = sortedPosts.slice(0, 7).map(post => ({
 ---
 
 <BaseLayout title="Welcome">
-  <div class="space-y-24">
-    <section class="text-center py-24 my-8">
+
+    <section class="text-center  py-[8vh]">
       <h1 class="text-7xl mb-8 font-bold">Welcome to Brook</h1>
       <p class="text-2xl text-muted-foreground max-w-3xl mx-auto mb-14">
         A minimalist blog template for developers and writers focusing on clean typography and distraction-free
@@ -31,7 +31,7 @@ const posts = sortedPosts.slice(0, 7).map(post => ({
     </section>
 
     <section>
-      <PostList posts={posts} showImages={false} showExcerpt={false} showSeparators={true} showTags={false} />
+      <PostList posts={posts} showImages={false} showExcerpt={false} showSeparators={true} showTags={true}/>
 
       <div class="text-center mt-24">
         <a href="/journal" class="text-lg font-medium hover:underline">
@@ -39,5 +39,5 @@ const posts = sortedPosts.slice(0, 7).map(post => ({
         </a>
       </div>
     </section>
-  </div>
+
 </BaseLayout>
