@@ -12,7 +12,7 @@ interface Props {
 const { posts, showImages = true, showExcerpt = true, showSeparators = false, showTags = true } = Astro.props;
 ---
 
-<div class="space-y-16">
+<div class="[&>*+*]:mt-[8vh]">
   {posts.map((post, index) => (
     <>
       <PostCard post={post} showImage={showImages} showExcerpt={showExcerpt} showTags={showTags} />
