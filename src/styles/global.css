@@ -31,7 +31,7 @@
 
 @layer components {
   .cta-button {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-black text-white rounded-lg font-medium transition-colors hover:bg-gray-800;
+    @apply inline-flex items-center justify-center px-8 py-4 bg-black text-white rounded-[99px] font-medium transition-colors hover:bg-gray-800 text-lg;
   }
   
   .dark .cta-button {
