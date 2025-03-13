@@ -3,6 +3,7 @@ title: If a Zombie and a Vampire open up a Grocery Store
 date: 2023-10-27
 excerpt: A humorous exploration of the business challenges and unique product offerings when the undead go into retail.
 tags: [zombies, vampires, humor, business]
+image: /images/image1.jpg
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.

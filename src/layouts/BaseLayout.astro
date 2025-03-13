@@ -1,19 +1,63 @@
 ---
 import '../styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
+  type?: 'website' | 'article';
+  publishedDate?: Date;
+  modifiedDate?: Date;
+  author?: string;
 }
 
 const { 
   title, 
   description = "A minimalist blog template focusing on clean typography and distraction-free reading experience.", 
-  image = "/og-image.png" 
+  image = "/og-image.png",
+  type = "website",
+  publishedDate,
+  modifiedDate,
+  author = "Brook Team"
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = image.startsWith('/') ? new URL(image, Astro.site) : image;
+const siteName = "Brook Blog";
+
+// Strukturierte Daten (JSON-LD) für bessere SEO
+const jsonLDWebsite = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": siteName,
+  "url": Astro.site?.toString(),
+  "description": description,
+};
+
+const jsonLDArticle = publishedDate ? {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "image": ogImageURL.toString(),
+  "author": {
+    "@type": "Person",
+    "name": author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": siteName,
+    "logo": {
+      "@type": "ImageObject",
+      "url": new URL("/favicon.svg", Astro.site).toString()
+    }
+  },
+  "datePublished": publishedDate.toISOString(),
+  "dateModified": modifiedDate ? modifiedDate.toISOString() : publishedDate.toISOString(),
+  "mainEntityOfPage": canonicalURL.toString(),
+} : null;
+
+const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsite;
 ---
 
 <!DOCTYPE html>
@@ -26,26 +70,35 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     
+    <!-- Aktivieren der View Transitions -->
+    <ViewTransitions />
+    
     <!-- Inter Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:site_name" content={siteName} />
+    {publishedDate && <meta property="article:published_time" content={publishedDate.toISOString()} />}
+    {modifiedDate && <meta property="article:modified_time" content={modifiedDate.toISOString()} />}
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.site)} />
+    <meta property="twitter:image" content={ogImageURL} />
     
-    <!-- Theme handling -->
+    <!-- Strukturierte Daten für SEO -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLD)} />
+    
+    <!-- Theme handling - wird initial beim Laden ausgeführt -->
     <script is:inline>
       const theme = (() => {
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
@@ -91,7 +144,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <body>
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <header class="py-8 flex items-center justify-between">
-        <a href="/" class="text-2xl font-semibold">Brook</a>
+        <a href="/" class="text-2xl font-semibold" transition:animate="slide">Brook</a>
         
         <nav class="flex items-center gap-6">
           <a href="/" class="text-sm hover:underline">Home</a>
@@ -116,7 +169,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         </nav>
       </header>
       
-      <main class="py-10">
+      <main class="py-10" transition:animate="fade">
         <slot />
       </main>
       
@@ -134,15 +187,34 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       </footer>
     </div>
     
+    <!-- Theme toggling script mit ViewTransitions Unterstützung -->
     <script>
-      document.getElementById('theme-toggle')?.addEventListener('click', () => {
-        const isDark = document.documentElement.classList.contains('dark');
-        if (isDark) {
-          document.documentElement.classList.remove('dark');
-          localStorage.setItem('theme', 'light');
-        } else {
+      // Bei jedem Seitenwechsel Event Listener neu hinzufügen (ViewTransitions kompatible Version)
+      document.addEventListener('astro:page-load', () => {
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        if (themeToggle) {
+          themeToggle.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.contains('dark');
+            
+            if (isDark) {
+              document.documentElement.classList.remove('dark');
+              localStorage.setItem('theme', 'light');
+            } else {
+              document.documentElement.classList.add('dark');
+              localStorage.setItem('theme', 'dark');
+            }
+          });
+        }
+      });
+      
+      // Theme-Status auch bei astro:after-swap neu prüfen (während einer View Transition)
+      document.addEventListener('astro:after-swap', () => {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark') {
           document.documentElement.classList.add('dark');
-          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
         }
       });
     </script>

@@ -4,14 +4,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="About">
   <div class="max-w-3xl mx-auto">
-    <header class="mb-12 text-center">
+    <header class="mb-12 text-center" transition:animate="slide">
       <h1 class="text-5xl mb-4">About</h1>
       <p class="text-xl text-muted-foreground">
         Learn more about Brook, a minimalist blog template
       </p>
     </header>
     
-    <div class="prose prose-lg dark:prose-invert max-w-none">
+    <div class="prose prose-lg dark:prose-invert max-w-none" transition:animate="fade">
       <p>
         Brook is a minimalist blog template designed for developers and writers who value clean typography 
         and a distraction-free reading experience. Built with modern web technologies, Brook offers a 
@@ -30,6 +30,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <li>Tags and categorization</li>
         <li>SEO optimized</li>
         <li>Fast performance with minimal JavaScript</li>
+        <li>Smooth page transitions</li>
       </ul>
       
       <h2>Technology</h2>

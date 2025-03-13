@@ -1,110 +1,106 @@
-# Brook Blog (Astro Version)
+# Brook - A Minimalist Blog Template Built with Astro
 
 ![Brook Blog](./public/og-image.png)
 
-Ein minimalistisches Blog-Template für Entwickler und Autoren, das sich auf saubere Typografie und ein ablenkungsfreies Leseerlebnis konzentriert. Diese Version wurde von Next.js auf Astro portiert.
+Brook is a minimalist blog template for developers and writers that focuses on clean typography and a distraction-free reading experience.
 
-## 🌟 Features
+## ✨ Features
 
-- **Modernes Design**: Minimalistisches und elegantes Layout mit Fokus auf Leserlichkeit
-- **Dark/Light Mode**: Vollständige Unterstützung für Dunkel- und Hellmodus
-- **Responsive Design**: Optimierte Ansicht für alle Geräte
-- **Markdown/MDX Content**: Markdown mit optionaler JSX-Unterstützung für erweiterte Funktionalität
-- **Einfache Inhaltsverwaltung**: Blogposts als Markdown/MDX-Dateien mit Frontmatter
-- **Tagging-System**: Kategorisierung von Posts durch Tags
-- **Code-Highlighting**: Syntaxhervorhebung für Code-Beispiele
-- **SEO-optimiert**: Meta-Tags und strukturierte Daten
-- **TypeScript**: Vollständig typisierter Code für bessere Entwicklererfahrung
-- **Lesezeit-Berechnung**: Automatische Anzeige der geschätzten Lesezeit
-- **Paginierung**: Integrierte Paginierung für Blogposts
-- **Schnelle Performance**: Optimiert für beste Web Vitals
-- **Astro Island Architecture**: Für maximale Performance mit minimalem JavaScript
+- **Clean Minimalist Design**: Elegant layout focused on readability and content
+- **Full Dark/Light Mode**: Complete support for both modes with smooth transitions
+- **Responsive Design**: Optimized for all device sizes
+- **Content Collections**: Organized content using Astro's content collections
+- **Markdown/MDX Support**: Write your content in Markdown with optional JSX support
+- **Image Optimization**: Automatic image processing and optimization
+- **View Transitions**: Smooth page transitions with Astro's view transitions API
+- **Tagging System**: Categorize and filter posts using tags
+- **Code Syntax Highlighting**: Beautiful syntax highlighting for code blocks
+- **SEO Optimized**: Built-in meta tags and structured data (JSON-LD)
+- **Type-Safe**: Fully typed with TypeScript
+- **Reading Time**: Automatic calculation of estimated reading time
+- **Accessible**: Built with accessibility in mind
+- **Fast Performance**: Optimized for web vitals with minimal JavaScript
+- **RSS Feed**: Auto-generated RSS feed
 
-## 💻 Installation
+## 🚀 Getting Started
 
 ```bash
-# Repository klonen
+# Clone the repository
 git clone https://github.com/yourusername/astro-brook.git
 cd astro-brook
 
-# Abhängigkeiten installieren
+# Install dependencies
 npm install
 
-# Entwicklungsserver starten
+# Start the development server
 npm run dev
 ```
 
-Öffne [http://localhost:4321](http://localhost:4321) in deinem Browser, um das Ergebnis zu sehen.
+Visit [http://localhost:4321](http://localhost:4321) to see the result.
 
-## 📁 Projektstruktur
+## 📁 Project Structure
 
 ```
-├── public/               # Statische Assets
+├── public/               # Static assets
 ├── src/
-│   ├── components/       # Wiederverwendbare Komponenten
-│   │   ├── PostCard.astro       # Blogpost-Vorschau
-│   │   ├── PostList.astro       # Liste der Blogposts
-│   │   ├── TagList.astro        # Tag-Komponente
-│   │   └── ui/                  # UI-Komponenten
-│   ├── content/          # Inhaltsverzeichnis (mit Astro Content Collections)
-│   │   ├── pages/        # Statische Seiten (Markdown/MDX)
-│   │   └── posts/        # Blogposts (Markdown/MDX)
-│   ├── layouts/          # Astro-Layouts
-│   │   ├── BaseLayout.astro     # Grund-Layout
-│   │   └── PostLayout.astro     # Layout für Blogposts
-│   ├── pages/            # Astro-Seiten
-│   │   ├── about.astro          # Über-Uns-Seite
-│   │   ├── index.astro          # Homepage
-│   │   ├── journal.astro        # Blog-Übersichtsseite
-│   │   ├── posts/[slug].astro   # Dynamische Blogpost-Route
-│   │   └── tags/[tag].astro     # Tag-basierte Filterung
+│   ├── assets/           # Optimized assets (images, etc.)
+│   ├── components/       # Reusable components
+│   │   ├── PostCard.astro      # Blog post preview card
+│   │   ├── PostList.astro      # List of blog posts
+│   │   ├── PostNavigation.astro # Next/previous post navigation
+│   │   └── ui/                 # UI components
+│   ├── content/          # Content directory (using Astro Content Collections)
+│   │   ├── posts/        # Blog posts (Markdown/MDX)
+│   │   └── pages/        # Static pages (Markdown/MDX)
+│   ├── layouts/          # Astro layouts
+│   │   ├── BaseLayout.astro    # Base layout
+│   │   └── PostLayout.astro    # Layout for blog posts
+│   ├── pages/            # Astro pages
+│   │   ├── about.astro         # About page
+│   │   ├── index.astro         # Homepage
+│   │   ├── journal.astro       # Blog overview page
+│   │   ├── posts/[...slug].astro # Dynamic blog post route
+│   │   └── tags/[tag].astro    # Tag-based filtering
 │   ├── styles/           # Stylesheets
-│   └── utils/            # Hilfsfunktionen und Utilities
-└── astro.config.mjs      # Astro-Konfiguration
+│   └── utils/            # Helper functions and utilities
+└── astro.config.mjs      # Astro configuration
 ```
 
-## 📝 Inhalt hinzufügen
+## 📝 Adding Content
 
-### Neuen Blogpost erstellen
+### Creating a New Blog Post
 
-1. Erstelle eine neue `.md` oder `.mdx`-Datei im Verzeichnis `src/content/posts/`
-2. Füge Frontmatter-Metadaten hinzu:
+1. Create a new `.md` or `.mdx` file in the `src/content/posts/` directory
+2. Add frontmatter metadata:
 
 ```mdx
 ---
-title: Mein neuer Blogpost
+title: My New Blog Post
 date: 2025-03-01
-excerpt: Eine kurze Beschreibung des Blogposts
-image: /pfad/zum/bild.jpg
+excerpt: A short description of the blog post
+image: /images/my-image.jpg
 tags: [tag1, tag2]
 ---
 
-Hier kommt der Inhalt des Blogposts.
+Here goes the content of the blog post.
 
-## Eine Überschrift
+## A Heading
 
-Mehr Text und Inhalt...
-
+More text and content...
 ```
 
-### Eine neue statische Seite erstellen
+### Images
 
-1. Erstelle eine neue `.md` oder `.mdx`-Datei im Verzeichnis `src/content/pages/`
-2. Füge Frontmatter-Metadaten hinzu:
+For images in your blog posts:
 
-```mdx
----
-title: Meine neue Seite
----
+1. Place images in the `public/images/` directory
+2. Reference them in your frontmatter and content using the path `/images/my-image.jpg`
 
-Hier kommt der Inhalt der Seite.
-```
+## 🎨 Customization
 
-## 🎨 Anpassungen
+### Theme Customization
 
-### Theme anpassen
-
-Die Farbpalette und andere Design-Elemente können in der `tailwind.config.mjs`-Datei angepasst werden:
+The color palette and other design elements can be customized in the `tailwind.config.mjs` file and `src/styles/theme.css`:
 
 ```javascript
 // tailwind.config.mjs
@@ -112,56 +108,52 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Hier Farben anpassen
+        // Customize colors here
       },
       typography: {
-        // Typografie-Einstellungen
+        // Typography settings
       }
     }
   }
 }
 ```
 
-### Layout ändern
+### Layout Customization
 
-Die Haupt-Layouts finden sich im Verzeichnis `src/layouts/`.
+The main layouts are located in the `src/layouts/` directory.
 
-## 🧩 Technologie-Stack
+## 🧩 Technology Stack
 
-- [Astro](https://astro.build/) - Modernes Web-Framework
-- [TypeScript](https://www.typescriptlang.org/) - Typsicherheit
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS-Framework
-- [Astro Content Collections](https://docs.astro.build/en/guides/content-collections/) - Content-Management
-- [MDX](https://mdxjs.com/) - Markdown mit JSX (optional)
+- [Astro](https://astro.build/) - Modern web framework
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Astro Content Collections](https://docs.astro.build/en/guides/content-collections/) - Content management
+- [MDX](https://mdxjs.com/) - Markdown with JSX (optional)
 
-## 📚 Verwendete Packages
+## 📦 Dependencies
 
-- `@astrojs/tailwind` - Tailwind CSS Integration
-- `@astrojs/mdx` - MDX-Unterstützung (optional)
-- `@astrojs/sitemap` - Sitemap-Generierung
-- `@astrojs/rss` - RSS-Feed-Generierung
-- `date-fns` - Datums-Formatierung
-- `rehype-pretty-code` - Code-Highlighting
-- `rehype-slug` - Automatische ID-Generierung für Überschriften
-- `remark-gfm` - GitHub Flavored Markdown
-- `clsx` - Bedingte Klassenverkettung
+- `@astrojs/tailwind` - Tailwind CSS integration
+- `@astrojs/mdx` - MDX support
+- `@astrojs/sitemap` - Sitemap generation
+- `@astrojs/rss` - RSS feed generation
+- `date-fns` - Date formatting
 
-## 🛠 Entwicklung
+## 🛠️ Development
 
 ```bash
-# Entwicklungsserver starten
+# Start development server
 npm run dev
 
-# Produktions-Build erstellen
+# Build for production
 npm run build
 
-# Vorschau des Produktions-Builds
+# Preview production build
 npm run preview
 ```
 
 ## 🚀 Deployment
 
-Das Projekt kann auf jeder Plattform deployt werden, die Astro unterstützt:
+This project can be deployed on any platform that supports Astro:
 
 - [Netlify](https://www.netlify.com/)
 - [Vercel](https://vercel.com/)
@@ -169,31 +161,31 @@ Das Projekt kann auf jeder Plattform deployt werden, die Astro unterstützt:
 - [Cloudflare Pages](https://pages.cloudflare.com/)
 - [Deno Deploy](https://deno.com/deploy)
 
-Für Netlify (empfohlen):
+For Netlify (recommended):
 
 ```bash
 npm install -g netlify-cli
 netlify deploy
 ```
 
-## 🤝 Beitragen
+## 🤝 Contributing
 
-Beiträge sind willkommen! Bitte folge diesen Schritten:
+Contributions are welcome! Please follow these steps:
 
-1. Forke das Repository
-2. Erstelle einen Feature-Branch (`git checkout -b feature/amazing-feature`)
-3. Committe deine Änderungen (`git commit -m 'Add some amazing feature'`)
-4. Pushe zu deinem Branch (`git push origin feature/amazing-feature`)
-5. Öffne einen Pull Request
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## 📄 Lizenz
+## 📄 License
 
-Dieses Projekt ist unter der MIT-Lizenz lizenziert. Siehe die LICENSE-Datei für Details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 📞 Kontakt
+## ❓ Support
 
-Bei Fragen oder Anregungen kannst du gerne ein Issue erstellen oder eine E-Mail an [deine-email@example.com] senden.
+If you have any questions or suggestions, please open an issue or start a discussion.
 
 ---
 
-Entwickelt mit ❤️ unter Verwendung von Astro, TypeScript und Tailwind CSS.
+Built with ❤️ using Astro, TypeScript, and Tailwind CSS.

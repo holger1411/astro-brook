@@ -2,7 +2,7 @@
 title: Zombies or Vampires?
 date: 2023-10-25
 excerpt: A comparative analysis of zombies and vampires in popular culture, examining their strengths, weaknesses, and cultural significance.
-image: /placeholder.svg?height=600&width=800
+image: /images/image1.jpg
 tags: [zombies, vampires, mythology, culture]
 ---
 
