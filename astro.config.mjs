@@ -30,9 +30,5 @@ export default defineConfig({
     tailwind(),
     mdx(),
     sitemap()
-  ],
-  // Enable view transitions for smooth page navigation
-  experimental: {
-    viewTransitions: true
-  }
+  ]
 });
