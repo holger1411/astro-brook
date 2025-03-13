@@ -18,7 +18,7 @@ const posts = sortedPosts.slice(0, 7).map(post => ({
 ---
 
 <BaseLayout title="Welcome">
-    <section class="text-center py-[8vh]" transition:animate="slide">
+    <section class="text-center py-[8vh]" transition:animate="fade">
       <h1 class="text-7xl mb-8 font-bold">Welcome to Brook</h1>
       <p class="text-2xl text-muted-foreground max-w-3xl mx-auto mb-14">
         A minimalist blog template for developers and writers focusing on clean typography and distraction-free
@@ -29,7 +29,7 @@ const posts = sortedPosts.slice(0, 7).map(post => ({
       </a>
     </section>
 
-    <section>
+    <section transition:animate="fade">
       <PostList posts={posts} showImages={false} showExcerpt={false} showSeparators={true} showTags={false}/>
 
       <div class="text-center mt-24">

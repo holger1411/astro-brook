@@ -60,3 +60,23 @@
     box-shadow: 0 15px 40px rgba(255, 255, 255, 0.07), 0 10px 20px rgba(255, 255, 255, 0.05);
   }
 }
+
+/* Animation for View Transitions - Only Fade */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Apply fade animation to all view transitions */
+::view-transition-old(root) {
+  animation: 300ms cubic-bezier(0.4, 0, 0.2, 1) both fade-out;
+}
+
+::view-transition-new(root) {
+  animation: 300ms cubic-bezier(0.4, 0, 0.2, 1) both fade-in;
+}
