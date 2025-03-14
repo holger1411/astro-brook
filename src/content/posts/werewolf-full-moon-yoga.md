@@ -2,7 +2,7 @@
 title: The Secret Life of Werewolves - Full Moon Yoga and Other Hobbies
 date: 2024-03-14
 excerpt: Beyond the howling and hunting, discover the surprisingly sophisticated leisure activities that occupy modern werewolves during their lunar transformations.
-image: /images/image1.jpg
+image: /images/image1.png
 tags: [werewolves, supernatural, yoga, hobbies, humor]
 ---
 

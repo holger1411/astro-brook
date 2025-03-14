@@ -2,7 +2,7 @@
 title: Frankenstein's Monster's Guide to Modern Dating
 date: 2024-03-14
 excerpt: Dating isn't easy for anyone, but it presents unique challenges when you're a reanimated patchwork of body parts. Learn how the original assembled man navigates the complex world of romance in the digital age.
-image: /images/image6.jpg
+image: /images/image15.png
 tags: [frankenstein, dating, monsters, humor, relationships]
 ---
 
