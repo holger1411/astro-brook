@@ -95,25 +95,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p>Use <code>console.log('Hello, World!')</code> to output a message to the browser console.</p>
         
         <h3>Code Block</h3>
-        <pre><code>function greet(name) {
+        <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-md overflow-x-auto">
+          <pre>function greet(name) {
   return "Hello, " + name + "!";
 }
 
 // Call the function
 const message = greet('World');
-console.log(message);
-</code></pre>
+console.log(message);</pre>
+        </div>
         
         <h3>Syntax Highlighted Code</h3>
-        <!-- Use proper HTML for code examples in Astro components -->
-        <pre><code class="language-javascript">// This is a JavaScript comment
+        <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-md overflow-x-auto">
+          <pre>// This is a JavaScript comment
 function calculateSum(a, b) {
   return a + b;
 }
 
 const sum = calculateSum(5, 10);
-console.log("The sum is: " + sum);
-</code></pre>
+console.log("The sum is: " + sum);</pre>
+        </div>
       </section>
       
       <section id="tables">
