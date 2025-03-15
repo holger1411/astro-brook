@@ -30,6 +30,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <h3>Paragraph</h3>
         <p>This is a standard paragraph element. <strong>This text is bold</strong>. <em>This text is italicized</em>. <u>This text is underlined</u>. <del>This text is strikethrough</del>. <mark>This text is marked/highlighted</mark>. <small>This text is smaller</small>. This text contains <sub>subscript</sub> and <sup>superscript</sup> elements.</p>
         
+        <h3>Additional Text Formatting</h3>
+        <p><ins>This text has been inserted</ins> and <del>this text has been deleted</del>.</p>
+        <p>The <var>x</var> variable represents an unknown value.</p>
+        <p>The <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Del</kbd> keyboard shortcut restarts your computer.</p>
+        <p>The <samp>Error: Access denied</samp> message appears when you don't have permission.</p>
+        <p>This is <dfn>a definition term</dfn> - an element used to highlight the first use of a term.</p>
+        
         <h3>Links</h3>
         <p>This is a <a href="#">standard link</a> that you might use within a paragraph of text.</p>
         
@@ -39,6 +46,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <p>Multiple paragraphs can be included in a blockquote.</p>
           <footer>— Someone Famous</footer>
         </blockquote>
+        
+        <h3>Inline Quote</h3>
+        <p>As Shakespeare wrote, <q>To be or not to be, that is the question.</q></p>
+      </section>
+      
+      <section id="address">
+        <h2>Address</h2>
+        <address>
+          John Doe<br>
+          123 Example Street<br>
+          Example City, EX 12345<br>
+          <a href="mailto:john@example.com">john@example.com</a><br>
+          <a href="tel:+11234567890">(123) 456-7890</a>
+        </address>
       </section>
       
       <section id="breaks">
@@ -48,6 +69,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <hr/>
         
         <p>The horizontal rule appears above this text.</p>
+      </section>
+      
+      <section id="preformatted">
+        <h2>Preformatted Text</h2>
+        <pre>This  text    preserves 
+  white space and line breaks
+as they     are typed.
+It uses a monospaced font.</pre>
       </section>
       
       <section id="lists">
@@ -87,6 +116,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <dt>Another Definition Term</dt>
           <dd>Each term can have one or more definitions associated with it.</dd>
           <dd>Here's a second definition for the same term.</dd>
+          
+          <dt>HTML</dt>
+          <dt>Hypertext Markup Language</dt>
+          <dd>The standard markup language for documents designed to be displayed in a web browser.</dd>
         </dl>
       </section>
       
@@ -183,7 +216,66 @@ console.log(message);</pre>
           </div>
           
           <button type="button">Button Element</button>
+          
+          <fieldset class="border p-4 rounded-md mt-4">
+            <legend>Fieldset with Legend</legend>
+            <div class="mb-2">
+              <label for="first-name">First Name:</label>
+              <input type="text" id="first-name" name="first-name">
+            </div>
+            <div class="mb-2">
+              <label for="last-name">Last Name:</label>
+              <input type="text" id="last-name" name="last-name">
+            </div>
+          </fieldset>
+          
+          <div class="mt-4">
+            <label>Other Input Types:</label>
+            <div class="mb-2">
+              <input type="email" placeholder="Email input">
+            </div>
+            <div class="mb-2">
+              <input type="password" placeholder="Password input">
+            </div>
+            <div class="mb-2">
+              <input type="number" placeholder="Number input">
+            </div>
+            <div class="mb-2">
+              <input type="date">
+            </div>
+            <div class="mb-2">
+              <input type="color">
+            </div>
+            <div class="mb-2">
+              <input type="range">
+            </div>
+          </div>
         </form>
+      </section>
+      
+      <section id="progress">
+        <h2>Progress & Meter</h2>
+        
+        <h3>Progress Bar</h3>
+        <label for="progress-demo">Download progress:</label>
+        <progress id="progress-demo" max="100" value="75">75%</progress>
+        
+        <h3>Meter</h3>
+        <label for="meter-low">Low:</label>
+        <meter id="meter-low" min="0" max="100" value="25" low="33" high="66" optimum="50">25%</meter>
+        <br>
+        <label for="meter-medium">Medium:</label>
+        <meter id="meter-medium" min="0" max="100" value="50" low="33" high="66" optimum="50">50%</meter>
+        <br>
+        <label for="meter-high">High:</label>
+        <meter id="meter-high" min="0" max="100" value="80" low="33" high="66" optimum="50">80%</meter>
+      </section>
+      
+      <section id="time">
+        <h2>Time Element</h2>
+        <p>The concert takes place on <time datetime="2025-07-07T20:00:00">July 7th at 8:00 PM</time>.</p>
+        <p>The store is open from <time datetime="09:00">9:00 AM</time> to <time datetime="21:00">9:00 PM</time> every day.</p>
+        <p>The Declaration of Independence was signed on <time datetime="1776-07-04">July 4, 1776</time>.</p>
       </section>
       
       <section id="media">
@@ -214,6 +306,18 @@ console.log(message);</pre>
           <p>This content is hidden until the user clicks on the summary element.</p>
           <p>It's useful for FAQ sections, accordion elements, and other expandable content.</p>
         </details>
+        
+        <h3>Ruby Annotation (East Asian Typography)</h3>
+        <p>
+          <ruby>
+            漢 <rt>Kan</rt>
+            字 <rt>ji</rt>
+          </ruby>
+          is the Japanese term for Chinese characters.
+        </p>
+        
+        <h3>Bidirectional Text Override</h3>
+        <p>This text includes a phrase in Hebrew: <bdo dir="rtl">שלום</bdo> (shalom) which means "peace".</p>
       </section>
     </div>
   </div>
