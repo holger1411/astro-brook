@@ -36,7 +36,7 @@ const optimizedImagePath = image ? optimizeImagePath(image) : null;
       </h2>
       <time 
         datetime={new Date(date).toISOString()}
-        class="text-gray-500 dark:text-gray-400 text-sm shrink-0 sm:ml-4 sm:text-right"
+        class="text-gray-500 text-sm shrink-0 sm:ml-4 sm:text-right"
       >
         {formatDate(date)}
       </time>
@@ -62,7 +62,7 @@ const optimizedImagePath = image ? optimizeImagePath(image) : null;
     
     {showExcerpt && (
       <>
-        <p class="text-gray-500 dark:text-gray-400">{excerpt}</p>
+        <p class="text-gray-500">{excerpt}</p>
         <div>
           <a 
             href={post.url} 
@@ -92,13 +92,13 @@ const optimizedImagePath = image ? optimizeImagePath(image) : null;
 </article>
 
 <style>
-  /* Custom styles for tags in dark mode */
-  :global(.dark) article a[href^="/tags/"] {
-    background-color: #222222;
-    color: #e5e7eb;
+  /* Styles for tags */
+  article a[href^="/tags/"] {
+    background-color: #f3f4f6;
+    color: #333;
   }
   
-  :global(.dark) article a[href^="/tags/"]:hover {
-    background-color: #333333;
+  article a[href^="/tags/"]:hover {
+    background-color: #e5e7eb;
   }
 </style>

@@ -29,16 +29,16 @@ const publishDate = new Date(date);
   type="article"
   publishedDate={publishDate}
 >
-  <article class="max-w-3xl mx-auto post-content" id="main-content">
-    <header class="mb-12">
-      <div class="post-date mb-4">
+  <article class="max-w-3xl mx-auto" id="main-content">
+    <header class="mb-10">
+      <div class="text-gray-500 text-sm mb-2">
         <time datetime={publishDate.toISOString()}>{formatDate(date)}</time> • <span aria-label={`${readingTime} minute read`}>{readingTime} min read</span>
       </div>
       <h1 class="text-5xl mb-6" transition:name={`title-${slug}`}>{title}</h1>
-      {excerpt && <p class="text-xl text-gray-500 dark:text-gray-400 mb-6">{excerpt}</p>}
+      {excerpt && <p class="text-xl text-gray-500">{excerpt}</p>}
       
       {optimizedImagePath && (
-        <div class="mt-8 mb-10 aspect-video rounded-lg overflow-hidden" transition:name={`image-${slug}`}>
+        <div class="mt-6 aspect-video rounded-lg overflow-hidden" transition:name={`image-${slug}`}>
           <img 
             src={optimizedImagePath} 
             alt={`Featured image for "${title}"`}
@@ -52,11 +52,11 @@ const publishDate = new Date(date);
       )}
       
       {tags && tags.length > 0 && (
-        <div class="mt-8 flex flex-wrap gap-2" aria-label="Tags">
+        <div class="mt-6 flex flex-wrap gap-2" aria-label="Tags">
           {tags.map((tag) => (
             <a 
               href={`/tags/${tag}`} 
-              class="inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-800 px-3 py-1 text-sm font-medium text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-blue-400 dark:focus:ring-offset-gray-900"
+              class="inline-flex items-center rounded-md bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               aria-label={`View all posts tagged ${tag}`}
             >
               {tag}
@@ -66,78 +66,10 @@ const publishDate = new Date(date);
       )}
     </header>
     
-    <div class="post-content">
+    <div class="prose prose-lg max-w-none">
       <slot />
     </div>
 
     <PostNavigation prevPost={prevPost} nextPost={nextPost} />
   </article>
 </BaseLayout>
-
-<style>
-/* Specific styling for the current layout */
-.post-content {
-  font-size: 1.125rem;
-  line-height: 1.8;
-}
-
-.post-content :global(h1) {
-  font-size: 2.75rem;
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-}
-
-.post-content :global(h2) {
-  font-size: 2rem;
-  margin-top: 2.5rem;
-  margin-bottom: 1.25rem;
-}
-
-.post-content :global(h3) {
-  font-size: 1.5rem;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-}
-
-.post-content :global(p) {
-  margin-bottom: 1.75rem;
-}
-
-.post-content :global(ul), 
-.post-content :global(ol) {
-  margin-bottom: 1.75rem;
-  padding-left: 1.5rem;
-}
-
-.post-content :global(li) {
-  margin-bottom: 0.5rem;
-}
-
-.post-content :global(blockquote) {
-  border-left: 4px solid var(--color-border);
-  padding-left: 1.5rem;
-  margin-left: 0;
-  margin-right: 0;
-  font-style: italic;
-  margin-bottom: 1.75rem;
-}
-
-.post-content :global(img) {
-  max-width: 100%;
-  height: auto;
-  border-radius: 0.5rem;
-  margin: 2rem 0;
-}
-
-.post-content :global(pre) {
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  margin: 1.5rem 0;
-  overflow-x: auto;
-}
-
-.post-content :global(code) {
-  font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
-  font-size: 0.9em;
-}
-</style>
