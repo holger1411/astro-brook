@@ -86,6 +86,16 @@
     @apply text-blue-600 hover:underline;
   }
   
+  /* Navigation links in header and footer */
+  header a, footer a {
+    @apply text-black hover:underline;
+  }
+  
+  /* Heading links (when a heading is wrapped in an anchor) */
+  h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    @apply text-black no-underline hover:underline;
+  }
+  
   /* Blockquotes */
   blockquote {
     @apply pl-4 border-l-4 border-gray-300 italic my-6 text-gray-700;
