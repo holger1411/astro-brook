@@ -112,32 +112,64 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
       
       if (theme === 'dark') {
         document.documentElement.classList.add('dark');
+        document.body.style.backgroundColor = "#010101";
+        document.body.style.color = "#f3f4f6";
       } else {
         document.documentElement.classList.remove('dark');
+        document.body.style.backgroundColor = "#ffffff";
+        document.body.style.color = "#111827";
       }
       
       window.localStorage.setItem('theme', theme);
     </script>
     
-    <style is:inline>
-      /* Explizite Hintergrundfarbe für Dark Mode (#010101) */
-      .dark body {
+    <style is:global>
+      :root {
+        --color-bg: #ffffff;
+        --color-text: #111827;
+        --color-text-light: #4b5563;
+        --color-border: #e5e7eb;
+        --color-accent: #000000;
+      }
+      
+      .dark {
+        --color-bg: #010101;
+        --color-text: #f3f4f6;
+        --color-text-light: #9ca3af;
+        --color-border: #222222;
+        --color-accent: #ffffff;
+      }
+      
+      html, body {
+        min-height: 100vh;
+      }
+      
+      html.dark {
         background-color: #010101;
       }
       
-      /* Andere Dark-Mode-spezifische Anpassungen */
-      .dark button#theme-toggle {
-        background-color: #222222;
+      html:not(.dark) {
+        background-color: #ffffff;
       }
       
-      .dark header, 
-      .dark footer {
-        border-color: #222222;
-      }
-      
-      /* Font-Family explizit setzen */
       body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        font-size: 18px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      .dark .theme-toggle {
+        background-color: #ffffff !important;
+      }
+      
+      .theme-toggle {
+        padding: 0.5rem;
+        border-radius: 0.375rem;
+        background-color: #f3f4f6;
+        border: none;
+        cursor: pointer;
       }
     </style>
   </head>
@@ -147,10 +179,10 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
         <a href="/" class="text-2xl font-semibold" transition:animate="fade">Brook</a>
         
         <nav class="flex items-center gap-6">
-          <a href="/" class="text-sm hover:underline">Home</a>
-          <a href="/journal" class="text-sm hover:underline">Journal</a>
-          <a href="/about" class="text-sm hover:underline">About</a>
-          <button id="theme-toggle" aria-label="Toggle theme" class="p-2 rounded-md bg-gray-100">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/journal" class="nav-link">Journal</a>
+          <a href="/about" class="nav-link">About</a>
+          <button id="theme-toggle" aria-label="Toggle theme" class="theme-toggle">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden dark:block">
               <circle cx="12" cy="12" r="5"></circle>
               <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -175,20 +207,20 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
       
       <footer class="py-8 border-t mt-12">
         <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div class="text-sm text-gray-500 dark:text-gray-400">
+          <div class="footer-text">
             &copy; {new Date().getFullYear()} Brook Blog. All rights reserved.
           </div>
           <nav class="flex items-center gap-4">
-            <a href="/" class="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Home</a>
-            <a href="/journal" class="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Journal</a>
-            <a href="/about" class="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">About</a>
+            <a href="/" class="footer-link">Home</a>
+            <a href="/journal" class="footer-link">Journal</a>
+            <a href="/about" class="footer-link">About</a>
           </nav>
         </div>
       </footer>
     </div>
     
     <!-- Theme toggling script mit ViewTransitions Unterstützung -->
-    <script>
+    <script is:inline>
       // Bei jedem Seitenwechsel Event Listener neu hinzufügen (ViewTransitions kompatible Version)
       document.addEventListener('astro:page-load', () => {
         const themeToggle = document.getElementById('theme-toggle');
@@ -199,9 +231,13 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
             
             if (isDark) {
               document.documentElement.classList.remove('dark');
+              document.body.style.backgroundColor = "#ffffff";
+              document.body.style.color = "#111827";
               localStorage.setItem('theme', 'light');
             } else {
               document.documentElement.classList.add('dark');
+              document.body.style.backgroundColor = "#010101";
+              document.body.style.color = "#f3f4f6";
               localStorage.setItem('theme', 'dark');
             }
           });
@@ -213,8 +249,12 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
         const theme = localStorage.getItem('theme');
         if (theme === 'dark') {
           document.documentElement.classList.add('dark');
+          document.body.style.backgroundColor = "#010101";
+          document.body.style.color = "#f3f4f6";
         } else {
           document.documentElement.classList.remove('dark');
+          document.body.style.backgroundColor = "#ffffff";
+          document.body.style.color = "#111827";
         }
       });
     </script>
