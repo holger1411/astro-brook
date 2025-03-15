@@ -87,8 +87,25 @@
   }
   
   /* Navigation links in header and footer */
-  header a, footer a {
+  header a, footer a, 
+  /* Post navigation (prev/next) links */
+  nav a,
+  /* View all posts, read more, and other template-generated links */
+  a[href^="/tags/"],
+  .prose a.group,
+  a[aria-label*="View all"],
+  a[aria-label*="Read more"],
+  a[aria-label*="View "],
+  article h2 a,
+  article a.block,
+  article a.text-sm,
+  .group-hover\:underline {
     @apply text-black hover:underline;
+  }
+  
+  /* Fix for focus rings */
+  a:focus-visible {
+    @apply outline-none ring-2 ring-blue-500 ring-offset-2;
   }
   
   /* Heading links (when a heading is wrapped in an anchor) */
@@ -284,6 +301,12 @@
   bdo {
     @apply px-1;
   }
+}
+
+/* Override the specific tag styles from PostCard.astro */
+article a[href^="/tags/"] {
+  color: #111827 !important; /* text-gray-900 */
+  background-color: #f3f4f6; /* bg-gray-100 */
 }
 
 /* Animation for View Transitions - Only Fade */
