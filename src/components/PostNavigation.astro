@@ -21,9 +21,9 @@ const { prevPost, nextPost } = Astro.props;
         href={prevPost.url} 
         class="group flex flex-col items-start"
       >
-        <span class="text-sm text-gray-500 dark:text-gray-400">Previous Post</span>
+        <span class="text-sm text-gray-500">Previous Post</span>
         <span class="text-lg font-medium group-hover:underline flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-600 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
           {prevPost.title}
@@ -38,10 +38,10 @@ const { prevPost, nextPost } = Astro.props;
         href={nextPost.url} 
         class="group flex flex-col items-end text-right"
       >
-        <span class="text-sm text-gray-500 dark:text-gray-400">Next Post</span>
+        <span class="text-sm text-gray-500">Next Post</span>
         <span class="text-lg font-medium group-hover:underline flex items-center">
           {nextPost.title}
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 text-gray-600 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </span>
@@ -53,8 +53,8 @@ const { prevPost, nextPost } = Astro.props;
 </nav>
 
 <style>
-  /* Custom styles for post navigation in dark mode */
-  :global(.dark) nav {
-    border-color: #333333;
+  /* Custom styles for post navigation */
+  nav {
+    border-color: #e5e7eb;
   }
 </style>

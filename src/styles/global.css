@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Spacing for paragraphs */
+p {
+  margin-bottom: 1.5rem;
+}
+
 /* Animation for View Transitions - Only Fade */
 @keyframes fade-in {
   from { opacity: 0; }
