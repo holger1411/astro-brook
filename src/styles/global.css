@@ -32,18 +32,18 @@
     @apply inline-flex items-center rounded-md bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
   }
   
-  /* Focus styles */
-  .focus-ring {
+  /* Focus styles - We use direct utility classes instead of a component class */
+  /* .focus-ring {
     @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
-  }
+  } */
   
   /* Navigation */
   .nav-link {
-    @apply text-sm text-gray-900 hover:underline focus-ring rounded-sm;
+    @apply text-sm text-gray-900 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-sm;
   }
   
   .nav-link-footer {
-    @apply text-sm text-gray-500 hover:text-gray-900 focus-ring rounded-sm;
+    @apply text-sm text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-sm;
   }
   
   /* Feature image */
@@ -79,7 +79,7 @@
   
   /* Post navigation */
   .post-nav-link {
-    @apply group flex flex-col focus-ring rounded p-2 -m-2;
+    @apply group flex flex-col focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded p-2 -m-2;
   }
   
   .post-nav-direction {
