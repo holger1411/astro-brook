@@ -22,7 +22,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.14",
     "@tailwindcss/typography": "^0.5.10",
-    "@tailwindcss/vite": "^4.0.14",
+    "@tailwindcss/vite": "^4.0.15",
     "autoprefixer": "^10.4.21",
     "tailwindcss": "^4.0.14",
     "typescript": "^5.3.3"
