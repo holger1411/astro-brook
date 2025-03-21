@@ -57,7 +57,7 @@
   
   /* Content container */
   .prose-container {
-    @apply prose prose-xl max-w-none;
+    @apply max-w-none;
   }
   
   /* Layout containers */
