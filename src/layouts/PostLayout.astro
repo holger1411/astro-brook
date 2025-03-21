@@ -37,22 +37,8 @@ const publishDate = new Date(date);
       <h1 class="text-5xl mb-6" transition:name={`title-${slug}`}>{title}</h1>
       {excerpt && <p class="text-xl text-gray-500">{excerpt}</p>}
       
-      {optimizedImagePath && (
-        <div class="mt-6 aspect-video rounded-lg overflow-hidden" transition:name={`image-${slug}`}>
-          <img 
-            src={optimizedImagePath} 
-            alt={`Featured image for "${title}"`}
-            class="w-full h-full object-cover" 
-            loading="eager" 
-            decoding="async"
-            width="1200"
-            height="675"
-          />
-        </div>
-      )}
-      
       {tags && tags.length > 0 && (
-        <div class="mt-6 flex flex-wrap gap-2" aria-label="Tags">
+        <div class="mt-4 mb-4 flex flex-wrap gap-2" aria-label="Tags">
           {tags.map((tag) => (
             <a 
               href={`/tags/${tag}`} 
@@ -62,6 +48,20 @@ const publishDate = new Date(date);
               {tag}
             </a>
           ))}
+        </div>
+      )}
+      
+      {optimizedImagePath && (
+        <div class="mt-2 aspect-video rounded-lg overflow-hidden" transition:name={`image-${slug}`}>
+          <img 
+            src={optimizedImagePath} 
+            alt={`Featured image for "${title}"`}
+            class="w-full h-full object-cover" 
+            loading="eager" 
+            decoding="async"
+            width="1200"
+            height="675"
+          />
         </div>
       )}
     </header>
