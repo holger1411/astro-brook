@@ -42,6 +42,20 @@ const optimizedImagePath = image ? optimizeImagePath(image) : null;
       </time>
     </div>
     
+    {showTags && tags && tags.length > 0 && (
+      <div class="flex flex-wrap gap-2 mb-4" aria-label="Tags">
+        {tags.map((tag) => (
+          <a
+            href={`/tags/${tag}`}
+            class="inline-flex items-center rounded-md bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            aria-label={`View all posts tagged ${tag}`}
+          >
+            {tag}
+          </a>
+        ))}
+      </div>
+    )}
+    
     {showImage && optimizedImagePath && (
       <a 
         href={post.url} 
@@ -73,20 +87,6 @@ const optimizedImagePath = image ? optimizeImagePath(image) : null;
           </a>
         </div>
       </>
-    )}
-    
-    {showTags && tags && tags.length > 0 && (
-      <div class="flex flex-wrap gap-2 pt-2" aria-label="Tags">
-        {tags.map((tag) => (
-          <a
-            href={`/tags/${tag}`}
-            class="inline-flex items-center rounded-md bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            aria-label={`View all posts tagged ${tag}`}
-          >
-            {tag}
-          </a>
-        ))}
-      </div>
     )}
   </div>
 </article>
