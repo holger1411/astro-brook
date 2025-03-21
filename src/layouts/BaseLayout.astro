@@ -106,7 +106,7 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
   </head>
   <body class="text-gray-900 bg-white">
     <div class="container-lg bg-white">
-      <header class="max-w-3xl mx-auto  flex items-center justify-between py-8">
+      <header class="mx-auto max-w-4xl px-4 py-8 flex items-center justify-between">
         <a href="/" class="text-2xl font-semibold" transition:animate="fade">Brook2</a>
         
         <nav class="flex items-center gap-6">
@@ -121,7 +121,7 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
         <slot />
       </main>
       
-      <footer class="max-w-3xl mx-auto p-8 border-t border-gray-200 mt-12">
+      <footer class="max-w-4xl mx-auto py-8 border-t border-gray-200 mt-12">
         <div class="container-md mx-auto">
           <div class="flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="text-sm text-gray-500">
