@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PostList from '../components/PostList.astro';
+import PostListWithThumbnails from '../components/PostListWithThumbnails.astro';
 import { getCollection } from 'astro:content';
 
 // Get all blog posts and sort them by date
@@ -27,7 +27,7 @@ const posts = sortedPosts.map(post => ({
     </header>
 
     <div transition:animate="fade">
-      <PostList posts={posts} showTags={true} title="All Posts" />
+      <PostListWithThumbnails posts={posts} showTags={true} title="All Posts" />
     </div>
   </div>
 </BaseLayout>

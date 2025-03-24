@@ -1,0 +1,37 @@
+---
+import PostCardWithThumbnail from './PostCardWithThumbnail.astro';
+
+interface Props {
+  posts: any[];
+  showExcerpt?: boolean;
+  showTags?: boolean;
+  title?: string;
+}
+
+const { 
+  posts, 
+  showExcerpt = true, 
+  showTags = true,
+  title 
+} = Astro.props;
+---
+
+<section aria-labelledby={title ? 'post-list-title' : undefined}>
+  {title && (
+    <h2 id="post-list-title" class="text-2xl font-semibold mb-6">{title}</h2>
+  )}
+  
+  <div class="border-b border-gray-200" role="feed" aria-busy="false">
+    {posts.length === 0 ? (
+      <p class="py-8 text-gray-500 text-center">No posts found.</p>
+    ) : (
+      posts.map((post, index) => (
+        <PostCardWithThumbnail 
+          post={post} 
+          showExcerpt={showExcerpt} 
+          showTags={showTags} 
+        />
+      ))
+    )}
+  </div>
+</section>
