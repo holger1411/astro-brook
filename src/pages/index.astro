@@ -18,6 +18,7 @@ const posts = sortedPosts.slice(0, 5).map(post => ({
 ---
 
 <BaseLayout title="Welcome">
+  <div class="max-w-3xl mx-auto">
     <section class="text-center py-[8vh]" transition:animate="fade">
       <h1 class="text-7xl mb-8 font-bold">Welcome to Brook</h1>
       <p class="text-2xl text-muted-foreground max-w-3xl mx-auto mb-14">
@@ -38,4 +39,5 @@ const posts = sortedPosts.slice(0, 5).map(post => ({
         </a>
       </div>
     </section>
+    </div>
 </BaseLayout>
