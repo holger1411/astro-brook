@@ -29,8 +29,9 @@ const publishDate = new Date(date);
   type="article"
   publishedDate={publishDate}
 >
-  <article class="max-w-3xl mx-auto" id="main-content">
+  <article id="main-content">
     <header class="mb-10">
+      <div class="max-w-3xl mx-auto">
       <div class="text-gray-500 text-sm mb-2">
         <time datetime={publishDate.toISOString()}>{formatDate(date)}</time> • <span aria-label={`${readingTime} minute read`}>{readingTime} min read</span>
       </div>
@@ -50,7 +51,8 @@ const publishDate = new Date(date);
           ))}
         </div>
       )}
-      
+      </div>
+      <div class="max-w-5xl mx-auto py-4">
       {optimizedImagePath && (
         <div class="mt-2 aspect-video rounded-lg overflow-hidden" transition:name={`image-${slug}`}>
           <img 
@@ -64,12 +66,13 @@ const publishDate = new Date(date);
           />
         </div>
       )}
+      </div>
     </header>
-    
+    <div class="max-w-3xl mx-auto">
     <div class="prose prose-xl max-w-none">
       <slot />
     </div>
-
     <PostNavigation prevPost={prevPost} nextPost={nextPost} />
+    <div class="max-w-3xl mx-auto">
   </article>
 </BaseLayout>
