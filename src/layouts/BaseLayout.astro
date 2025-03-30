@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/fonts.css';
 import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
@@ -73,10 +74,7 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
     <!-- Aktivieren der View Transitions -->
     <ViewTransitions />
     
-    <!-- Inter Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Using local Inter Font from src/fonts/ -->
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={type} />
