@@ -1,5 +1,5 @@
 ---
-import PublicImage from '../PublicImage.astro';
+import WebPImage from '../WebPImage.astro';
 
 interface Props {
   src: string;
@@ -42,7 +42,7 @@ const validImage = isValidImagePath(src) ? src : null;
 <figure class={`my-8 ${className}`}>
   <div class="overflow-hidden rounded-lg">
     {validImage ? (
-      <PublicImage
+      <WebPImage
         src={validImage}
         alt={alt}
         width={width}
@@ -51,8 +51,6 @@ const validImage = isValidImagePath(src) ? src : null;
         loading="lazy"
         decoding="async"
         sizes={sizes}
-        format="webp"
-        quality={80}
       />
     ) : (
       <div class="bg-gray-200 flex items-center justify-center w-full" style={`height: ${height}px;`}>

@@ -1,0 +1,98 @@
+---
+// This component handles the conversion of images to WebP format
+
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'sync' | 'auto';
+  sizes?: string;
+}
+
+const { 
+  src, 
+  alt, 
+  width = 800, 
+  height = Math.round(width * (9/16)), // Default to 16:9 aspect ratio
+  class: className = "",
+  loading = "lazy",
+  decoding = "async",
+  sizes = "(min-width: 1024px) 800px, 100vw"
+} = Astro.props;
+
+// Function to validate image format from the src path
+function isValidImageFormat(path) {
+  if (!path) return false;
+  const supportedFormats = ['.jpg', '.jpeg', '.png', '.webp', '.avif', '.svg', '.gif', '.tiff'];
+  return supportedFormats.some(format => path.toLowerCase().endsWith(format));
+}
+
+// Check if the image format is supported
+const isValidImage = isValidImageFormat(src);
+
+// Function to convert image path to WebP
+function toWebP(imagePath) {
+  if (!imagePath) return '';
+  
+  // Don't convert if already WebP or SVG
+  if (imagePath.toLowerCase().endsWith('.webp') || imagePath.toLowerCase().endsWith('.svg')) {
+    return imagePath;
+  }
+  
+  // Replace the extension with .webp
+  const basePath = imagePath.substring(0, imagePath.lastIndexOf('.'));
+  return `${basePath}.webp`;
+}
+
+// Generate responsive widths
+const widths = [400, 800, 1200, 1600];
+const baseWebpSrc = isValidImage ? toWebP(src) : '';
+
+// Generate srcset with WebP images
+const generateSrcSet = () => {
+  if (!isValidImage) return '';
+  
+  // For each width, create a WebP version and add to srcset
+  return widths.map(w => {
+    // Get just the filename
+    const fileName = src.substring(src.lastIndexOf('/') + 1);
+    const baseName = fileName.substring(0, fileName.lastIndexOf('.'));
+    
+    // Create responsive WebP path
+    return `/images/responsive/${baseName}-${w}w.webp ${w}w`;
+  }).join(', ');
+};
+
+const srcset = generateSrcSet();
+---
+
+{isValidImage ? (
+  <picture>
+    <!-- WebP source with srcset for modern browsers -->
+    <source
+      type="image/webp"
+      srcset={srcset || baseWebpSrc}
+      sizes={sizes}
+    />
+    
+    <!-- Original image as fallback -->
+    <img 
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      decoding={decoding}
+      class={className}
+      sizes={sizes}
+    />
+  </picture>
+) : (
+  <!-- Fallback for invalid or missing images -->
+  <div class={`bg-gray-200 flex items-center justify-center ${className}`} style={`width: ${width}px; height: ${height}px; max-width: 100%;`}>
+    <span class="text-gray-400 text-sm text-center p-4">{alt || "Image unavailable"}</span>
+  </div>
+)}
