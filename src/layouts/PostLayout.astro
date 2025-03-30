@@ -1,7 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import PostNavigation from '../components/PostNavigation.astro';
-import OptimizedImage from '../components/OptimizedImage.astro';
+import PublicImage from '../components/PublicImage.astro';
 import { formatDate } from '../utils/date';
 
 const { frontmatter, headings, prevPost, nextPost } = Astro.props;
@@ -52,15 +52,17 @@ const publishDate = new Date(date);
       <div class="max-w-5xl mx-auto py-4">
       {image && (
         <div class="mt-2 aspect-video rounded-lg overflow-hidden" transition:name={`image-${slug}`}>
-          <OptimizedImage
+          <PublicImage
             src={image}
             alt={`Featured image for "${title}"`}
             width={1600}
+            height={900}
             class="w-full h-full object-cover"
             loading="eager" 
             decoding="async"
             sizes="(min-width: 1280px) 1280px, 100vw"
-            fetchpriority="high"
+            format="webp"
+            quality={80}
           />
         </div>
       )}

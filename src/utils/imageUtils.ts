@@ -1,5 +1,5 @@
 import { getImage } from 'astro:assets';
-import type { GetImageResult, ImageMetadata, LocalImageProps } from 'astro';
+import type { GetImageResult, ImageMetadata } from 'astro';
 
 /**
  * Type definition for supported image options
@@ -15,7 +15,6 @@ export interface OptimizedImageOptions {
 
 /**
  * Get an optimized image URL with all processing handled by Astro's image service
- * This function dynamically imports images or processes remote URLs
  * 
  * @param options Image options including source, alt text, dimensions, and format
  * @returns Promise resolving to an optimized image URL
@@ -28,42 +27,49 @@ export async function getOptimizedImageUrl(options: OptimizedImageOptions): Prom
   let finalWidth = width;
   let finalHeight = height;
   
-  // For string paths that are local (start with /)
-  if (typeof src === 'string' && src.startsWith('/')) {
-    try {
-      // Try to dynamically import the image from the assets directory
-      // This pattern uses a regex to match any image file in the assets directory
-      const images = import.meta.glob('/src/assets/**/*.{jpeg,jpg,png,gif,webp,avif,svg}');
-      
-      // Remove the leading slash and attempt to find in assets
-      const assetPath = `/src${src}`;
-      
-      if (images[assetPath]) {
-        const importedImage = await images[assetPath]();
-        imageSource = importedImage.default;
-      } else {
-        // If it's not in assets and is a remote image, we need both dimensions
-        // If height is not provided, use a default aspect ratio of 16:9
-        if (!finalHeight && finalWidth) {
-          // Default to 16:9 aspect ratio if height is missing
-          finalHeight = Math.round(finalWidth * (9/16));
-        }
+  // Handle height/width calculations if needed
+  if (!finalHeight && finalWidth) {
+    // Default to 16:9 aspect ratio if height is missing
+    finalHeight = Math.round(finalWidth * (9/16));
+  }
+  
+  if (!finalWidth && finalHeight) {
+    // If width is not provided but height is, use 16:9 aspect ratio
+    finalWidth = Math.round(finalHeight * (16/9));
+  }
+  
+  if (!finalWidth && !finalHeight) {
+    // If neither is provided, set defaults
+    finalWidth = 800;
+    finalHeight = 450;
+  }
+  
+  try {
+    // For string paths that are local (start with /)
+    if (typeof src === 'string' && src.startsWith('/')) {
+      // First check if it's an image in the assets directory
+      try {
+        // This uses Vite's glob import to find images in the assets directory
+        const assetImages = import.meta.glob('/src/assets/**/*.{jpeg,jpg,png,gif,webp,avif,svg}', { eager: true });
         
-        // If width is not provided but height is, use 16:9 aspect ratio
-        if (!finalWidth && finalHeight) {
-          finalWidth = Math.round(finalHeight * (16/9));
+        // Check if the image exists in the src/assets directory
+        const assetPath = `/src${src}`;
+        if (assetImages[assetPath]) {
+          imageSource = assetImages[assetPath].default;
+        } 
+        // If not found in assets, check if it's in /public/images
+        else if (src.startsWith('/images/')) {
+          // For images in the public directory, create a new URL
+          // We need to make it an absolute URL for Astro's image service
+          const baseUrl = import.meta.env.SITE || 'http://localhost:4321';
+          imageSource = new URL(src, baseUrl).href;
         }
-        
-        // If neither is provided, set defaults
-        if (!finalWidth && !finalHeight) {
-          finalWidth = 800;
-          finalHeight = 450;
-        }
+      } catch (error) {
+        console.error(`Failed to resolve image path: ${src}`, error);
       }
-    } catch (error) {
-      console.error(`Failed to resolve image: ${src}`, error);
-      // Fall back to the original source
     }
+  } catch (error) {
+    console.error(`Error processing image: ${src}`, error);
   }
   
   // Process the image using Astro's built-in image service
@@ -92,12 +98,8 @@ export async function generateResponsiveSrcSet(
 ): Promise<Array<{ srcset: string, width: number }>> {
   const sources = await Promise.all(
     widths.map(async (width) => {
-      // Calculate height based on aspect ratio if it's a string source
-      let height;
-      if (typeof src === 'string') {
-        // Default to 16:9 aspect ratio for responsive images
-        height = Math.round(width * (9/16));
-      }
+      // Calculate height based on aspect ratio for responsive images
+      let height = Math.round(width * (9/16));
       
       const optimized = await getOptimizedImageUrl({
         src,

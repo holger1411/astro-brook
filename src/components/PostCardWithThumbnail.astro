@@ -1,6 +1,6 @@
 ---
 import { formatDate } from '../utils/date';
-import OptimizedImage from './OptimizedImage.astro';
+import PublicImage from './PublicImage.astro';
 
 interface Props {
   post: {
@@ -30,7 +30,7 @@ const { title, date, excerpt, image, tags } = post.frontmatter;
         class="block sm:min-w-[120px] sm:w-[120px] h-[120px] overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         aria-label={`View ${title} article`}
       >
-        <OptimizedImage
+        <PublicImage
           src={image}
           alt={`Preview image for ${title}`}
           width={240} // Double size for high-DPI displays
@@ -39,6 +39,8 @@ const { title, date, excerpt, image, tags } = post.frontmatter;
           loading="lazy"
           decoding="async"
           sizes="120px"
+          format="webp"
+          quality={80}
         />
       </a>
     )}

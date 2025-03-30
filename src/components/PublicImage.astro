@@ -1,0 +1,50 @@
+---
+// This component is designed to handle images from the public directory
+// and optimize them properly using Astro's image service
+
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'sync' | 'auto';
+  sizes?: string;
+  format?: 'webp' | 'avif' | 'png' | 'jpg' | 'jpeg';
+  quality?: number;
+}
+
+const { 
+  src, 
+  alt, 
+  width = 800, 
+  height = Math.round(width * (9/16)), // Default to 16:9 aspect ratio
+  class: className = "",
+  loading = "lazy",
+  decoding = "async",
+  sizes = "(min-width: 1024px) 800px, 100vw",
+  format = 'webp',
+  quality = 80
+} = Astro.props;
+
+// We need to convert the string path to something Astro can process
+// For public directory images, we need the full URL
+const baseUrl = import.meta.env.SITE || 'http://localhost:4321';
+const imageUrl = new URL(src, baseUrl);
+---
+
+<Image 
+  src={imageUrl}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={loading}
+  decoding={decoding}
+  class={className}
+  sizes={sizes}
+  format={format}
+  quality={quality}
+/>
