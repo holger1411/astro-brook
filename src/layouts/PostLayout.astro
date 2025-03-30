@@ -17,12 +17,28 @@ const readingTime = Math.max(1, Math.ceil(wordCount / WORDS_PER_MINUTE));
 
 // Structured data for SEO
 const publishDate = new Date(date);
+
+// Function to validate if an image path is valid
+function isValidImagePath(path) {
+  if (!path) return false;
+  // Check if it has a valid extension
+  const validExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.avif', '.svg', '.gif'];
+  const hasValidExtension = validExtensions.some(ext => 
+    path.toLowerCase().endsWith(ext)
+  );
+  
+  // Make sure it starts with a slash if it's a local path
+  return hasValidExtension && (path.startsWith('/') || path.startsWith('http'));
+}
+
+// Make sure image is valid
+const validImage = isValidImagePath(image) ? image : null;
 ---
 
 <BaseLayout 
   title={title} 
   description={excerpt} 
-  image={image}
+  image={validImage}
   type="article"
   publishedDate={publishDate}
 >
@@ -50,10 +66,10 @@ const publishDate = new Date(date);
       )}
       </div>
       <div class="max-w-5xl mx-auto py-4">
-      {image && (
+      {validImage && (
         <div class="mt-2 aspect-video rounded-lg overflow-hidden" transition:name={`image-${slug}`}>
           <PublicImage
-            src={image}
+            src={validImage}
             alt={`Featured image for "${title}"`}
             width={1600}
             height={900}

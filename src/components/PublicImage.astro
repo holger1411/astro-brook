@@ -30,21 +30,44 @@ const {
   quality = 80
 } = Astro.props;
 
+// Check if src is valid
+if (!src) {
+  // Render a simple img tag with a placeholder if src is missing
+  // This avoids the Astro build error with undefined sources
+  console.warn(`PublicImage: Missing src for image with alt text "${alt}"`);
+}
+
+// Function to validate image format from the src path
+function isValidImageFormat(path) {
+  if (!path) return false;
+  const supportedFormats = ['.jpg', '.jpeg', '.png', '.webp', '.avif', '.svg', '.gif', '.tiff'];
+  return supportedFormats.some(format => path.toLowerCase().endsWith(format));
+}
+
+// Check if the image format is supported
+const isValidImage = isValidImageFormat(src);
+
 // We need to convert the string path to something Astro can process
 // For public directory images, we need the full URL
 const baseUrl = import.meta.env.SITE || 'http://localhost:4321';
-const imageUrl = new URL(src, baseUrl);
 ---
 
-<Image 
-  src={imageUrl}
-  alt={alt}
-  width={width}
-  height={height}
-  loading={loading}
-  decoding={decoding}
-  class={className}
-  sizes={sizes}
-  format={format}
-  quality={quality}
-/>
+{isValidImage ? (
+  <Image 
+    src={new URL(src, baseUrl)}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    decoding={decoding}
+    class={className}
+    sizes={sizes}
+    format={format}
+    quality={quality}
+  />
+) : (
+  /* Fallback for invalid or missing images */
+  <div class={`bg-gray-200 flex items-center justify-center ${className}`} style={`width: ${width}px; height: ${height}px; max-width: 100%;`}>
+    <span class="text-gray-400 text-sm text-center p-4">{alt || "Image unavailable"}</span>
+  </div>
+)}

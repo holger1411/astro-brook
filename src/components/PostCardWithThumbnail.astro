@@ -20,18 +20,34 @@ interface Props {
 
 const { post, showExcerpt = true, showTags = true } = Astro.props;
 const { title, date, excerpt, image, tags } = post.frontmatter;
+
+// Function to validate if an image path is valid
+function isValidImagePath(path) {
+  if (!path) return false;
+  // Check if it has a valid extension
+  const validExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.avif', '.svg', '.gif'];
+  const hasValidExtension = validExtensions.some(ext => 
+    path.toLowerCase().endsWith(ext)
+  );
+  
+  // Make sure it starts with a slash if it's a local path
+  return hasValidExtension && (path.startsWith('/') || path.startsWith('http'));
+}
+
+// Make sure image is valid
+const validImage = isValidImagePath(image) ? image : null;
 ---
 
 <article class="border-t border-gray-200 py-[4vh] xl:py-8" transition:name={`post-${post.slug}`}>
   <div class="flex flex-col sm:flex-row items-center gap-8">
-    {image && (
+    {validImage && (
       <a 
         href={post.url} 
         class="block sm:min-w-[120px] sm:w-[120px] h-[120px] overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         aria-label={`View ${title} article`}
       >
         <PublicImage
-          src={image}
+          src={validImage}
           alt={`Preview image for ${title}`}
           width={240} // Double size for high-DPI displays
           height={240}

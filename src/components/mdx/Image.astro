@@ -21,22 +21,44 @@ const {
 
 // Define responsive sizes for markdown images
 const sizes = "(min-width: 1280px) 740px, (min-width: 768px) 672px, calc(100vw - 2rem)";
+
+// Function to validate if an image path is valid
+function isValidImagePath(path) {
+  if (!path) return false;
+  // Check if it has a valid extension
+  const validExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.avif', '.svg', '.gif'];
+  const hasValidExtension = validExtensions.some(ext => 
+    path.toLowerCase().endsWith(ext)
+  );
+  
+  // Make sure it starts with a slash if it's a local path
+  return hasValidExtension && (path.startsWith('/') || path.startsWith('http'));
+}
+
+// Make sure image is valid
+const validImage = isValidImagePath(src) ? src : null;
 ---
 
 <figure class={`my-8 ${className}`}>
   <div class="overflow-hidden rounded-lg">
-    <PublicImage
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      class="w-full h-auto"
-      loading="lazy"
-      decoding="async"
-      sizes={sizes}
-      format="webp"
-      quality={80}
-    />
+    {validImage ? (
+      <PublicImage
+        src={validImage}
+        alt={alt}
+        width={width}
+        height={height}
+        class="w-full h-auto"
+        loading="lazy"
+        decoding="async"
+        sizes={sizes}
+        format="webp"
+        quality={80}
+      />
+    ) : (
+      <div class="bg-gray-200 flex items-center justify-center w-full" style={`height: ${height}px;`}>
+        <span class="text-gray-500">{alt || "Image not available"}</span>
+      </div>
+    )}
   </div>
   
   {caption && (
