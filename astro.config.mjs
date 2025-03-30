@@ -17,7 +17,7 @@ export default defineConfig({
         // Higher quality setting (0-100)
         quality: 80,
         // Default sizes for responsive images
-        sizes: [640, 960, 1280, 1600, 2000],
+        sizes: [400, 640, 768, 960, 1280, 1600, 2000],
         // Process images into multiple sizes for responsiveness
         resizeOptions: {
           fit: 'cover',
@@ -26,11 +26,26 @@ export default defineConfig({
       }
     }
   },
+  integrations: [
+    mdx({
+      // MDX options
+      extendMarkdownConfig: true,
+      // Configure the markdown processor to use our custom components
+      components: {
+        // Use our custom image component for all img tags in MDX
+        img: './src/components/mdx/Image.astro'
+      }
+    }),
+    sitemap()
+  ],
+  markdown: {
+    // Add shiki for syntax highlighting (if needed)
+    shikiConfig: {
+      theme: 'github-light',
+      wrap: true
+    }
+  },
   vite: {
     plugins: [tailwindcss()]
-  },
-  integrations: [
-    mdx(),
-    sitemap()
-  ]
+  }
 });

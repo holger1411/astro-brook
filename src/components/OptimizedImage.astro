@@ -1,0 +1,61 @@
+---
+import { getOptimizedImageUrl, generateResponsiveSrcSet } from '../utils/imageUtils';
+
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'sync' | 'auto';
+  sizes?: string;
+  fetchpriority?: 'high' | 'low' | 'auto';
+}
+
+const { 
+  src, 
+  alt, 
+  width = 800, 
+  height, 
+  class: className = "",
+  loading = "lazy",
+  decoding = "async",
+  sizes = "(min-width: 1024px) 800px, 100vw",
+  fetchpriority = 'auto'
+} = Astro.props;
+
+// Default responsive widths
+const responsiveWidths = [400, 600, 800, 1200, 1600];
+
+// Get the main optimized image
+const optimizedImage = await getOptimizedImageUrl({
+  src,
+  alt,
+  width,
+  height,
+  format: 'webp',
+  quality: 80
+});
+
+// Generate srcset for responsive images
+const srcSetEntries = await generateResponsiveSrcSet(src, alt, responsiveWidths);
+const srcset = srcSetEntries.map(entry => `${entry.srcset} ${entry.width}w`).join(', ');
+
+// Calculate aspect ratio for proper rendering
+const aspectRatio = height ? width / height : undefined;
+---
+
+<img
+  src={optimizedImage.src}
+  srcset={srcset}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={loading}
+  decoding={decoding}
+  sizes={sizes}
+  class={className}
+  fetchpriority={fetchpriority}
+  style={aspectRatio ? `aspect-ratio: ${aspectRatio}` : ''}
+/>

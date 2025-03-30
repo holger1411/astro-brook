@@ -1,0 +1,35 @@
+---
+import OptimizedImage from './OptimizedImage.astro';
+
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  className?: string;
+}
+
+const { src, alt, caption, className = '' } = Astro.props;
+
+// Define responsive sizes for blog post images
+const sizes = "(min-width: 1280px) 1152px, (min-width: 1024px) 896px, (min-width: 768px) 672px, calc(100vw - 2rem)";
+---
+
+<figure class={`my-8 ${className}`}>
+  <div class="overflow-hidden rounded-lg">
+    <OptimizedImage
+      src={src}
+      alt={alt}
+      width={1200}
+      class="w-full h-auto"
+      loading="lazy"
+      decoding="async"
+      sizes={sizes}
+    />
+  </div>
+  
+  {caption && (
+    <figcaption class="mt-2 text-sm text-center text-gray-500">
+      {caption}
+    </figcaption>
+  )}
+</figure>

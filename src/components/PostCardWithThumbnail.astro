@@ -1,6 +1,6 @@
 ---
 import { formatDate } from '../utils/date';
-import { optimizeImagePath } from '../utils/optimizeImagePath';
+import OptimizedImage from './OptimizedImage.astro';
 
 interface Props {
   post: {
@@ -20,27 +20,25 @@ interface Props {
 
 const { post, showExcerpt = true, showTags = true } = Astro.props;
 const { title, date, excerpt, image, tags } = post.frontmatter;
-
-// Ensure image path is optimized
-const optimizedImagePath = image ? optimizeImagePath(image) : null;
 ---
 
 <article class="border-t border-gray-200 py-[4vh] xl:py-8" transition:name={`post-${post.slug}`}>
   <div class="flex flex-col sm:flex-row items-center gap-8">
-    {optimizedImagePath && (
+    {image && (
       <a 
         href={post.url} 
         class="block sm:min-w-[120px] sm:w-[120px] h-[120px] overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         aria-label={`View ${title} article`}
       >
-        <img
-          src={optimizedImagePath}
+        <OptimizedImage
+          src={image}
           alt={`Preview image for ${title}`}
+          width={240} // Double size for high-DPI displays
+          height={240}
           class="w-full h-full object-cover transition-transform hover:scale-105"
           loading="lazy"
           decoding="async"
-          width="120"
-          height="120"
+          sizes="120px"
         />
       </a>
     )}
