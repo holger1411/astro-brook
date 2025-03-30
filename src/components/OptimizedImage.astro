@@ -17,7 +17,7 @@ const {
   src, 
   alt, 
   width = 800, 
-  height, 
+  height = Math.round(width * (9/16)), // Default to 16:9 aspect ratio if height not provided
   class: className = "",
   loading = "lazy",
   decoding = "async",
@@ -43,7 +43,7 @@ const srcSetEntries = await generateResponsiveSrcSet(src, alt, responsiveWidths)
 const srcset = srcSetEntries.map(entry => `${entry.srcset} ${entry.width}w`).join(', ');
 
 // Calculate aspect ratio for proper rendering
-const aspectRatio = height ? width / height : undefined;
+const aspectRatio = width / height;
 ---
 
 <img
@@ -57,5 +57,5 @@ const aspectRatio = height ? width / height : undefined;
   sizes={sizes}
   class={className}
   fetchpriority={fetchpriority}
-  style={aspectRatio ? `aspect-ratio: ${aspectRatio}` : ''}
+  style={`aspect-ratio: ${aspectRatio}`}
 />

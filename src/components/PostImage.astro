@@ -6,9 +6,18 @@ interface Props {
   alt: string;
   caption?: string;
   className?: string;
+  width?: number;
+  height?: number;
 }
 
-const { src, alt, caption, className = '' } = Astro.props;
+const { 
+  src, 
+  alt, 
+  caption, 
+  className = '',
+  width = 1200,
+  height = Math.round(width * (9/16)) // Default to 16:9 aspect ratio
+} = Astro.props;
 
 // Define responsive sizes for blog post images
 const sizes = "(min-width: 1280px) 1152px, (min-width: 1024px) 896px, (min-width: 768px) 672px, calc(100vw - 2rem)";
@@ -19,7 +28,8 @@ const sizes = "(min-width: 1280px) 1152px, (min-width: 1024px) 896px, (min-width
     <OptimizedImage
       src={src}
       alt={alt}
-      width={1200}
+      width={width}
+      height={height}
       class="w-full h-auto"
       loading="lazy"
       decoding="async"

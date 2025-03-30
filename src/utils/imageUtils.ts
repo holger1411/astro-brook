@@ -25,6 +25,8 @@ export async function getOptimizedImageUrl(options: OptimizedImageOptions): Prom
   
   // Process local or remote images
   let imageSource = src;
+  let finalWidth = width;
+  let finalHeight = height;
   
   // For string paths that are local (start with /)
   if (typeof src === 'string' && src.startsWith('/')) {
@@ -39,6 +41,24 @@ export async function getOptimizedImageUrl(options: OptimizedImageOptions): Prom
       if (images[assetPath]) {
         const importedImage = await images[assetPath]();
         imageSource = importedImage.default;
+      } else {
+        // If it's not in assets and is a remote image, we need both dimensions
+        // If height is not provided, use a default aspect ratio of 16:9
+        if (!finalHeight && finalWidth) {
+          // Default to 16:9 aspect ratio if height is missing
+          finalHeight = Math.round(finalWidth * (9/16));
+        }
+        
+        // If width is not provided but height is, use 16:9 aspect ratio
+        if (!finalWidth && finalHeight) {
+          finalWidth = Math.round(finalHeight * (16/9));
+        }
+        
+        // If neither is provided, set defaults
+        if (!finalWidth && !finalHeight) {
+          finalWidth = 800;
+          finalHeight = 450;
+        }
       }
     } catch (error) {
       console.error(`Failed to resolve image: ${src}`, error);
@@ -50,8 +70,8 @@ export async function getOptimizedImageUrl(options: OptimizedImageOptions): Prom
   return await getImage({
     src: imageSource,
     alt,
-    width,
-    height,
+    width: finalWidth,
+    height: finalHeight,
     format,
     quality
   });
@@ -72,10 +92,18 @@ export async function generateResponsiveSrcSet(
 ): Promise<Array<{ srcset: string, width: number }>> {
   const sources = await Promise.all(
     widths.map(async (width) => {
+      // Calculate height based on aspect ratio if it's a string source
+      let height;
+      if (typeof src === 'string') {
+        // Default to 16:9 aspect ratio for responsive images
+        height = Math.round(width * (9/16));
+      }
+      
       const optimized = await getOptimizedImageUrl({
         src,
         alt,
         width,
+        height,
         format: 'webp'
       });
       

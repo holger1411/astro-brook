@@ -10,7 +10,14 @@ interface Props {
   class?: string;
 }
 
-const { src, alt, caption, width, height, class: className = '' } = Astro.props;
+const { 
+  src, 
+  alt, 
+  caption, 
+  width = 1200, 
+  height = Math.round(width * (9/16)), // Default to 16:9 aspect ratio
+  class: className = '' 
+} = Astro.props;
 
 // Define responsive sizes for markdown images
 const sizes = "(min-width: 1280px) 740px, (min-width: 768px) 672px, calc(100vw - 2rem)";
@@ -21,7 +28,7 @@ const sizes = "(min-width: 1280px) 740px, (min-width: 768px) 672px, calc(100vw -
     <OptimizedImage
       src={src}
       alt={alt}
-      width={width || 1200}
+      width={width}
       height={height}
       class="w-full h-auto"
       loading="lazy"
