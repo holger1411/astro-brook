@@ -6,8 +6,6 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "optimize-images": "node scripts/optimize-images.js",
-    "prebuild": "npm run optimize-images",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -18,8 +16,7 @@
     "@astrojs/sitemap": "^3.2.1",
     "astro": "^5.5.2",
     "date-fns": "^4.1.0",
-    "hast-util-raw": "^9.1.0",
-    "sharp": "^0.33.5",
+    "hast-util-raw": "^9.1.0", 
     "zwitch": "^2.0.0"
   },
   "devDependencies": {

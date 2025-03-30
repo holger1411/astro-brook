@@ -1,6 +1,6 @@
 ---
 import { formatDate } from '../utils/date';
-import WebPImage from './WebPImage.astro';
+import OptimizedImage from './OptimizedImage.astro';
 
 interface Props {
   post: {
@@ -46,7 +46,7 @@ const validImage = isValidImagePath(image) ? image : null;
         class="block sm:min-w-[120px] sm:w-[120px] h-[120px] overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         aria-label={`View ${title} article`}
       >
-        <WebPImage
+        <OptimizedImage
           src={validImage}
           alt={`Preview image for ${title}`}
           width={240} // Double size for high-DPI displays

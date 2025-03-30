@@ -1,5 +1,5 @@
 ---
-import { getOptimizedImageUrl, generateResponsiveSrcSet } from '../utils/imageUtils';
+import { Image } from 'astro:assets';
 
 interface Props {
   src: string;
@@ -7,55 +7,70 @@ interface Props {
   width?: number;
   height?: number;
   class?: string;
-  loading?: 'lazy' | 'eager';
-  decoding?: 'async' | 'sync' | 'auto';
+  loading?: 'eager' | 'lazy';
+  decoding?: 'async' | 'auto' | 'sync';
   sizes?: string;
-  fetchpriority?: 'high' | 'low' | 'auto';
 }
 
 const { 
   src, 
   alt, 
   width = 800, 
-  height = Math.round(width * (9/16)), // Default to 16:9 aspect ratio if height not provided
+  height = Math.round(width * (9/16)), // Default to 16:9 aspect ratio if height not specified
   class: className = "",
   loading = "lazy",
   decoding = "async",
-  sizes = "(min-width: 1024px) 800px, 100vw",
-  fetchpriority = 'auto'
+  sizes = "(min-width: 1024px) 800px, 100vw"
 } = Astro.props;
 
-// Default responsive widths
-const responsiveWidths = [400, 600, 800, 1200, 1600];
+// Function to validate if an image path is valid
+function isValidImagePath(path) {
+  if (!path) return false;
+  // Check if it has a valid extension
+  const validExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.avif', '.svg', '.gif'];
+  const hasValidExtension = validExtensions.some(ext => 
+    path.toLowerCase().endsWith(ext)
+  );
+  
+  // Make sure it starts with a slash if it's a local path
+  return hasValidExtension && (path.startsWith('/') || path.startsWith('http'));
+}
 
-// Get the main optimized image
-const optimizedImage = await getOptimizedImageUrl({
-  src,
-  alt,
-  width,
-  height,
-  format: 'webp',
-  quality: 80
-});
+// Make sure image is valid
+const validImage = isValidImagePath(src) ? src : null;
 
-// Generate srcset for responsive images
-const srcSetEntries = await generateResponsiveSrcSet(src, alt, responsiveWidths);
-const srcset = srcSetEntries.map(entry => `${entry.srcset} ${entry.width}w`).join(', ');
-
-// Calculate aspect ratio for proper rendering
-const aspectRatio = width / height;
+// Process the image source
+// If it's a remote image or an image in the public directory
+// we need to create a URL object for Astro's Image component
+let imageSrc;
+if (validImage) {
+  if (validImage.startsWith('http')) {
+    // For remote images
+    imageSrc = validImage;
+  } else if (validImage.startsWith('/')) {
+    // For images in the public directory
+    // We need to use the full URL
+    const baseUrl = import.meta.env.SITE || 'http://localhost:4321';
+    imageSrc = new URL(validImage, baseUrl);
+  }
+}
 ---
 
-<img
-  src={optimizedImage.src}
-  srcset={srcset}
-  alt={alt}
-  width={width}
-  height={height}
-  loading={loading}
-  decoding={decoding}
-  sizes={sizes}
-  class={className}
-  fetchpriority={fetchpriority}
-  style={`aspect-ratio: ${aspectRatio}`}
-/>
+{validImage ? (
+  <Image 
+    src={imageSrc}
+    alt={alt}
+    width={width}
+    height={height}
+    class={className}
+    loading={loading}
+    decoding={decoding}
+    sizes={sizes}
+    format="webp"
+    quality={80}
+  />
+) : (
+  <div class={`bg-gray-200 flex items-center justify-center ${className}`} style={`width: ${width}px; height: ${height}px; max-width: 100%;`}>
+    <span class="text-gray-400 text-sm text-center p-4">{alt || "Image unavailable"}</span>
+  </div>
+)}

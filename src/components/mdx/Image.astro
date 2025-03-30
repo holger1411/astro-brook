@@ -1,5 +1,5 @@
 ---
-import WebPImage from '../WebPImage.astro';
+import OptimizedImage from '../OptimizedImage.astro';
 
 interface Props {
   src: string;
@@ -42,7 +42,7 @@ const validImage = isValidImagePath(src) ? src : null;
 <figure class={`my-8 ${className}`}>
   <div class="overflow-hidden rounded-lg">
     {validImage ? (
-      <WebPImage
+      <OptimizedImage
         src={validImage}
         alt={alt}
         width={width}

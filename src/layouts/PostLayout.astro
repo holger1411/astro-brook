@@ -1,7 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import PostNavigation from '../components/PostNavigation.astro';
-import WebPImage from '../components/WebPImage.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
 import { formatDate } from '../utils/date';
 
 const { frontmatter, headings, prevPost, nextPost } = Astro.props;
@@ -68,7 +68,7 @@ const validImage = isValidImagePath(image) ? image : null;
       <div class="max-w-5xl mx-auto py-4">
       {validImage && (
         <div class="mt-2 aspect-video rounded-lg overflow-hidden" transition:name={`image-${slug}`}>
-          <WebPImage
+          <OptimizedImage
             src={validImage}
             alt={`Featured image for "${title}"`}
             width={1600}
