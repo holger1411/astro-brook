@@ -1,4 +1,5 @@
 ---
+// This component handles image optimization with fallbacks to regular img tags when needed
 import { Image } from 'astro:assets';
 
 interface Props {
@@ -39,37 +40,39 @@ function isValidImagePath(path) {
 // Make sure image is valid
 const validImage = isValidImagePath(src) ? src : null;
 
-// Process the image source
-// If it's a remote image or an image in the public directory
-// we need to create a URL object for Astro's Image component
-let imageSrc;
-if (validImage) {
-  if (validImage.startsWith('http')) {
-    // For remote images
-    imageSrc = validImage;
-  } else if (validImage.startsWith('/')) {
-    // For images in the public directory
-    // We need to use the full URL
-    const baseUrl = import.meta.env.SITE || 'http://localhost:4321';
-    imageSrc = new URL(validImage, baseUrl);
-  }
-}
+// Determine whether to use Astro's Image component or a regular img tag
+// We'll use img tag for images in the public directory to avoid build issues
+const useImgTag = validImage?.startsWith('/');
 ---
 
 {validImage ? (
-  <Image 
-    src={imageSrc}
-    alt={alt}
-    width={width}
-    height={height}
-    class={className}
-    loading={loading}
-    decoding={decoding}
-    sizes={sizes}
-    format="webp"
-    quality={80}
-  />
+  useImgTag ? (
+    <!-- Use regular img tag for images in public directory -->
+    <img 
+      src={validImage}
+      alt={alt}
+      width={width}
+      height={height}
+      class={className}
+      loading={loading}
+      decoding={decoding}
+      sizes={sizes}
+    />
+  ) : (
+    <!-- Use Astro's Image component for other images -->
+    <Image 
+      src={validImage}
+      alt={alt}
+      width={width}
+      height={height}
+      class={className}
+      loading={loading}
+      decoding={decoding}
+      format="webp"
+    />
+  )
 ) : (
+  <!-- Fallback for invalid images -->
   <div class={`bg-gray-200 flex items-center justify-center ${className}`} style={`width: ${width}px; height: ${height}px; max-width: 100%;`}>
     <span class="text-gray-400 text-sm text-center p-4">{alt || "Image unavailable"}</span>
   </div>
