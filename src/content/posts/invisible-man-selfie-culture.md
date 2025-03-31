@@ -2,7 +2,7 @@
 title: The Invisible Man's Struggle with Selfie Culture
 date: 2024-03-14
 excerpt: In an era defined by visual documentation and social media presence, how does someone without a visible physical form navigate the challenges of digital existence and personal identity?
-image: /images/image5.png
+image: /images/image5.webp
 tags: [invisible man, social media, selfies, humor, modern problems]
 ---
 

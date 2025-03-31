@@ -2,7 +2,7 @@
 title: How does a Mummy clean up its Dress?
 date: 2024-03-14
 excerpt: A comprehensive guide to ancient Egyptian laundry techniques and the unique dry cleaning challenges faced by the fashionable walking dead.
-image: /images/image4.png
+image: /images/image4.webp
 tags: [mummies, ancient egypt, fashion, humor, cleaning]
 ---
 

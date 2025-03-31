@@ -9,21 +9,14 @@ export default defineConfig({
   site: 'https://astro-brook.example.com',
   // Enable built-in image optimization with specific settings
   image: {
+    // Configure domains for remote images if needed
+    domains: [],
+    // Format settings apply to both local and remote images
+    format: 'webp', // Default format
+    quality: 80, // Default quality (0-100)
+    // Make sure sharp is used for image processing
     service: {
-      entrypoint: 'astro/assets/services/sharp',
-      config: {
-        // Use webp as preferred format for better compression and quality
-        format: 'webp',
-        // Higher quality setting (0-100)
-        quality: 80,
-        // Default sizes for responsive images
-        sizes: [640, 960, 1280, 1600, 2000],
-        // Process images into multiple sizes for responsiveness
-        resizeOptions: {
-          fit: 'cover',
-          position: 'center'
-        }
-      }
+      entrypoint: 'astro/assets/services/sharp'
     }
   },
   vite: {

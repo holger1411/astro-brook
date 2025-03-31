@@ -1,19 +1,42 @@
+import { getImage } from 'astro:assets';
+
 /**
- * Utility to optimize the image path for Astro's image processing
- * 
- * When a markdown file references an image with a path like "/images/image1.jpg",
- * this function ensures the path gets properly processed through Astro's image optimization
- * pipeline and generates a WebP version.
+ * Utility to get an optimized image URL using Astro's image optimization
  */
+export async function getOptimizedImageUrl(path: string, width: number = 1200, height: number = 675): Promise<string> {
+  // For remote URLs, just return as is
+  if (path.startsWith('http://') || path.startsWith('https://')) {
+    return path;
+  }
 
-export function optimizeImagePath(path: string): string {
-  // For paths from the public directory, we need to ensure they're properly processed
-  // Astro should handle this automatically through its image pipeline,
-  // but we provide this utility to ensure consistency
-
-  // Make sure the path is valid
-  if (!path) return '';
+  try {
+    // For local paths in the public directory
+    if (path.startsWith('/')) {
+      // Make a direct import of the image
+      const imageUrl = new URL(path, import.meta.url);
+      
+      // Use getImage to process the image
+      const optimizedImage = await getImage({
+        src: imageUrl, 
+        width: width,
+        height: height,
+        format: 'webp',
+      });
+      
+      return optimizedImage.src;
+    }
+  } catch (error) {
+    console.error('Error optimizing image:', error);
+  }
   
-  // Astro will optimize images referenced in HTML, so we just return the path
+  // Return original path if optimization fails
+  return path;
+}
+
+/**
+ * Legacy function for backwards compatibility
+ */
+export function optimizeImagePath(path: string): string {
+  if (!path) return '';
   return path;
 }

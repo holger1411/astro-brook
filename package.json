@@ -17,6 +17,7 @@
     "astro": "^5.5.2",
     "date-fns": "^4.1.0",
     "hast-util-raw": "^9.1.0",
+    "sharp": "^0.33.5",
     "zwitch": "^2.0.0"
   },
   "devDependencies": {

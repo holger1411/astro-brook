@@ -2,7 +2,7 @@
 title: Why Dragons Make Terrible Roommates - A Survivor's Guide
 date: 2024-03-14
 excerpt: From hoard-related space issues to fire hazards and unexpected princess visitors, discover the challenges of sharing living quarters with the world's most majestic and inconsiderate mythical creatures.
-image: /images/image7.png
+image: /images/image7.webp
 tags: [dragons, roommates, survival guide, humor, fantasy]
 ---
 

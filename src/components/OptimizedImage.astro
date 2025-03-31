@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+
+// Import all images from src/images directory
+// This uses Vite's glob import feature
+const images = import.meta.glob('/src/images/*.{jpeg,jpg,png,gif,webp}');
+
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+}
+
+const { src, alt, width = 800, height = 600, class: className = '' } = Astro.props;
+
+// Function to get the correct image based on path
+async function getImage(path: string) {
+  // Handle different path formats
+  let imagePath = path;
+  
+  // If path starts with /images/, it's referencing an image in src/images
+  if (path.startsWith('/images/')) {
+    imagePath = `/src${path}`;
+  }
+  
+  // If the image doesn't exist with .webp extension but exists with .png
+  if (imagePath.endsWith('.webp')) {
+    const pngPath = imagePath.replace('.webp', '.png');
+    if (images[pngPath]) {
+      imagePath = pngPath;
+    }
+  }
+  
+  // Try to load the image
+  if (images[imagePath]) {
+    const loadImage = images[imagePath];
+    const image = await loadImage();
+    return image.default;
+  }
+  
+  // Fallback to original path if image not found
+  return path;
+}
+
+// Get the image source
+const imageSource = await getImage(src);
+---
+
+{typeof imageSource === 'string' ? (
+  <img 
+    src={imageSource} 
+    alt={alt} 
+    width={width} 
+    height={height} 
+    class={className} 
+    loading="lazy" 
+    decoding="async"
+  />
+) : (
+  <Image 
+    src={imageSource} 
+    alt={alt} 
+    width={width} 
+    height={height} 
+    format="webp"
+    class={className}
+  />
+)}

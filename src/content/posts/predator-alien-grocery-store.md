@@ -2,7 +2,7 @@
 title: What if Predator and an Alien open up a grocery store?
 date: 2024-03-14
 excerpt: An exploration of the interstellar retail venture that would ensue if two of cinema's most terrifying extraterrestrials decided to enter the grocery business.
-image: /images/image13.png
+image: /images/image13.webp
 tags: [alien, predator, sci-fi, humor, retail]
 ---
 
