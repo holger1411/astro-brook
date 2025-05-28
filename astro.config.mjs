@@ -7,6 +7,11 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   output: 'static', // Explicitly specify static output (which is also the default)
   site: 'https://astro-brook.example.com',
+  // Enable intelligent prefetching for optimal navigation speed
+  prefetch: {
+    defaultStrategy: 'viewport', // Prefetch links when they enter the viewport
+    prefetchAll: true           // Enable prefetching for all internal links
+  },
   // Enable built-in image optimization with specific settings
   image: {
     // Configure domains for remote images if needed
