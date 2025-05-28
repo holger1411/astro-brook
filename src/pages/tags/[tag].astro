@@ -33,7 +33,8 @@ const sortedPosts = posts.sort((a, b) =>
 const formattedPosts = sortedPosts.map(post => ({
   ...post,
   url: `/posts/${post.slug}`,
-  frontmatter: post.data
+  frontmatter: post.data,
+  body: post.body
 }));
 ---
 

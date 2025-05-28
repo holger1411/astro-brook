@@ -7,6 +7,7 @@ interface Props {
   showExcerpt?: boolean;
   showSeparators?: boolean;
   showTags?: boolean;
+  showReadingTime?: boolean;
   title?: string;
 }
 
@@ -16,6 +17,7 @@ const {
   showExcerpt = true, 
   showSeparators = false, 
   showTags = true,
+  showReadingTime = true,
   title 
 } = Astro.props;
 ---
@@ -34,7 +36,8 @@ const {
           post={post} 
           showImage={showImages} 
           showExcerpt={showExcerpt} 
-          showTags={showTags} 
+          showTags={showTags}
+          showReadingTime={showReadingTime}
         />
       ))
     )}

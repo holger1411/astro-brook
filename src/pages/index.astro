@@ -13,7 +13,8 @@ const sortedPosts = allPosts.sort((a, b) => {
 const posts = sortedPosts.slice(0, 5).map(post => ({
   ...post,
   url: `/posts/${post.slug}`,
-  frontmatter: post.data
+  frontmatter: post.data,
+  body: post.body
 }));
 ---
 

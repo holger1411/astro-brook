@@ -1,11 +1,13 @@
 ---
 import { formatDate } from '../utils/date';
+import { getReadingTime } from '../utils/readingTime';
 import OptimizedImage from './OptimizedImage.astro';
 
 interface Props {
   post: {
     slug: string;
     url: string;
+    body: string;
     frontmatter: {
       title: string;
       date: string;
@@ -17,10 +19,18 @@ interface Props {
   showImage?: boolean;
   showExcerpt?: boolean;
   showTags?: boolean;
+  showReadingTime?: boolean;
 }
 
-const { post, showImage = true, showExcerpt = true, showTags = true } = Astro.props;
+const { 
+  post, 
+  showImage = true, 
+  showExcerpt = true, 
+  showTags = true,
+  showReadingTime = true 
+} = Astro.props;
 const { title, date, excerpt, image, tags } = post.frontmatter;
+const readingTime = getReadingTime(post);
 ---
 
 <article class="border-t border-gray-200 py-[4vh] xl:py-8" transition:name={`post-${post.slug}`}>
@@ -31,12 +41,22 @@ const { title, date, excerpt, image, tags } = post.frontmatter;
           {title}
         </a>
       </h2>
-      <time 
-        datetime={new Date(date).toISOString()}
-        class="text-gray-500 text-sm shrink-0 sm:ml-4 sm:text-right self-center"
-      >
-        {formatDate(date)}
-      </time>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-sm text-gray-500 shrink-0">
+        <time 
+          datetime={new Date(date).toISOString()}
+          class="sm:text-right"
+        >
+          {formatDate(date)}
+        </time>
+        {showReadingTime && (
+          <>
+            <span class="hidden sm:inline text-gray-300">•</span>
+            <span class="text-gray-500" aria-label={`Estimated reading time: ${readingTime.text}`}>
+              {readingTime.text}
+            </span>
+          </>
+        )}
+      </div>
     </div>
     
     {showTags && tags && tags.length > 0 && (

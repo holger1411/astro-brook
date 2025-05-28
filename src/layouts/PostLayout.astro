@@ -2,18 +2,16 @@
 import BaseLayout from './BaseLayout.astro';
 import PostNavigation from '../components/PostNavigation.astro';
 import { formatDate } from '../utils/date';
+import { calculateReadingTime } from '../utils/readingTime';
 import OptimizedImage from '../components/OptimizedImage.astro';
 
 const { frontmatter, headings, prevPost, nextPost } = Astro.props;
 const { title, date, tags, image, excerpt } = frontmatter;
 const slug = Astro.url.pathname.split('/').filter(Boolean).pop();
 
-// Estimated reading time
-const WORDS_PER_MINUTE = 225;
+// Calculate reading time using the centralized utility
 const content = await Astro.slots.render('default');
-const contentText = content.replace(/<\/?[^>]+(>|$)/g, ' ');
-const wordCount = contentText.split(/\s+/).length;
-const readingTime = Math.max(1, Math.ceil(wordCount / WORDS_PER_MINUTE));
+const readingTime = calculateReadingTime(content);
 
 // Structured data for SEO
 const publishDate = new Date(date);
@@ -30,7 +28,7 @@ const publishDate = new Date(date);
     <header class="mb-10">
       <div class="max-w-3xl mx-auto">
       <div class="text-gray-500 text-sm mb-2">
-        <time datetime={publishDate.toISOString()}>{formatDate(date)}</time> • <span aria-label={`${readingTime} minute read`}>{readingTime} min read</span>
+        <time datetime={publishDate.toISOString()}>{formatDate(date)}</time> • <span aria-label={`Estimated reading time: ${readingTime.text}`}>{readingTime.text}</span>
       </div>
       <h1 class="text-5xl mb-6" transition:name={`title-${slug}`}>{title}</h1>
       {excerpt && <p class="text-xl text-gray-500">{excerpt}</p>}
