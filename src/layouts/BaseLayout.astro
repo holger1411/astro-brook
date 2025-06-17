@@ -79,10 +79,18 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
     <script is:inline>
       (function() {
         const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        // ONLY apply saved theme, ignore system preferences if user has made a choice
+        if (savedTheme === 'dark') {
           document.documentElement.classList.add('dark');
+        } else if (savedTheme === 'light') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          // Only check system preferences if no saved theme exists
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (prefersDark) {
+            document.documentElement.classList.add('dark');
+          }
         }
       })();
     </script>
