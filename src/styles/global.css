@@ -5,7 +5,17 @@ html, body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-/* Force light mode by default */
+/* Force theme colors with maximum specificity - after Tailwind import */
+html:not(.dark) body {
+  background-color: white !important;
+  color: #111827 !important; /* text-gray-900 */
+}
+
+html.dark body {
+  background-color: #111827 !important; /* bg-gray-900 */
+  color: #f9fafb !important; /* text-gray-100 */
+}
+
 html:not(.dark) {
   color-scheme: light;
 }
