@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Dark mode custom variant nach offizieller Tailwind CSS Dokumentation */
+/* Dark mode custom variant according to official Tailwind CSS documentation */
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* Base font declaration for the entire site */

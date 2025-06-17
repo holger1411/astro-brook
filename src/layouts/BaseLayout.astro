@@ -28,7 +28,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = image.startsWith('/') ? new URL(image, Astro.site) : image;
 const siteName = "Brook Blog";
 
-// Strukturierte Daten (JSON-LD) für bessere SEO
+// Structured data (JSON-LD) for better SEO
 const jsonLDWebsite = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -72,10 +72,10 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     
-    <!-- Aktivieren der View Transitions -->
+    <!-- Enable View Transitions -->
     <ViewTransitions />
     
-    <!-- Dark mode initialization script nach offizieller Tailwind Dokumentation -->
+    <!-- Dark mode initialization script according to official Tailwind documentation -->
     <script is:inline>
       // On page load or when changing themes, best to add inline in `head` to avoid FOUC
       document.documentElement.classList.toggle(
@@ -104,7 +104,7 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={ogImageURL} />
     
-    <!-- Strukturierte Daten für SEO -->
+    <!-- Structured data for SEO -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLD)} />
   </head>
   <body class="text-gray-900 bg-white dark:text-gray-100 dark:bg-gray-900 transition-colors duration-300">

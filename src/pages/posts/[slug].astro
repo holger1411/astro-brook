@@ -6,13 +6,13 @@ import PostLayout from '../../layouts/PostLayout.astro';
 export async function getStaticPaths() {
   const allPosts = await getCollection('posts');
   
-  // Sortiere Posts nach Datum (neueste zuerst)
+  // Sort posts by date (newest first)
   const sortedPosts = allPosts.sort((a, b) => 
     new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
   );
 
   return sortedPosts.map((entry, index) => {
-    // Bestimme vorherigen und nächsten Post
+    // Determine previous and next post
     const prevPost = sortedPosts[index - 1]
       ? {
           url: `/posts/${sortedPosts[index - 1].slug}`,
