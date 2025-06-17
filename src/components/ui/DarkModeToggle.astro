@@ -1,0 +1,100 @@
+---
+// Dark Mode Toggle Component
+---
+
+<button
+  id="theme-toggle"
+  class="flex items-center justify-center w-10 h-10 rounded-lg bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors duration-200"
+  aria-label="Toggle dark mode"
+  title="Toggle dark mode"
+>
+  <!-- Sun Icon (Shows in Dark Mode) -->
+  <svg
+    class="sun w-5 h-5 text-gray-600 dark:text-gray-300"
+    fill="currentColor"
+    viewBox="0 0 20 20"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+      clip-rule="evenodd"
+    ></path>
+  </svg>
+  
+  <!-- Moon Icon (Shows in Light Mode) -->
+  <svg
+    class="moon w-5 h-5 text-gray-600 dark:text-gray-300"
+    fill="currentColor"
+    viewBox="0 0 20 20"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+  </svg>
+</button>
+
+<style>
+  .sun {
+    display: none;
+  }
+  .moon {
+    display: block;
+  }
+  
+  :global(.dark) .sun {
+    display: block;
+  }
+  
+  :global(.dark) .moon {
+    display: none;
+  }
+</style>
+
+<script>
+  function initTheme() {
+    const button = document.getElementById('theme-toggle');
+    
+    if (!button) return;
+    
+    // Get theme from localStorage or system preference
+    const getTheme = () => {
+      if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+        return localStorage.getItem('theme');
+      }
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+      return 'light';
+    };
+    
+    // Set theme on HTML element
+    const setTheme = (theme) => {
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+    };
+    
+    // Toggle theme
+    const toggleTheme = () => {
+      const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      setTheme(newTheme);
+      localStorage.setItem('theme', newTheme);
+    };
+    
+    // Initialize theme
+    setTheme(getTheme());
+    
+    // Add click listener
+    button.addEventListener('click', toggleTheme);
+  }
+  
+  // Initialize immediately
+  initTheme();
+  
+  // Re-initialize after navigation
+  document.addEventListener('astro:after-swap', initTheme);
+</script>

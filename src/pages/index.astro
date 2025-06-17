@@ -26,7 +26,7 @@ const posts = sortedPosts.slice(0, 5).map(post => ({
         A minimalist blog template for developers and writers focusing on clean typography and distraction-free
         reading experience.
       </p>
-      <a href="/about" class="cta-button bg-black text-white px-16 py-6 rounded-full hover:bg-gray-800 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-[0_3.5rem_5rem_rgba(21,21,21,0.3)] text-base font-normal tracking-wide shadow-[0_3rem_4rem_rgba(21,21,21,0.25)]">
+      <a href="/about" class="cta-button bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 px-16 py-6 rounded-full hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-[0_3.5rem_5rem_rgba(21,21,21,0.3)] dark:hover:shadow-[0_3.5rem_5rem_rgba(255,255,255,0.1)] text-base font-normal tracking-wide shadow-[0_3rem_4rem_rgba(21,21,21,0.25)] dark:shadow-[0_3rem_4rem_rgba(255,255,255,0.1)]">
         Discover More
       </a>
     </section>
@@ -35,7 +35,7 @@ const posts = sortedPosts.slice(0, 5).map(post => ({
       <PostList posts={posts} showImages={false} showExcerpt={false} showSeparators={true} showTags={false} showReadingTime={false} />
 
       <div class="text-center mt-24">
-        <a href="/journal" class="text-lg font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 py-2 px-4 rounded-md inline-block text-black">
+        <a href="/journal" class="text-lg font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 py-2 px-4 rounded-md inline-block text-gray-900 dark:text-gray-100">
           View All Posts <span aria-hidden="true">→</span>
         </a>
       </div>

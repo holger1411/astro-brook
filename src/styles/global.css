@@ -8,7 +8,7 @@ html, body {
 @layer base {
   /* Headings */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold leading-tight mt-10 mb-6 text-gray-900;
+    @apply font-bold leading-tight mt-10 mb-6 text-gray-900 dark:text-gray-100;
   }
   
   h1 {
@@ -37,12 +37,12 @@ html, body {
   
   /* Paragraphs and general text */
   p {
-    @apply mb-6 leading-relaxed;
+    @apply mb-6 leading-relaxed text-gray-700 dark:text-gray-300;
   }
   
   /* Basic text formatting */
   strong {
-    @apply font-bold;
+    @apply font-bold text-gray-900 dark:text-gray-100;
   }
   
   em {
@@ -50,15 +50,15 @@ html, body {
   }
   
   del {
-    @apply line-through text-gray-500;
+    @apply line-through text-gray-500 dark:text-gray-400;
   }
   
   mark {
-    @apply bg-yellow-200 p-1 rounded;
+    @apply bg-yellow-200 dark:bg-yellow-800 p-1 rounded;
   }
   
   small {
-    @apply text-sm;
+    @apply text-sm text-gray-600 dark:text-gray-400;
   }
   
   sub, sup {
@@ -67,19 +67,19 @@ html, body {
   
   /* Additional text formatting */
   ins {
-    @apply no-underline bg-green-100;
+    @apply no-underline bg-green-100 dark:bg-green-800;
   }
   
   var {
-    @apply italic text-purple-600;
+    @apply italic text-purple-600 dark:text-purple-400;
   }
   
   kbd {
-    @apply font-mono text-sm bg-gray-200 px-2 py-1 rounded border border-gray-300 shadow-sm;
+    @apply font-mono text-sm bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded border border-gray-300 dark:border-gray-600 shadow-sm;
   }
   
   samp {
-    @apply font-mono text-sm bg-gray-100 p-1 rounded border border-gray-200;
+    @apply font-mono text-sm bg-gray-100 dark:bg-gray-800 p-1 rounded border border-gray-200 dark:border-gray-700;
   }
   
   dfn {
@@ -88,39 +88,31 @@ html, body {
   
   /* Links */
   a {
-    @apply text-blue-600 hover:underline;
+    @apply text-blue-600 dark:text-blue-400 hover:underline;
   }
   
   /* Navigation links in header and footer */
-  header a, footer a, 
-  /* Post navigation (prev/next) links */
-  nav a,
-  /* View all posts, read more, and other template-generated links */
-  a[href^="/tags/"],
-  .prose a.group,
-  a[aria-label*="View all"],
-  a[aria-label*="Read more"],
-  a[aria-label*="View "],
-  article h2 a,
-  article a.block,
-  article a.text-sm,
-  .group-hover\:underline {
-    @apply text-black hover:underline;
+  .nav-link {
+    @apply text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-200;
+  }
+  
+  .nav-link-footer {
+    @apply text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-200;
   }
   
   /* Fix for focus rings */
   a:focus-visible {
-    @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+    @apply outline-none ring-2 ring-blue-500 dark:ring-blue-400 ring-offset-2 ring-offset-white dark:ring-offset-gray-900;
   }
   
   /* Heading links (when a heading is wrapped in an anchor) */
   h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-    @apply text-black no-underline hover:underline;
+    @apply text-gray-900 dark:text-gray-100 no-underline hover:underline;
   }
   
   /* Blockquotes */
   blockquote {
-    @apply pl-4 border-l-4 border-gray-300 italic my-6 text-gray-700;
+    @apply pl-4 border-l-4 border-gray-300 dark:border-gray-600 italic my-6 text-gray-700 dark:text-gray-300;
   }
   
   blockquote p {
@@ -128,7 +120,7 @@ html, body {
   }
   
   blockquote footer {
-    @apply text-gray-500 not-italic text-sm;
+    @apply text-gray-500 dark:text-gray-400 not-italic text-sm;
   }
   
   /* Quotes */
@@ -138,22 +130,22 @@ html, body {
   
   /* Address */
   address {
-    @apply not-italic mb-6 text-gray-700 border-l-2 border-gray-300 pl-4 py-1;
+    @apply not-italic mb-6 text-gray-700 dark:text-gray-300 border-l-2 border-gray-300 dark:border-gray-600 pl-4 py-1;
   }
   
   /* Separator elements */
   hr {
-    @apply my-8 border-t border-gray-200;
+    @apply my-8 border-t border-gray-200 dark:border-gray-700;
   }
   
   /* Preformatted text */
   pre {
-    @apply font-mono bg-gray-100 p-4 rounded-md overflow-x-auto text-sm my-6 border border-gray-200;
+    @apply font-mono bg-gray-100 dark:bg-gray-800 p-4 rounded-md overflow-x-auto text-sm my-6 border border-gray-200 dark:border-gray-700;
   }
   
   /* Code blocks */
   code {
-    @apply font-mono text-sm bg-gray-100 px-1.5 py-0.5 rounded text-gray-800 border border-gray-200;
+    @apply font-mono text-sm bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700;
   }
   
   pre code {
@@ -174,7 +166,7 @@ html, body {
   }
   
   li {
-    @apply mb-2;
+    @apply mb-2 text-gray-700 dark:text-gray-300;
   }
   
   li > ul, li > ol {
@@ -187,11 +179,11 @@ html, body {
   }
   
   dt {
-    @apply font-bold text-gray-900 mt-4;
+    @apply font-bold text-gray-900 dark:text-gray-100 mt-4;
   }
   
   dd {
-    @apply pl-4 mb-2;
+    @apply pl-4 mb-2 text-gray-700 dark:text-gray-300;
   }
   
   /* Tables */
@@ -200,19 +192,19 @@ html, body {
   }
   
   caption {
-    @apply text-sm text-gray-600 mb-2;
+    @apply text-sm text-gray-600 dark:text-gray-400 mb-2;
   }
   
   th {
-    @apply py-2 px-3 text-left font-bold bg-gray-100 border border-gray-300;
+    @apply py-2 px-3 text-left font-bold bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100;
   }
   
   td {
-    @apply py-2 px-3 border border-gray-300;
+    @apply py-2 px-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300;
   }
   
   tfoot {
-    @apply bg-gray-50 text-sm;
+    @apply bg-gray-50 dark:bg-gray-800 text-sm;
   }
   
   /* Form elements */
@@ -221,19 +213,19 @@ html, body {
   }
   
   fieldset {
-    @apply border border-gray-300 rounded-md p-4 mb-4;
+    @apply border border-gray-300 dark:border-gray-600 rounded-md p-4 mb-4;
   }
   
   legend {
-    @apply px-2 font-medium;
+    @apply px-2 font-medium text-gray-900 dark:text-gray-100;
   }
   
   label {
-    @apply block mb-1 text-gray-700;
+    @apply block mb-1 text-gray-700 dark:text-gray-300;
   }
   
   input, textarea, select {
-    @apply block w-full border border-gray-300 rounded-md p-2 mb-4 bg-white;
+    @apply block w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 mb-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100;
   }
   
   input[type="checkbox"], input[type="radio"] {
@@ -241,12 +233,12 @@ html, body {
   }
   
   button {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors;
+    @apply bg-blue-600 dark:bg-blue-700 hover:bg-blue-700 dark:hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition-colors;
   }
   
   /* Progress and meter */
   progress {
-    @apply w-full h-2 bg-gray-200 rounded-full overflow-hidden;
+    @apply w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden;
   }
   
   meter {
@@ -259,7 +251,7 @@ html, body {
   }
   
   figcaption {
-    @apply text-sm text-center text-gray-600 mt-2;
+    @apply text-sm text-center text-gray-600 dark:text-gray-400 mt-2;
   }
   
   img {
@@ -268,15 +260,15 @@ html, body {
   
   /* Details and summary */
   details {
-    @apply mb-6 border border-gray-200 rounded-md;
+    @apply mb-6 border border-gray-200 dark:border-gray-700 rounded-md;
   }
   
   summary {
-    @apply p-3 font-medium cursor-pointer bg-gray-50 hover:bg-gray-100;
+    @apply p-3 font-medium cursor-pointer bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100;
   }
   
   details[open] summary {
-    @apply border-b border-gray-200;
+    @apply border-b border-gray-200 dark:border-gray-700;
   }
   
   details > *:not(summary) {
@@ -285,7 +277,7 @@ html, body {
   
   /* Abbreviations */
   abbr {
-    @apply cursor-help border-b border-dotted border-gray-500;
+    @apply cursor-help border-b border-dotted border-gray-500 dark:border-gray-400;
   }
   
   /* Citations */
@@ -299,7 +291,7 @@ html, body {
   }
   
   rt {
-    @apply text-xs text-gray-600;
+    @apply text-xs text-gray-600 dark:text-gray-400;
   }
   
   /* Bidirectional text override */
@@ -308,10 +300,33 @@ html, body {
   }
 }
 
+/* Dark mode specific overrides */
+@layer components {
+  /* CTA Button */
+  .cta-button {
+    @apply bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-200;
+  }
+  
+  /* Tags */
+  .tag {
+    @apply bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700;
+  }
+  
+  /* Post Card styling for dark mode */
+  .post-card {
+    @apply bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700;
+  }
+}
+
 /* Override the specific tag styles from PostCard.astro */
 article a[href^="/tags/"] {
   color: #111827 !important; /* text-gray-900 */
   background-color: #f3f4f6; /* bg-gray-100 */
+}
+
+.dark article a[href^="/tags/"] {
+  color: #d1d5db !important; /* dark:text-gray-300 */
+  background-color: #374151 !important; /* dark:bg-gray-700 */
 }
 
 /* Animation for View Transitions - Only Fade */

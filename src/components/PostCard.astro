@@ -33,15 +33,15 @@ const { title, date, excerpt, image, tags } = post.frontmatter;
 const readingTime = getReadingTime(post);
 ---
 
-<article class="border-t border-gray-200 py-[4vh] xl:py-8" transition:name={`post-${post.slug}`}>
+<article class="border-t border-gray-200 dark:border-gray-700 py-[4vh] xl:py-8" transition:name={`post-${post.slug}`}>
   <div class="space-y-2">
     <div class="flex flex-col sm:flex-row justify-between items-center gap-2 mb-2">
-      <h2 class="text-xl md:text-3xl xl:text-4xl">
-        <a href={post.url} class="hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded">
+      <h2 class="text-xl md:text-3xl xl:text-4xl text-gray-900 dark:text-gray-100">
+        <a href={post.url} class="hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-blue-400 dark:focus:ring-offset-gray-900 rounded">
           {title}
         </a>
       </h2>
-      <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-sm text-gray-500 shrink-0">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-sm text-gray-500 dark:text-gray-400 shrink-0">
         <time 
           datetime={new Date(date).toISOString()}
           class="sm:text-right"
@@ -50,8 +50,8 @@ const readingTime = getReadingTime(post);
         </time>
         {showReadingTime && (
           <>
-            <span class="hidden sm:inline text-gray-300">•</span>
-            <span class="text-gray-500" aria-label={`Estimated reading time: ${readingTime.text}`}>
+            <span class="hidden sm:inline text-gray-300 dark:text-gray-600">•</span>
+            <span class="text-gray-500 dark:text-gray-400" aria-label={`Estimated reading time: ${readingTime.text}`}>
               {readingTime.text}
             </span>
           </>

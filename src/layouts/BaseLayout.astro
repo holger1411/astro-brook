@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import '../styles/fonts.css';
 import { ViewTransitions } from 'astro:transitions';
+import DarkModeToggle from '../components/ui/DarkModeToggle.astro';
 
 interface Props {
   title: string;
@@ -62,7 +63,7 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -73,6 +74,18 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
     
     <!-- Aktivieren der View Transitions -->
     <ViewTransitions />
+    
+    <!-- Dark mode initialization script (prevent flash) -->
+    <script is:inline>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
     
     <!-- Using local Inter Font from src/fonts/ -->
     
@@ -96,27 +109,30 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
     <!-- Strukturierte Daten für SEO -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLD)} />
   </head>
-  <body class="text-gray-900 bg-white">
-    <div class="container-lg bg-white">
+  <body class="text-gray-900 bg-white dark:text-gray-100 dark:bg-gray-900 transition-colors duration-300">
+    <div class="container-lg bg-white dark:bg-gray-900 transition-colors duration-300">
       <header class="mx-auto max-w-4xl px-4 py-8 flex items-center justify-between">
-        <a href="/" class="text-2xl font-semibold" transition:animate="fade">Brook2</a>
+        <a href="/" class="text-2xl font-semibold text-gray-900 dark:text-gray-100" transition:animate="fade">Brook2</a>
         
-        <nav class="flex items-center gap-6">
-          <a href="/" class="nav-link">Home</a>
-          <a href="/journal" class="nav-link">Journal</a>
-          <a href="/styleguide" class="nav-link">Styleguide</a>
-          <a href="/about" class="nav-link">About</a>
-        </nav>
+        <div class="flex items-center gap-6">
+          <nav class="flex items-center gap-6">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/journal" class="nav-link">Journal</a>
+            <a href="/styleguide" class="nav-link">Styleguide</a>
+            <a href="/about" class="nav-link">About</a>
+          </nav>
+          <DarkModeToggle />
+        </div>
       </header>
       
       <main class="py-10" transition:animate="fade">
         <slot />
       </main>
       
-      <footer class="max-w-4xl mx-auto py-8 border-t border-gray-200 mt-12">
+      <footer class="max-w-4xl mx-auto py-8 border-t border-gray-200 dark:border-gray-700 mt-12">
         <div class="container-md mx-auto">
           <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-sm text-gray-500">
+            <div class="text-sm text-gray-500 dark:text-gray-400">
               &copy; {new Date().getFullYear()} Brook Blog. All rights reserved.
             </div>
             <nav class="flex items-center gap-4">
