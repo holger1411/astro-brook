@@ -77,12 +77,20 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
     
     <!-- Dark mode initialization script according to official Tailwind documentation -->
     <script is:inline>
-      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-      document.documentElement.classList.toggle(
-        "dark",
-        localStorage.theme === "dark" ||
-          (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
-      );
+      // Function to apply theme
+      function applyTheme() {
+        document.documentElement.classList.toggle(
+          "dark",
+          localStorage.theme === "dark" ||
+            (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
+        );
+      }
+      
+      // Apply theme immediately
+      applyTheme();
+      
+      // Also apply theme after view transitions
+      document.addEventListener('astro:after-swap', applyTheme);
     </script>
     
     <!-- Using local Inter Font from src/fonts/ -->

@@ -56,6 +56,9 @@
     
     if (!button) return;
     
+    // Remove existing event listeners to prevent duplicates
+    button.removeEventListener('click', button._darkModeToggle);
+    
     // Toggle theme according to official Tailwind documentation
     const toggleTheme = () => {
       if (document.documentElement.classList.contains('dark')) {
@@ -71,6 +74,9 @@
       }
     };
     
+    // Store reference for removal
+    button._darkModeToggle = toggleTheme;
+    
     // Add click listener
     button.addEventListener('click', toggleTheme);
   }
@@ -78,6 +84,11 @@
   // Initialize immediately
   initTheme();
   
-  // Re-initialize after navigation
+  // Re-initialize after navigation (Astro View Transitions)
   document.addEventListener('astro:after-swap', initTheme);
+  
+  // Also initialize on DOMContentLoaded as fallback
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTheme);
+  }
 </script>
