@@ -56,67 +56,23 @@
     
     if (!button) return;
     
-    // Get theme with proper priority: localStorage > system preference
-    const getTheme = () => {
-      const savedTheme = localStorage.getItem('theme');
-      
-      // If user has explicitly set a theme, use that
-      if (savedTheme === 'light' || savedTheme === 'dark') {
-        return savedTheme;
-      }
-      
-      // Otherwise, use system preference
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return 'dark';
-      }
-      return 'light';
-    };
-    
-    // Set theme on HTML element
-    const setTheme = (theme) => {
-      if (theme === 'light') {
-        document.documentElement.classList.remove('dark');
-      } else {
-        document.documentElement.classList.add('dark');
-      }
-    };
-    
-    // Toggle theme - this is the user's manual choice
+    // Toggle theme nach offizieller Tailwind Dokumentation
     const toggleTheme = () => {
-      const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      
-      // Set theme and save user's EXPLICIT choice
-      setTheme(newTheme);
-      localStorage.setItem('theme', newTheme);
-      
-      console.log(`Theme manually switched to: ${newTheme}`);
+      if (document.documentElement.classList.contains('dark')) {
+        // Whenever the user explicitly chooses light mode
+        localStorage.theme = "light";
+        document.documentElement.classList.remove('dark');
+        console.log('Theme manually switched to: light');
+      } else {
+        // Whenever the user explicitly chooses dark mode
+        localStorage.theme = "dark";
+        document.documentElement.classList.add('dark');
+        console.log('Theme manually switched to: dark');
+      }
     };
-    
-    // Initialize theme (but don't overwrite if already set correctly)
-    const initialTheme = getTheme();
-    const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-    
-    if (initialTheme !== currentTheme) {
-      setTheme(initialTheme);
-    }
     
     // Add click listener
     button.addEventListener('click', toggleTheme);
-    
-    // Listen for system theme changes, but ONLY if user hasn't made an explicit choice
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    mediaQuery.addEventListener('change', (e) => {
-      const savedTheme = localStorage.getItem('theme');
-      
-      // Only auto-switch if user hasn't explicitly set a theme
-      if (!savedTheme || (savedTheme !== 'light' && savedTheme !== 'dark')) {
-        setTheme(e.matches ? 'dark' : 'light');
-        console.log(`System theme changed to: ${e.matches ? 'dark' : 'light'}`);
-      } else {
-        console.log(`System theme changed but user has explicit choice: ${savedTheme}`);
-      }
-    });
   }
   
   // Initialize immediately

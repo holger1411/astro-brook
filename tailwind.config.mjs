@@ -3,7 +3,7 @@ import typographyPlugin from '@tailwindcss/typography';
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-  darkMode: 'class', // Enable class-based dark mode
+  // Remove darkMode: 'class' - we'll use custom variant instead
   theme: {
     fontFamily: {
       sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],

@@ -75,24 +75,14 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
     <!-- Aktivieren der View Transitions -->
     <ViewTransitions />
     
-    <!-- Dark mode initialization script (prevent flash) -->
+    <!-- Dark mode initialization script nach offizieller Tailwind Dokumentation -->
     <script is:inline>
-      (function() {
-        const savedTheme = localStorage.getItem('theme');
-        
-        // ONLY apply saved theme, ignore system preferences if user has made a choice
-        if (savedTheme === 'dark') {
-          document.documentElement.classList.add('dark');
-        } else if (savedTheme === 'light') {
-          document.documentElement.classList.remove('dark');
-        } else {
-          // Only check system preferences if no saved theme exists
-          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          if (prefersDark) {
-            document.documentElement.classList.add('dark');
-          }
-        }
-      })();
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      document.documentElement.classList.toggle(
+        "dark",
+        localStorage.theme === "dark" ||
+          (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
+      );
     </script>
     
     <!-- Using local Inter Font from src/fonts/ -->
