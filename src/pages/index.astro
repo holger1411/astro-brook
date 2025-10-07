@@ -6,37 +6,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="Bürger-Energie Hummetal eG" 
   description="Gemeinschaftlich die Energiewende vor Ort umsetzen - Bürger-Energie-Genossenschaft aus dem Hummetal"
 >
-  <!-- Hero Section -->
-  <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-    <!-- Background Image -->
-    <div class="absolute inset-0 z-0">
-      <img 
-        src="/images/windenergie/hero-windpark-sunset.jpg" 
-        alt="Windenergieanlagen bei Sonnenuntergang" 
-        class="w-full h-full object-cover"
-      />
-      <div class="absolute inset-0 bg-black/40"></div>
-    </div>
-    
-    <!-- Content -->
-    <div class="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
-      <h1 class="text-6xl md:text-7xl font-bold mb-6">
-        Bürger-Energie<br />
-        <span class="text-green-400">Hummetal eG</span>
+  <!-- Hero Text Section (White Background) -->
+  <section class="bg-white dark:bg-gray-900 py-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <p class="text-sm font-semibold text-green-600 mb-4 uppercase tracking-wide">Aktuelles Projekt</p>
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
+        In Windkraft investieren -<br />
+        Bürger-Windpark<br />
+        <span class="text-green-600">"Grießem"</span>
       </h1>
-      <p class="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto">
-        Gemeinschaftlich die Energiewende vor Ort umsetzen - 
-        Seit 2010 für erneuerbare Energien in unserer Region
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/mitglied-werden" class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 transform hover:scale-105">
-          Mitglied werden
-        </a>
-        <a href="/projekte" class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full font-medium transition-all duration-300">
-          Unsere Projekte
+      <div class="mt-8">
+        <a href="/projekte/windpark-griessem" class="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 transform hover:scale-105">
+          Jetzt investieren
         </a>
       </div>
     </div>
+  </section>
+
+  <!-- Hero Image Section -->
+  <section class="relative h-[60vh] overflow-hidden">
+    <img 
+      src="/images/windenergie/hero-windpark-sunset.jpg" 
+      alt="Windenergieanlagen bei Sonnenuntergang" 
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-black/20"></div>
   </section>
 
   <!-- Was uns antreibt Section -->
