@@ -4,13 +4,30 @@ import typographyPlugin from '@tailwindcss/typography';
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   // Remove darkMode: 'class' - we'll use custom variant instead
-  theme: {
+  @theme: {
     fontFamily: {
       sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
       serif: ['ui-serif', 'Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
       mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
     },
     extend: {
+      colors: {
+              primary: '#83B023', // Eine neue Primärfarbe definieren
+      secondary: '#CCE5F7',
+        green: {
+          DEFAULT: '#83B023',
+          50: '#f3f8e8',
+          100: '#e6f1d0',
+          200: '#cce3a1',
+          300: '#b3d572',
+          400: '#99c743',
+          500: '#83B023',
+          600: '#83B023',
+          700: '#83B023',
+          800: '#37480e',
+          900: '#1e2507',
+        },
+      },
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {

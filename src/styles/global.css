@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --color-green-600: #83B023;
+}
+
 /* Dark mode custom variant according to official Tailwind CSS documentation */
 @custom-variant dark (&:where(.dark, .dark *));
 
