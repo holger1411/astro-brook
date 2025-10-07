@@ -16,25 +16,34 @@ interface Props {
 
 const { 
   title, 
-  description = "A minimalist blog template focusing on clean typography and distraction-free reading experience.", 
+  description = "Gemeinschaftlich die Energiewende vor Ort umsetzen - Bürger-Energie-Genossenschaft aus dem Hummetal", 
   image = "/og-image.png",
   type = "website",
   publishedDate,
   modifiedDate,
-  author = "Brook Team"
+  author = "Bürger-Energie Hummetal eG"
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = image.startsWith('/') ? new URL(image, Astro.site) : image;
-const siteName = "Brook Blog";
+const siteName = "Bürger-Energie Hummetal eG";
 
 // Structured data (JSON-LD) for better SEO
 const jsonLDWebsite = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
+  "@type": "Organization",
   "name": siteName,
   "url": Astro.site?.toString(),
   "description": description,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Kranichweg 8",
+    "postalCode": "31855",
+    "addressLocality": "Aerzen",
+    "addressCountry": "DE"
+  },
+  "telephone": "05154-4954",
+  "email": "buerger-energie.hummetal@t-online.de"
 };
 
 const jsonLDArticle = publishedDate ? {
@@ -63,21 +72,20 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="de" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title} | Brook</title>
+    <title>{title} | Bürger-Energie Hummetal eG</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     
     <!-- Enable View Transitions -->
     <ViewTransitions />
     
-    <!-- Dark mode initialization script according to official Tailwind documentation -->
+    <!-- Dark mode initialization script -->
     <script is:inline>
-      // Function to apply theme
       function applyTheme() {
         document.documentElement.classList.toggle(
           "dark",
@@ -85,15 +93,9 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
             (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
         );
       }
-      
-      // Apply theme immediately
       applyTheme();
-      
-      // Also apply theme after view transitions
       document.addEventListener('astro:after-swap', applyTheme);
     </script>
-    
-    <!-- Using local Inter Font from src/fonts/ -->
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={type} />
@@ -102,8 +104,6 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:site_name" content={siteName} />
-    {publishedDate && <meta property="article:published_time" content={publishedDate.toISOString()} />}
-    {modifiedDate && <meta property="article:modified_time" content={modifiedDate.toISOString()} />}
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -116,40 +116,104 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
     <script type="application/ld+json" set:html={JSON.stringify(jsonLD)} />
   </head>
   <body class="text-gray-900 bg-white dark:text-gray-100 dark:bg-neutral-950 transition-colors duration-300">
-    <div class="container-lg bg-white dark:bg-neutral-950 transition-colors duration-300">
-      <header class="mx-auto max-w-4xl px-4 py-8 flex items-center justify-between">
-        <a href="/" class="text-2xl font-semibold text-gray-900 dark:text-gray-100" transition:animate="fade">Brook2</a>
+    <div class="min-h-screen bg-white dark:bg-neutral-950 transition-colors duration-300">
+      <header class="sticky top-0 z-50 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+        <div class="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
+          <a href="/" class="text-xl font-bold text-gray-900 dark:text-gray-100" transition:animate="fade">
+            <span class="text-green-600">Bürger-Energie</span> Hummetal eG
+          </a>
+          
+          <div class="flex items-center gap-6">
+            <nav class="hidden md:flex items-center gap-6">
+              <a href="/" class="nav-link">Home</a>
+              <a href="/ueber-uns" class="nav-link">Über uns</a>
+              <a href="/projekte" class="nav-link">Projekte</a>
+              <a href="/aktuelles" class="nav-link">Aktuelles</a>
+              <a href="/mitglied-werden" class="nav-link font-medium text-green-600 hover:text-green-700">Mitglied werden</a>
+            </nav>
+            <DarkModeToggle />
+            
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden p-2" id="mobile-menu-button">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
         
-        <div class="flex items-center gap-6">
-          <nav class="flex items-center gap-6">
-            <a href="/" class="nav-link">Home</a>
-            <a href="/journal" class="nav-link">Journal</a>
-            <a href="/styleguide" class="nav-link">Styleguide</a>
-            <a href="/about" class="nav-link">About</a>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-white dark:bg-neutral-950 border-t border-gray-200 dark:border-gray-700" id="mobile-menu">
+          <nav class="px-4 py-4 space-y-2">
+            <a href="/" class="block py-2 nav-link">Home</a>
+            <a href="/ueber-uns" class="block py-2 nav-link">Über uns</a>
+            <a href="/projekte" class="block py-2 nav-link">Projekte</a>
+            <a href="/aktuelles" class="block py-2 nav-link">Aktuelles</a>
+            <a href="/mitglied-werden" class="block py-2 nav-link font-medium text-green-600">Mitglied werden</a>
           </nav>
-          <DarkModeToggle />
         </div>
       </header>
       
-      <main class="py-10" transition:animate="fade">
+      <main transition:animate="fade">
         <slot />
       </main>
       
-      <footer class="max-w-4xl mx-auto py-8 border-t border-gray-200 dark:border-gray-700 mt-12">
-        <div class="container-md mx-auto">
-          <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-sm text-gray-500 dark:text-gray-400">
-              &copy; {new Date().getFullYear()} Brook Blog. All rights reserved.
+      <footer class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 mt-16">
+        <div class="max-w-6xl mx-auto px-4 py-12">
+          <div class="grid md:grid-cols-4 gap-8">
+            <div class="md:col-span-2">
+              <h3 class="text-lg font-bold mb-4">
+                <span class="text-green-600">Bürger-Energie</span> Hummetal eG
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
+                Gemeinschaftlich die Energiewende vor Ort umsetzen - 
+                Seit 2010 für erneuerbare Energien in unserer Region.
+              </p>
+              <div class="text-sm text-gray-500 dark:text-gray-400">
+                Kranichweg 8<br>
+                31855 Aerzen<br>
+                Tel: 05154-4954<br>
+                E-Mail: buerger-energie.hummetal@t-online.de
+              </div>
             </div>
-            <nav class="flex items-center gap-4">
-              <a href="/" class="nav-link-footer">Home</a>
-              <a href="/journal" class="nav-link-footer">Journal</a>
-              <a href="/styleguide" class="nav-link-footer">Styleguide</a>
-              <a href="/about" class="nav-link-footer">About</a>
-            </nav>
+            
+            <div>
+              <h4 class="font-semibold mb-4">Navigation</h4>
+              <nav class="space-y-2 text-sm">
+                <a href="/" class="block text-gray-600 dark:text-gray-300 hover:text-green-600">Home</a>
+                <a href="/ueber-uns" class="block text-gray-600 dark:text-gray-300 hover:text-green-600">Über uns</a>
+                <a href="/projekte" class="block text-gray-600 dark:text-gray-300 hover:text-green-600">Projekte</a>
+                <a href="/aktuelles" class="block text-gray-600 dark:text-gray-300 hover:text-green-600">Aktuelles</a>
+              </nav>
+            </div>
+            
+            <div>
+              <h4 class="font-semibold mb-4">Rechtliches</h4>
+              <nav class="space-y-2 text-sm">
+                <a href="/impressum" class="block text-gray-600 dark:text-gray-300 hover:text-green-600">Impressum</a>
+                <a href="/datenschutz" class="block text-gray-600 dark:text-gray-300 hover:text-green-600">Datenschutz</a>
+                <a href="/satzung" class="block text-gray-600 dark:text-gray-300 hover:text-green-600">Satzung</a>
+              </nav>
+            </div>
+          </div>
+          
+          <div class="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 text-center text-sm text-gray-500 dark:text-gray-400">
+            &copy; {new Date().getFullYear()} Bürger-Energie Hummetal eG. Alle Rechte vorbehalten.
           </div>
         </div>
       </footer>
     </div>
+    
+    <!-- Mobile Menu Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const button = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        
+        button?.addEventListener('click', () => {
+          menu?.classList.toggle('hidden');
+        });
+      });
+    </script>
   </body>
 </html>

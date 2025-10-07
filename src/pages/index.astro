@@ -1,44 +1,148 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PostList from '../components/PostList.astro';
-import { getCollection } from 'astro:content';
-
-// Get all blog posts and sort them by date
-const allPosts = await getCollection('posts');
-const sortedPosts = allPosts.sort((a, b) => {
-  return new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf();
-});
-
-// Show up to 5 posts on the frontpage
-const posts = sortedPosts.slice(0, 5).map(post => ({
-  ...post,
-  url: `/posts/${post.slug}`,
-  frontmatter: post.data,
-  body: post.body
-}));
 ---
 
-<BaseLayout title="Welcome">
-  <div class="max-w-3xl mx-auto">
-    <section class="text-center py-[8vh]" transition:animate="fade">
-      <h1 class="text-7xl mb-8 font-bold">Welcome to Brook</h1>
-      <p class="text-2xl text-muted-foreground max-w-3xl mx-auto mb-14">
-        A minimalist blog template for developers and writers focusing on clean typography and distraction-free
-        reading experience.
+<BaseLayout 
+  title="Bürger-Energie Hummetal eG" 
+  description="Gemeinschaftlich die Energiewende vor Ort umsetzen - Bürger-Energie-Genossenschaft aus dem Hummetal"
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="/images/windenergie/hero-windpark-sunset.jpg" 
+        alt="Windenergieanlagen bei Sonnenuntergang" 
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-black/40"></div>
+    </div>
+    
+    <!-- Content -->
+    <div class="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
+      <h1 class="text-6xl md:text-7xl font-bold mb-6">
+        Bürger-Energie<br />
+        <span class="text-green-400">Hummetal eG</span>
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto">
+        Gemeinschaftlich die Energiewende vor Ort umsetzen - 
+        Seit 2010 für erneuerbare Energien in unserer Region
       </p>
-      <a href="/about" class="cta-button bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 px-16 py-6 rounded-full hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-[0_3.5rem_5rem_rgba(21,21,21,0.3)] dark:hover:shadow-[0_3.5rem_5rem_rgba(255,255,255,0.1)] text-base font-normal tracking-wide shadow-[0_3rem_4rem_rgba(21,21,21,0.25)] dark:shadow-[0_3rem_4rem_rgba(255,255,255,0.1)]">
-        Discover More
-      </a>
-    </section>
-
-    <section transition:animate="fade">
-      <PostList posts={posts} showImages={false} showExcerpt={false} showSeparators={true} showTags={false} showReadingTime={false} />
-
-      <div class="text-center mt-24">
-        <a href="/journal" class="text-lg font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 py-2 px-4 rounded-md inline-block text-gray-900 dark:text-gray-100">
-          View All Posts <span aria-hidden="true">→</span>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/mitglied-werden" class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 transform hover:scale-105">
+          Mitglied werden
+        </a>
+        <a href="/projekte" class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full font-medium transition-all duration-300">
+          Unsere Projekte
         </a>
       </div>
-    </section>
     </div>
+  </section>
+
+  <!-- Was uns antreibt Section -->
+  <section class="max-w-4xl mx-auto px-4 py-16">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold mb-6">Was uns antreibt</h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Durch die Nutzung von Kohle, Gas und Öl zur Energieversorgung wird die Erdatmosphäre 
+        weiterhin mit klimaschädlichen Gasen angereichert. Diese Entwicklung kann nur 
+        aufgehalten werden, wenn wir unsere Energieversorgung so schnell wie möglich 
+        auf erneuerbare Energien umstellen!
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h3 class="text-2xl font-semibold mb-4">Gemeinsam für die Energiewende</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-6">
+          Damit Bürger aus Aerzen und den umliegenden Gemeinden im regionalen Umfeld 
+          ganz konkret ihren Beitrag zur Energiewende leisten können, haben sich im 
+          April 2010 bereits 68 Mitglieder zusammengeschlossen und diese 
+          Bürger-Energie-Genossenschaft gegründet.
+        </p>
+        <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+          <li class="flex items-start">
+            <span class="text-green-600 mr-2">✓</span>
+            Photovoltaikanlagen auf Gebäuden
+          </li>
+          <li class="flex items-start">
+            <span class="text-green-600 mr-2">✓</span>
+            PV-Freiflächenanlagen
+          </li>
+          <li class="flex items-start">
+            <span class="text-green-600 mr-2">✓</span>
+            Windenergieanlagen
+          </li>
+        </ul>
+      </div>
+      <div class="relative">
+        <img 
+          src="/images/windenergie/windpark-aerial.jpg" 
+          alt="Windpark aus der Vogelperspektive" 
+          class="rounded-lg shadow-lg w-full"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Projekte Overview -->
+  <section class="bg-gray-50 dark:bg-gray-900 py-16">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-6">Unsere Erfolge</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300">
+          Seit der Gründung unserer Genossenschaft haben wir bereits 13 Projekte realisiert
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center shadow-md">
+          <div class="text-3xl font-bold text-green-600 mb-2">13</div>
+          <h3 class="text-lg font-semibold mb-2">Realisierte Anlagen</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            Photovoltaikanlagen auf gemeindeeigenen Gebäuden
+          </p>
+        </div>
+        
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center shadow-md">
+          <div class="text-3xl font-bold text-green-600 mb-2">6 MW</div>
+          <h3 class="text-lg font-semibold mb-2">Freiflächenanlage</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            "Hanebülten" in Planung
+          </p>
+        </div>
+        
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center shadow-md">
+          <div class="text-3xl font-bold text-green-600 mb-2">17 MW</div>
+          <h3 class="text-lg font-semibold mb-2">Windpark Grießem</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            3 Nordex N163 Anlagen in Planung
+          </p>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href="/projekte" class="bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 px-8 py-4 rounded-full hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300">
+          Alle Projekte ansehen
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mitgliedschaft CTA -->
+  <section class="max-w-4xl mx-auto px-4 py-16 text-center">
+    <h2 class="text-4xl font-bold mb-6">Werden Sie Teil der Energiewende</h2>
+    <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+      Über die Beteiligung an unserer Genossenschaft können Sie die gemeinsamen Ziele 
+      und Projekte unterstützen und fördern. Bereits ab 500€ können Sie Mitglied werden.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/mitglied-werden" class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 transform hover:scale-105">
+        Jetzt Mitglied werden
+      </a>
+      <a href="/ueber-uns" class="border-2 border-gray-900 dark:border-gray-100 text-gray-900 dark:text-gray-100 hover:bg-gray-900 hover:text-white dark:hover:bg-gray-100 dark:hover:text-gray-900 px-8 py-4 rounded-full font-medium transition-all duration-300">
+        Mehr über uns
+      </a>
+    </div>
+  </section>
 </BaseLayout>
