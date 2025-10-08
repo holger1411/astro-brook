@@ -16,7 +16,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <span class="text-green-600">gestalten</span>
       </h1>
       <div class="mt-8">
-        <a href="/mitglied-werden" class="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 transform hover:scale-105">
+        <a href="/mitglied-werden" class="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-gray-400/60">
           Jetzt Mitglied werden
         </a>
       </div>
@@ -92,7 +92,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <img 
               src="/images/team/Burkhard Cramer Kreis.avif" 
               alt="Burkhard Cramer" 
-              class="w-44 h-44 object-cover rounded-full shadow-lg"
+              class="w-44 h-44 object-cover rounded-full shadow-2xl shadow-gray-400/60"
             />
           </div>
           <!-- Middle Left -->
@@ -100,7 +100,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <img 
               src="/images/team/Hartmut Hahn Kreis.avif" 
               alt="Hartmut Hahn" 
-              class="w-44 h-44 object-cover rounded-full shadow-lg"
+              class="w-44 h-44 object-cover rounded-full shadow-2xl shadow-gray-400/60"
             />
           </div>
           <!-- Bottom Right -->
@@ -108,7 +108,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <img 
               src="/images/team/Martina Siekmeier Kreis.avif" 
               alt="Martina Siekmeier" 
-              class="w-44 h-44 object-cover rounded-full shadow-lg"
+              class="w-44 h-44 object-cover rounded-full shadow-2xl shadow-gray-400/60"
             />
           </div>
         </div>
@@ -133,46 +133,132 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- Projekte Overview -->
+  <!-- Unsere Projekte -->
   <section class="bg-gray-50 dark:bg-gray-900 py-16">
-    <div class="max-w-4xl mx-auto px-4">
+    <div class="max-w-6xl mx-auto px-4">
       <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold mb-6">Unsere Erfolge</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300">
-          Seit der Gründung unserer Genossenschaft haben wir bereits 13 Projekte realisiert
+        <h2 class="text-4xl font-bold mb-4">Unsere Projekte</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Von Photovoltaik auf Schuldächern bis zu Windparks – gemeinsam haben wir bereits vieles erreicht 
+          und arbeiten an einer nachhaltigen Energiezukunft für unsere Region.
         </p>
       </div>
       
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center shadow-md">
-          <div class="text-3xl font-bold text-green-600 mb-2">13</div>
-          <h3 class="text-lg font-semibold mb-2">Realisierte Anlagen</h3>
-          <p class="text-gray-600 dark:text-gray-300 text-sm">
-            Photovoltaikanlagen auf gemeindeeigenen Gebäuden
-          </p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Projekt 1 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-2xl shadow-gray-400/60 dark:shadow-gray-900/60 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+          <div class="relative h-48 overflow-hidden">
+            <img 
+              src="/images/windenergie/hero-windpark-sunset.jpg" 
+              alt="Projekt 1" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2">PV-Anlage Grundschule Aerzen</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">
+              Unsere erste Anlage mit 30 kWp Leistung auf dem Dach der Grundschule.
+            </p>
+            <div class="flex items-center text-sm text-green-600 font-semibold">
+              <span class="text-2xl font-bold mr-2">30</span>
+              <span>kWp</span>
+            </div>
+          </div>
         </div>
-        
-        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center shadow-md">
-          <div class="text-3xl font-bold text-green-600 mb-2">6 MW</div>
-          <h3 class="text-lg font-semibold mb-2">Freiflächenanlage</h3>
-          <p class="text-gray-600 dark:text-gray-300 text-sm">
-            "Hanebülten" in Planung
-          </p>
+
+        <!-- Projekt 2 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-2xl shadow-gray-400/60 dark:shadow-gray-900/60 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+          <div class="relative h-48 overflow-hidden">
+            <img 
+              src="/images/windenergie/hero-windpark-sunset.jpg" 
+              alt="Projekt 2" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2">PV-Anlage Sporthalle</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">
+              Zweite Anlage mit 45 kWp auf der Sporthalle am Schulzentrum.
+            </p>
+            <div class="flex items-center text-sm text-green-600 font-semibold">
+              <span class="text-2xl font-bold mr-2">45</span>
+              <span>kWp</span>
+            </div>
+          </div>
         </div>
-        
-        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center shadow-md">
-          <div class="text-3xl font-bold text-green-600 mb-2">17 MW</div>
-          <h3 class="text-lg font-semibold mb-2">Windpark Grießem</h3>
-          <p class="text-gray-600 dark:text-gray-300 text-sm">
-            3 Nordex N163 Anlagen in Planung
-          </p>
+
+        <!-- Projekt 3 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-2xl shadow-gray-400/60 dark:shadow-gray-900/60 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+          <div class="relative h-48 overflow-hidden">
+            <img 
+              src="/images/windenergie/hero-windpark-sunset.jpg" 
+              alt="Projekt 3" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2">PV-Anlage Feuerwehr</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">
+              Photovoltaikanlage auf dem Feuerwehrgerätehaus mit 35 kWp.
+            </p>
+            <div class="flex items-center text-sm text-green-600 font-semibold">
+              <span class="text-2xl font-bold mr-2">35</span>
+              <span>kWp</span>
+            </div>
+          </div>
         </div>
-      </div>
-      
-      <div class="text-center mt-12">
-        <a href="/projekte" class="bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 px-8 py-4 rounded-full hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300">
-          Alle Projekte ansehen
-        </a>
+
+        <!-- Projekt 4 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-2xl shadow-gray-400/60 dark:shadow-gray-900/60 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+          <div class="relative h-48 overflow-hidden">
+            <img 
+              src="/images/windenergie/hero-windpark-sunset.jpg" 
+              alt="Projekt 4" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2">PV-Freiflächenanlage Hanebülten</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">
+              Geplante Freiflächenanlage mit 6 MW Leistung in der Planung.
+            </p>
+            <div class="flex items-center text-sm text-green-600 font-semibold">
+              <span class="text-2xl font-bold mr-2">6</span>
+              <span>MW</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projekt 5 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-2xl shadow-gray-400/60 dark:shadow-gray-900/60 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+          <div class="relative h-48 overflow-hidden">
+            <img 
+              src="/images/windenergie/hero-windpark-sunset.jpg" 
+              alt="Projekt 5" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2">Bürger-Windpark Grießem</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">
+              Drei Nordex N163 Windenergieanlagen mit je 5,7 MW in Planung.
+            </p>
+            <div class="flex items-center text-sm text-green-600 font-semibold">
+              <span class="text-2xl font-bold mr-2">17</span>
+              <span>MW</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alle Projekte Link - Letzte Kachel -->
+        <div class="flex items-center justify-center">
+          <a href="/projekte" class="text-green-600 hover:text-green-700 font-semibold text-lg inline-flex items-center group transition-colors">
+            Alle Projekte ansehen
+            <svg class="w-6 h-6 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
