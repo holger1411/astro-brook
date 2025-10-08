@@ -158,18 +158,18 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
         <slot />
       </main>
       
-      <footer class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 mt-16">
+      <footer class="bg-black border-t border-gray-900 mt-16">
         <div class="max-w-4xl mx-auto px-4 py-12">
           <div class="grid md:grid-cols-4 gap-8">
             <div class="md:col-span-2">
-              <h3 class="text-lg font-bold mb-4">
-                <span class="text-green-600">Bürger-Energie</span> Hummetal eG
+              <h3 class="text-base font-bold mb-4">
+                <span class="text-green-500">Bürger-Energie</span> <span class="text-white">Hummetal eG</span>
               </h3>
-              <p class="text-gray-600 dark:text-gray-300 mb-4">
+              <p class="text-gray-300 mb-4 text-sm">
                 Gemeinschaftlich die Energiewende vor Ort umsetzen - 
                 Seit 2010 für erneuerbare Energien in unserer Region.
               </p>
-              <div class="text-sm text-gray-500 dark:text-gray-400">
+              <div class="text-xs text-gray-400">
                 Kranichweg 8<br>
                 31855 Aerzen<br>
                 Tel: 05154-4954<br>
@@ -178,26 +178,26 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
             </div>
             
             <div>
-              <h4 class="font-semibold mb-4">Navigation</h4>
-              <nav class="space-y-2 text-sm">
-                <a href="/" class="block text-gray-600 dark:text-gray-300 hover:text-green-500">Home</a>
-                <a href="/ueber-uns" class="block text-gray-600 dark:text-gray-300 hover:text-green-500">Über uns</a>
-                <a href="/projekte" class="block text-gray-600 dark:text-gray-300 hover:text-green-500">Projekte</a>
-                <a href="/aktuelles" class="block text-gray-600 dark:text-gray-300 hover:text-green-500">Aktuelles</a>
+              <h4 class="font-semibold mb-4 text-white text-sm">Navigation</h4>
+              <nav class="space-y-2 text-xs">
+                <a href="/" class="block text-gray-300 hover:text-green-500 transition-colors">Home</a>
+                <a href="/ueber-uns" class="block text-gray-300 hover:text-green-500 transition-colors">Über uns</a>
+                <a href="/projekte" class="block text-gray-300 hover:text-green-500 transition-colors">Projekte</a>
+                <a href="/aktuelles" class="block text-gray-300 hover:text-green-500 transition-colors">Aktuelles</a>
               </nav>
             </div>
             
             <div>
-              <h4 class="font-semibold mb-4">Rechtliches</h4>
-              <nav class="space-y-2 text-sm">
-                <a href="/impressum" class="block text-gray-600 dark:text-gray-300 hover:text-green-500">Impressum</a>
-                <a href="/datenschutz" class="block text-gray-600 dark:text-gray-300 hover:text-green-500">Datenschutz</a>
-                <a href="/satzung" class="block text-gray-600 dark:text-gray-300 hover:text-green-500">Satzung</a>
+              <h4 class="font-semibold mb-4 text-white text-sm">Rechtliches</h4>
+              <nav class="space-y-2 text-xs">
+                <a href="/impressum" class="block text-gray-300 hover:text-green-500 transition-colors">Impressum</a>
+                <a href="/datenschutz" class="block text-gray-300 hover:text-green-500 transition-colors">Datenschutz</a>
+                <a href="/satzung" class="block text-gray-300 hover:text-green-500 transition-colors">Satzung</a>
               </nav>
             </div>
           </div>
           
-          <div class="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 text-center text-sm text-gray-500 dark:text-gray-400">
+          <div class="border-t border-gray-800 mt-8 pt-8 text-center text-xs text-gray-400">
             &copy; {new Date().getFullYear()} Bürger-Energie Hummetal eG. Alle Rechte vorbehalten.
           </div>
         </div>

@@ -7,24 +7,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   description="Gemeinschaftlich die Energiewende vor Ort umsetzen - Bürger-Energie-Genossenschaft aus dem Hummetal"
 >
   <!-- Hero Text Section (White Background) -->
-  <section class="bg-white dark:bg-gray-900 py-20">
+  <section class="bg-white dark:bg-gray-900 py-40">
     <div class="max-w-4xl mx-auto px-4">
-      <p class="text-sm font-semibold text-green-600 mb-4 uppercase tracking-wide">Aktuelles Projekt</p>
-      <h1 class="text-5xl md:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
-        In Windkraft investieren -<br />
-        Bürger-Windpark<br />
-        <span class="text-green-600">"Grießem"</span>
+      <p class="text-sm font-semibold text-green-600 uppercase tracking-wide mb-0">Energie von hier, für hier</p>
+      <h1 class="text-5xl md:text-6xl mt-3 font-bold mb-6 text-gray-900 dark:text-white">
+        Gemeinsam die Energiewende<br />
+        in unserer Region<br />
+        <span class="text-green-600">gestalten</span>
       </h1>
       <div class="mt-8">
-        <a href="/projekte/windpark-griessem" class="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 transform hover:scale-105">
-          Jetzt investieren
+        <a href="/mitglied-werden" class="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 transform hover:scale-105">
+          Jetzt Mitglied werden
         </a>
       </div>
     </div>
   </section>
 
   <!-- Hero Image Section -->
-  <section class="relative h-[60vh] overflow-hidden">
+  <section class="relative h-[40vh] overflow-hidden">
     <img 
       src="/images/windenergie/hero-windpark-sunset.jpg" 
       alt="Windenergieanlagen bei Sonnenuntergang" 
@@ -81,48 +81,54 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- Was uns antreibt Section -->
-  <section class="max-w-4xl mx-auto px-4 py-16">
-    <div class="text-center mb-12">
-      <h2 class="text-4xl font-bold mb-6">Was uns antreibt</h2>
-      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-        Durch die Nutzung von Kohle, Gas und Öl zur Energieversorgung wird die Erdatmosphäre 
-        weiterhin mit klimaschädlichen Gasen angereichert. Diese Entwicklung kann nur 
-        aufgehalten werden, wenn wir unsere Energieversorgung so schnell wie möglich 
-        auf erneuerbare Energien umstellen!
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-2 gap-8 items-center">
-      <div>
-        <h3 class="text-2xl font-semibold mb-4">Gemeinsam für die Energiewende</h3>
-        <p class="text-gray-600 dark:text-gray-300 mb-6">
-          Damit Bürger aus Aerzen und den umliegenden Gemeinden im regionalen Umfeld 
-          ganz konkret ihren Beitrag zur Energiewende leisten können, haben sich im 
-          April 2010 bereits 68 Mitglieder zusammengeschlossen und diese 
-          Bürger-Energie-Genossenschaft gegründet.
-        </p>
-        <ul class="space-y-3 text-gray-600 dark:text-gray-300">
-          <li class="flex items-start">
-            <span class="text-green-600 mr-2">✓</span>
-            Photovoltaikanlagen auf Gebäuden
-          </li>
-          <li class="flex items-start">
-            <span class="text-green-600 mr-2">✓</span>
-            PV-Freiflächenanlagen
-          </li>
-          <li class="flex items-start">
-            <span class="text-green-600 mr-2">✓</span>
-            Windenergieanlagen
-          </li>
-        </ul>
-      </div>
-      <div class="relative">
-        <img 
-          src="/images/windenergie/windpark-aerial.jpg" 
-          alt="Windpark aus der Vogelperspektive" 
-          class="rounded-lg shadow-lg w-full"
-        />
+  <!-- Wir über uns Section -->
+  <section class="bg-white dark:bg-gray-900 py-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-24 items-center">
+        <!-- Left Side: Image Grid (2x3) - 50% width -->
+        <div class="grid grid-cols-2 grid-rows-3 gap-6 h-[500px]">
+          <!-- Top Right -->
+          <div class="col-start-2 row-start-1 flex items-center justify-center">
+            <img 
+              src="/images/team/Burkhard Cramer Kreis.avif" 
+              alt="Burkhard Cramer" 
+              class="w-44 h-44 object-cover rounded-full shadow-lg"
+            />
+          </div>
+          <!-- Middle Left -->
+          <div class="col-start-1 row-start-2 flex items-center justify-center">
+            <img 
+              src="/images/team/Hartmut Hahn Kreis.avif" 
+              alt="Hartmut Hahn" 
+              class="w-44 h-44 object-cover rounded-full shadow-lg"
+            />
+          </div>
+          <!-- Bottom Right -->
+          <div class="col-start-2 row-start-3 flex items-center justify-center">
+            <img 
+              src="/images/team/Martina Siekmeier Kreis.avif" 
+              alt="Martina Siekmeier" 
+              class="w-44 h-44 object-cover rounded-full shadow-lg"
+            />
+          </div>
+        </div>
+
+        <!-- Right Side: Text (vertically centered) - 50% width -->
+        <div class="flex flex-col justify-center">
+          <h2 class="text-4xl font-bold mb-6 text-gray-900 dark:text-white">Wir über uns</h2>
+          <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+            Seit 2010 setzen wir uns als Bürger-Energie-Genossenschaft für die Energiewende im Hummetal ein. 
+            Gemeinsam realisieren wir erneuerbare Energieprojekte und schaffen lokale Wertschöpfung.
+          </p>
+          <div class="mt-4">
+            <a href="/ueber-uns" class="text-green-600 hover:text-green-700 font-semibold inline-flex items-center group">
+              Mehr über uns erfahren
+              <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
