@@ -1,289 +1,78 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import MembershipCTA from '../components/MembershipCTA.astro';
+import { formatDate } from '../utils/date';
+import { getCollection } from 'astro:content';
+
+// Lade alle News aus der Content Collection
+const allNews = await getCollection('news');
+
+// Sortiere nach Datum (neueste zuerst)
+const sortedNews = allNews.sort((a, b) => 
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
 ---
 
 <BaseLayout 
   title="Aktuelles" 
   description="Aktuelle Nachrichten, Mitteilungen und Presseberichte der Bürger-Energie Hummetal eG"
 >
-  <div class="max-w-6xl mx-auto px-4 py-16">
+  <div class="max-w-5xl mx-auto px-4 py-16">
     
     <!-- Header Section -->
-    <section class="text-center mb-16">
-      <h1 class="text-5xl font-bold mb-6">Aktuelles</h1>
-      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-        Bleiben Sie auf dem Laufenden über unsere Projekte, Erträge und aktuelle 
-        Entwicklungen in der regionalen Energiewende.
+    <header class="mb-12 text-center" transition:animate="fade">
+      <h1 class="text-5xl font-bold mb-4">Aktuelles</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+        Bleiben Sie auf dem Laufenden über unsere Projekte und aktuelle 
+        Entwicklungen in der regionalen Energiewende
       </p>
-    </section>
+    </header>
 
-    <!-- Navigation Tabs -->
-    <div class="flex flex-wrap justify-center mb-12 border-b border-gray-200 dark:border-gray-700">
-      <button class="tab-button active px-6 py-3 font-medium text-green-600 border-b-2 border-green-600" data-tab="mitteilungen">
-        Mitteilungen
-      </button>
-      <button class="tab-button px-6 py-3 font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" data-tab="berichte">
-        Ertragsberichte
-      </button>
-      <button class="tab-button px-6 py-3 font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" data-tab="presse">
-        Presseberichte
-      </button>
-    </div>
-
-    <!-- Mitteilungen Tab -->
-    <div id="mitteilungen" class="tab-content">
-      <div class="grid lg:grid-cols-2 gap-8">
-        
-        <!-- Aktuelle Mitteilung -->
-        <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-          <div class="flex items-center mb-4">
-            <span class="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium">
-              Aktuell
-            </span>
-            <span class="text-gray-500 dark:text-gray-400 text-sm ml-4">September 2025</span>
-          </div>
-          <h2 class="text-2xl font-bold mb-4">Windpark Grießem: Genehmigungsverfahren läuft</h2>
-          <p class="text-gray-600 dark:text-gray-300 mb-4">
-            Nach jahrelanger Vorbereitung haben wir nun die Unterlagen für die BImSchG- und 
-            Baugenehmigung unseres Windparks Grießem eingereicht. Die drei Nordex N163 Anlagen 
-            mit je 5,7 MW Leistung sollen einen wichtigen Beitrag zur regionalen Energiewende leisten.
-          </p>
-          <a href="/projekte" class="flex items-center text-green-600 font-medium">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-            <span>Mehr zu unseren Projekten</span>
-          </a>
-        </article>
-
-        <!-- PV-Hanebülten Update -->
-        <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-          <div class="flex items-center mb-4">
-            <span class="bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-200 px-3 py-1 rounded-full text-sm font-medium">
-              In Bearbeitung
-            </span>
-            <span class="text-gray-500 dark:text-gray-400 text-sm ml-4">August 2025</span>
-          </div>
-          <h2 class="text-2xl font-bold mb-4">PV-Freiflächenanlage Hanebülten vor Gericht</h2>
-          <p class="text-gray-600 dark:text-gray-300 mb-4">
-            Unser Antrag auf Befreiung vom Bauverbot im Landschaftsschutzgebiet "Emmertal" 
-            wurde erneut abgelehnt. Wir setzen nun auf eine positive Entscheidung des 
-            Verwaltungsgerichts Hannover für unsere 6 MW-Anlage.
-          </p>
-          <div class="flex items-center text-orange-600 font-medium">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <span>Verfahren läuft</span>
-          </div>
-        </article>
-
-        <!-- Generalversammlung -->
-        <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-          <div class="flex items-center mb-4">
-            <span class="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium">
-              Termin
-            </span>
-            <span class="text-gray-500 dark:text-gray-400 text-sm ml-4">Wird bekannt gegeben</span>
-          </div>
-          <h2 class="text-2xl font-bold mb-4">Nächste Generalversammlung</h2>
-          <p class="text-gray-600 dark:text-gray-300 mb-4">
-            Der Termin für unsere nächste Generalversammlung wird rechtzeitig bekannt gegeben. 
-            Alle Mitglieder erhalten eine persönliche Einladung mit Tagesordnung per Post.
-          </p>
-          <div class="flex items-center text-blue-600 font-medium">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-            </svg>
-            <span>Termin folgt</span>
-          </div>
-        </article>
-
-        <!-- Neue Mitglieder -->
-        <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-          <div class="flex items-center mb-4">
-            <span class="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium">
-              Mitgliedschaft
-            </span>
-            <span class="text-gray-500 dark:text-gray-400 text-sm ml-4">Dauerhaft</span>
-          </div>
-          <h2 class="text-2xl font-bold mb-4">Neue Mitglieder herzlich willkommen!</h2>
-          <p class="text-gray-600 dark:text-gray-300 mb-4">
-            Durch verschiedene Gesetzesänderungen und Erlasse bieten sich nun auch für 
-            Bürgerenergiegesellschaften wieder gute Investitionsmöglichkeiten. 
-            Werden Sie Teil der Energiewende vor Ort!
-          </p>
-          <a href="/mitglied-werden" class="flex items-center text-green-600 font-medium">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 119.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-            </svg>
-            <span>Jetzt Mitglied werden</span>
-          </a>
-        </article>
-      </div>
-    </div>
-
-    <!-- Ertragsberichte Tab -->
-    <div id="berichte" class="tab-content hidden">
-      <div class="grid lg:grid-cols-2 gap-8">
-        
-        <!-- Jahresübersicht -->
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-          <h2 class="text-2xl font-bold mb-6">Ertragsübersichten</h2>
-          <div class="space-y-4">
-            <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-              <div>
-                <h3 class="font-semibold">Ertragsübersicht 2022</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300">Jahresabschluss aller 13 Anlagen</p>
-              </div>
-              <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">
-                PDF Download
-              </button>
+    <!-- News List -->
+    <div class="border-b border-gray-200 dark:border-gray-700" transition:animate="fade">
+      {sortedNews.map((news) => (
+        <article class="border-t border-gray-200 dark:border-gray-700 py-[4vh] xl:py-8">
+          <div class="space-y-2">
+            <!-- Title and Date Row -->
+            <div class="flex flex-col sm:flex-row justify-between items-start gap-2 mb-2">
+              <h2 class="text-xl md:text-3xl xl:text-4xl text-gray-900 dark:text-gray-100">
+                <a href={`/aktuelles/${news.slug}`} class="hover:underline">
+                  {news.data.title}
+                </a>
+              </h2>
+              <time datetime={news.data.date.toISOString()} class="text-sm text-gray-500 dark:text-gray-400 shrink-0 sm:text-right">
+                {formatDate(news.data.date)}
+              </time>
             </div>
             
-            <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-              <div>
-                <h3 class="font-semibold">Ertragsübersicht 2021</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300">Jahresabschluss aller Anlagen</p>
-              </div>
-              <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">
-                PDF Download
-              </button>
+            <!-- Category Tag -->
+            <div class="mb-4">
+              <span class="inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:text-gray-200">
+                {news.data.category}
+              </span>
+            </div>
+            
+            <!-- Excerpt -->
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              {news.data.excerpt}
+            </p>
+            
+            <!-- Read More Link -->
+            <div>
+              <a 
+                href={`/aktuelles/${news.slug}`}
+                class="text-sm font-medium hover:underline py-1 inline-block text-gray-900 dark:text-gray-100"
+              >
+                Mehr erfahren <span aria-hidden="true">→</span>
+              </a>
             </div>
           </div>
-        </div>
-
-        <!-- Monatsberichte -->
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-          <h2 class="text-2xl font-bold mb-6">Aktuelle Zwischenberichte 2023</h2>
-          <div class="space-y-3">
-            <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded">
-              <span class="font-medium">September 2023</span>
-              <button class="text-green-600 hover:text-green-700 text-sm font-medium">PDF</button>
-            </div>
-            <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded">
-              <span class="font-medium">August 2023</span>
-              <button class="text-green-600 hover:text-green-700 text-sm font-medium">PDF</button>
-            </div>
-            <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded">
-              <span class="font-medium">Juli 2023</span>
-              <button class="text-green-600 hover:text-green-700 text-sm font-medium">PDF</button>
-            </div>
-            <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded">
-              <span class="font-medium">Juni 2023</span>
-              <button class="text-green-600 hover:text-green-700 text-sm font-medium">PDF</button>
-            </div>
-            <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded">
-              <span class="font-medium">Mai 2023</span>
-              <button class="text-green-600 hover:text-green-700 text-sm font-medium">PDF</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Anlagen Performance -->
-        <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-          <h2 class="text-2xl font-bold mb-6">Anlagen-Performance 2023</h2>
-          <div class="grid md:grid-cols-4 gap-6">
-            <div class="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
-              <div class="text-2xl font-bold text-green-600 mb-1">98,7%</div>
-              <div class="text-sm text-gray-600 dark:text-gray-300">Verfügbarkeit</div>
-            </div>
-            <div class="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-              <div class="text-2xl font-bold text-blue-600 mb-1">847 MWh</div>
-              <div class="text-sm text-gray-600 dark:text-gray-300">Gesamtertrag</div>
-            </div>
-            <div class="text-center p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
-              <div class="text-2xl font-bold text-yellow-600 mb-1">2.157 h</div>
-              <div class="text-sm text-gray-600 dark:text-gray-300">Volllaststunden</div>
-            </div>
-            <div class="text-center p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-              <div class="text-2xl font-bold text-purple-600 mb-1">424 t</div>
-              <div class="text-sm text-gray-600 dark:text-gray-300">CO₂ gespart</div>
-            </div>
-          </div>
-        </div>
-      </div>
+        </article>
+      ))}
     </div>
 
-    <!-- Presseberichte Tab -->
-    <div id="presse" class="tab-content hidden">
-      <div class="space-y-8">
-        
-        <!-- Presseartikel -->
-        <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-          <div class="flex items-center mb-4">
-            <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded text-sm font-medium">DEWEZET</span>
-            <span class="text-gray-500 dark:text-gray-400 text-sm ml-4">4. Oktober 2023</span>
-          </div>
-          <h2 class="text-2xl font-bold mb-4">Neue Windkraftanlagen für Emmerthal</h2>
-          <p class="text-gray-600 dark:text-gray-300 mb-4">
-            Die Bürger-Energie Hummetal eG plant den Bau von drei neuen Windkraftanlagen 
-            in der Gemeinde. Das Projekt südwestlich von Grießem soll einen wichtigen 
-            Beitrag zur regionalen Energiewende leisten...
-          </p>
-          <button class="text-green-600 hover:text-green-700 font-medium">
-            Artikel lesen →
-          </button>
-        </article>
-
-        <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-          <div class="flex items-center mb-4">
-            <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded text-sm font-medium">DEWEZET</span>
-            <span class="text-gray-500 dark:text-gray-400 text-sm ml-4">20. September 2023</span>
-          </div>
-          <h2 class="text-2xl font-bold mb-4">PV-Freiflächenanlagen in Emmerthal</h2>
-          <p class="text-gray-600 dark:text-gray-300 mb-4">
-            Die geplante Photovoltaik-Freiflächenanlage "Hanebülten" stößt auf rechtliche 
-            Hürden. Die Bürger-Energie Hummetal eG kämpft für die Realisierung des 6-MW-Projekts...
-          </p>
-          <button class="text-green-600 hover:text-green-700 font-medium">
-            Artikel lesen →
-          </button>
-        </article>
-
-        <!-- Newsletter CTA -->
-        <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-8 text-center">
-          <h3 class="text-2xl font-bold mb-4">Bleiben Sie informiert</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-6">
-            Verpassen Sie keine wichtigen Neuigkeiten über unsere Projekte und die 
-            Entwicklung der Energiewende in unserer Region.
-          </p>
-          <a href="/mitglied-werden" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-medium">
-            Mitglied werden und informiert bleiben
-          </a>
-        </div>
-      </div>
-    </div>
+    <!-- CTA Section -->
+    <MembershipCTA />
 
   </div>
-
-  <!-- Tab Functionality -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const tabButtons = document.querySelectorAll('.tab-button');
-      const tabContents = document.querySelectorAll('.tab-content');
-
-      tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const targetTab = button.getAttribute('data-tab');
-
-          // Remove active class from all buttons and contents
-          tabButtons.forEach(btn => {
-            btn.classList.remove('active', 'text-green-600', 'border-green-600');
-            btn.classList.add('text-gray-500');
-          });
-          tabContents.forEach(content => {
-            content.classList.add('hidden');
-          });
-
-          // Add active class to clicked button
-          button.classList.add('active', 'text-green-600', 'border-green-600', 'border-b-2');
-          button.classList.remove('text-gray-500');
-
-          // Show target content
-          document.getElementById(targetTab)?.classList.remove('hidden');
-        });
-      });
-    });
-  </script>
 </BaseLayout>

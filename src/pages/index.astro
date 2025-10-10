@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import MembershipCTA from '../components/MembershipCTA.astro';
 ---
 
 <BaseLayout 
@@ -8,7 +9,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
   <!-- Hero Text Section (White Background) -->
   <section class="bg-white dark:bg-gray-900 py-40">
-    <div class="max-w-4xl mx-auto px-4">
+    <div class="max-w-5xl mx-auto px-4">
       <p class="text-sm font-semibold text-green-600 uppercase tracking-wide mb-0">Energie von hier, für hier</p>
       <h1 class="text-5xl md:text-6xl mt-3 font-bold mb-6 text-gray-900 dark:text-white">
         Gemeinsam die Energiewende<br />
@@ -35,7 +36,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <!-- Was uns antreibt / Ziele / Fokus Section -->
   <section class="bg-green-600 py-16">
-    <div class="max-w-4xl mx-auto px-4">
+    <div class="max-w-5xl mx-auto px-4">
       <div class="grid md:grid-cols-3 gap-8 mb-12">
         <!-- Was uns antreibt -->
         <div class="text-white">
@@ -83,7 +84,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <!-- Wir über uns Section -->
   <section class="bg-white dark:bg-gray-900 py-20">
-    <div class="max-w-4xl mx-auto px-4">
+    <div class="max-w-5xl mx-auto px-4">
       <div class="grid md:grid-cols-2 gap-24 items-center">
         <!-- Left Side: Image Grid (2x3) - 50% width -->
         <div class="grid grid-cols-2 grid-rows-3 gap-6 h-[500px]">
@@ -135,7 +136,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <!-- Unsere Projekte -->
   <section class="bg-gray-50 dark:bg-gray-900 py-16">
-    <div class="max-w-6xl mx-auto px-4">
+    <div class="max-w-5xl mx-auto px-4">
       <div class="text-center mb-12">
         <h2 class="text-4xl font-bold mb-4">Unsere Projekte</h2>
         <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
@@ -264,19 +265,5 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <!-- Mitgliedschaft CTA -->
-  <section class="max-w-4xl mx-auto px-4 py-16 text-center">
-    <h2 class="text-4xl font-bold mb-6">Werden Sie Teil der Energiewende</h2>
-    <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-      Über die Beteiligung an unserer Genossenschaft können Sie die gemeinsamen Ziele 
-      und Projekte unterstützen und fördern. Bereits ab 500€ können Sie Mitglied werden.
-    </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="/mitglied-werden" class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 transform hover:scale-105">
-        Jetzt Mitglied werden
-      </a>
-      <a href="/ueber-uns" class="border-2 border-gray-900 dark:border-gray-100 text-gray-900 dark:text-gray-100 hover:bg-gray-900 hover:text-white dark:hover:bg-gray-100 dark:hover:text-gray-900 px-8 py-4 rounded-full font-medium transition-all duration-300">
-        Mehr über uns
-      </a>
-    </div>
-  </section>
+  <MembershipCTA />
 </BaseLayout>

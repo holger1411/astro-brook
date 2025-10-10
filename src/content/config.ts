@@ -11,6 +11,16 @@ const postsCollection = defineCollection({
   }),
 });
 
+const newsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    date: z.date(),
+    excerpt: z.string(),
+    category: z.string(),
+  }),
+});
+
 const pagesCollection = defineCollection({
   type: 'content',
   schema: z.object({
@@ -20,5 +30,6 @@ const pagesCollection = defineCollection({
 
 export const collections = {
   'posts': postsCollection,
+  'news': newsCollection,
   'pages': pagesCollection,
 };

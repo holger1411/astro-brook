@@ -1,0 +1,119 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate } from '../../utils/date';
+
+// Generate static paths for all news
+export async function getStaticPaths() {
+  const allNews = await getCollection('news');
+  
+  // Sort news by date (newest first)
+  const sortedNews = allNews.sort((a, b) => 
+    new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
+  );
+
+  return sortedNews.map((entry, index) => {
+    // Determine previous and next news
+    const prevNews = sortedNews[index - 1]
+      ? {
+          url: `/aktuelles/${sortedNews[index - 1].slug}`,
+          title: sortedNews[index - 1].data.title
+        }
+      : null;
+    
+    const nextNews = sortedNews[index + 1]
+      ? {
+          url: `/aktuelles/${sortedNews[index + 1].slug}`,
+          title: sortedNews[index + 1].data.title
+        }
+      : null;
+
+    return {
+      params: { slug: entry.slug },
+      props: { entry, prevNews, nextNews },
+    };
+  });
+}
+
+// Get the news and navigation data for this page
+const { entry, prevNews, nextNews } = Astro.props;
+const { Content } = await entry.render();
+const { title, date, category, excerpt } = entry.data;
+---
+
+<BaseLayout 
+  title={title}
+  description={excerpt}
+  type="article"
+  publishedDate={date}
+>
+  <article class="max-w-5xl mx-auto px-4 py-16">
+    
+    <!-- Header -->
+    <header class="mb-12">
+      <div class="mb-4">
+        <span class="inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:text-gray-200">
+          {category}
+        </span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+        {title}
+      </h1>
+      <time datetime={date.toISOString()} class="text-sm text-gray-500 dark:text-gray-400">
+        {formatDate(date)}
+      </time>
+    </header>
+
+    <!-- Content -->
+    <div class="prose prose-lg dark:prose-invert max-w-none
+                prose-headings:font-bold 
+                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-4
+                prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-3
+                prose-p:text-gray-600 dark:prose-p:text-gray-400 prose-p:leading-relaxed
+                prose-a:text-green-600 hover:prose-a:text-green-700
+                prose-strong:text-gray-900 dark:prose-strong:text-gray-100
+                prose-ul:my-6 prose-li:my-2">
+      <Content />
+    </div>
+
+    <!-- Navigation -->
+    {(prevNews || nextNews) && (
+      <nav class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <div class="flex flex-col sm:flex-row justify-between gap-4">
+          {nextNews ? (
+            <a href={nextNews.url} class="flex-1 group">
+              <div class="text-sm text-gray-500 dark:text-gray-400 mb-1">← Neuere Meldung</div>
+              <div class="text-gray-900 dark:text-gray-100 group-hover:text-green-600 dark:group-hover:text-green-500 transition-colors">
+                {nextNews.title}
+              </div>
+            </a>
+          ) : (
+            <div class="flex-1"></div>
+          )}
+          
+          {prevNews ? (
+            <a href={prevNews.url} class="flex-1 text-right group">
+              <div class="text-sm text-gray-500 dark:text-gray-400 mb-1">Ältere Meldung →</div>
+              <div class="text-gray-900 dark:text-gray-100 group-hover:text-green-600 dark:group-hover:text-green-500 transition-colors">
+                {prevNews.title}
+              </div>
+            </a>
+          ) : (
+            <div class="flex-1"></div>
+          )}
+        </div>
+      </nav>
+    )}
+
+    <!-- Back to News -->
+    <div class="mt-12 text-center">
+      <a 
+        href="/aktuelles" 
+        class="inline-block text-gray-900 dark:text-gray-100 hover:text-green-600 dark:hover:text-green-500 font-medium transition-colors"
+      >
+        ← Zurück zur Übersicht
+      </a>
+    </div>
+
+  </article>
+</BaseLayout>
