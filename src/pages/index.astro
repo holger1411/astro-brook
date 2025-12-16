@@ -19,9 +19,9 @@ const posts = sortedPosts.slice(0, 5).map(post => ({
 
 <BaseLayout title="Welcome">
   <div class="max-w-4xl mx-auto">
-    <section class="text-center py-[8vh]" transition:animate="fade">
-      <h1 class="text-7xl mb-8 font-bold">Welcome to Brook 2.0</h1>
-      <p class="text-2xl text-muted-foreground max-w-3xl mx-auto mb-14">
+    <section class="text-center py-8 md:py-[8vh]" transition:animate="fade">
+      <h1 class="text-4xl md:text-7xl mb-4 md:mb-8 font-bold">Welcome to Brook 2.0</h1>
+      <p class="text-lg md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 md:mb-14">
         A minimalist blog template for developers and writers focusing on clean typography and distraction-free
         reading experience.
       </p>
@@ -33,7 +33,7 @@ const posts = sortedPosts.slice(0, 5).map(post => ({
     <section class="mx-auto" transition:animate="fade">
       <PostList posts={posts} showImages={false} showExcerpt={false} showSeparators={true} showTags={false}/>
 
-      <div class="text-center mt-24">
+      <div class="text-center mt-12 md:mt-24">
         <a href="/journal" class="text-lg font-medium text-black py-2 px-4 rounded-md inline-block focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:underline">
           View All Posts <span aria-hidden="true">→</span>
         </a>
