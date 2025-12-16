@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 @layer components {
   /* Button variants */
   .btn-primary {
@@ -39,11 +41,11 @@
   
   /* Navigation */
   .nav-link {
-    @apply text-sm text-gray-900 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-sm;
+    @apply text-sm text-gray-900 dark:text-gray-300 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-sm;
   }
-  
+
   .nav-link-footer {
-    @apply text-sm text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-sm;
+    @apply text-sm text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-sm;
   }
   
   /* Feature image */
@@ -98,7 +100,7 @@
 @layer base {
   /* Headings */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold leading-tight mt-10 mb-6 text-gray-900;
+    @apply font-bold leading-tight mt-10 mb-6 text-gray-900 dark:text-gray-100;
   }
   
   h1 {
@@ -193,7 +195,7 @@
   article h2 a,
   article a.block,
   article a.text-sm {
-    @apply text-black hover:underline;
+    @apply text-black dark:text-gray-100 hover:underline;
   }
   
   /* Fix for focus rings */
