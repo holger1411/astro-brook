@@ -19,10 +19,10 @@ const { prevPost, nextPost } = Astro.props;
     {prevPost ? (
       <a 
         href={prevPost.url} 
-        class="group flex flex-col items-start"
+        class="post-nav-link items-start"
       >
-        <span class="text-sm text-gray-500">Previous Post</span>
-        <span class="text-lg font-medium group-hover:underline flex items-center">
+        <span class="post-nav-direction">Previous Post</span>
+        <span class="post-nav-title">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
@@ -36,10 +36,10 @@ const { prevPost, nextPost } = Astro.props;
     {nextPost ? (
       <a 
         href={nextPost.url} 
-        class="group flex flex-col items-end text-right"
+        class="post-nav-link items-end text-right"
       >
-        <span class="text-sm text-gray-500">Next Post</span>
-        <span class="text-lg font-medium group-hover:underline flex items-center">
+        <span class="post-nav-direction">Next Post</span>
+        <span class="post-nav-title">
           {nextPost.title}
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -52,9 +52,4 @@ const { prevPost, nextPost } = Astro.props;
   </div>
 </nav>
 
-<style>
-  /* Custom styles for post navigation */
-  nav {
-    border-color: #e5e7eb;
-  }
-</style>
+<!-- Removed custom styles in favor of Tailwind utilities -->

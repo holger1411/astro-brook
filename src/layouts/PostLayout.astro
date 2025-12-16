@@ -42,7 +42,7 @@ const publishDate = new Date(date);
           {tags.map((tag) => (
             <a 
               href={`/tags/${tag}`} 
-              class="inline-flex items-center rounded-md bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              class="tag"
               aria-label={`View all posts tagged ${tag}`}
             >
               {tag}
@@ -52,7 +52,7 @@ const publishDate = new Date(date);
       )}
       
       {optimizedImagePath && (
-        <div class="mt-2 aspect-video rounded-lg overflow-hidden" transition:name={`image-${slug}`}>
+        <div class="mt-2 feature-image" transition:name={`image-${slug}`}>
           <img 
             src={optimizedImagePath} 
             alt={`Featured image for "${title}"`}

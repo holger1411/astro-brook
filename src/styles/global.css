@@ -1,5 +1,96 @@
 @import "tailwindcss";
 
+@layer components {
+  /* Button variants */
+  .btn-primary {
+    @apply bg-black text-white px-8 py-3 rounded-full transition-all duration-300 hover:bg-gray-800 font-medium shadow-md hover:shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-black border border-gray-200 px-8 py-3 rounded-full transition-all duration-300 hover:bg-gray-100 font-medium;
+  }
+  
+  .btn-sm {
+    @apply px-4 py-2 text-sm;
+  }
+  
+  .btn-lg {
+    @apply px-16 py-6 text-base;
+  }
+  
+  /* Cards */
+  .card {
+    @apply bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300;
+  }
+  
+  .card-content {
+    @apply p-6;
+  }
+  
+  /* Tags */
+  .tag {
+    @apply inline-flex items-center rounded-md bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
+  
+  /* Focus styles - We use direct utility classes instead of a component class */
+  /* .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  } */
+  
+  /* Navigation */
+  .nav-link {
+    @apply text-sm text-gray-900 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-sm;
+  }
+  
+  .nav-link-footer {
+    @apply text-sm text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-sm;
+  }
+  
+  /* Feature image */
+  .feature-image {
+    @apply aspect-video rounded-lg overflow-hidden;
+  }
+  
+  .feature-image img {
+    @apply w-full h-full object-cover;
+  }
+  
+  /* Content container */
+  .prose-container {
+    @apply max-w-none;
+  }
+  
+  /* Layout containers */
+  .container-sm {
+    @apply mx-auto max-w-2xl px-4 sm:px-6 lg:px-8;
+  }
+  
+  .container-md {
+    @apply mx-auto max-w-3xl px-4 sm:px-6 lg:px-8;
+  }
+  
+  .container-lg {
+    @apply mx-auto max-w-4xl px-4 sm:px-6 lg:px-8;
+  }
+  
+  .container-xl {
+    @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Post navigation */
+  .post-nav-link {
+    @apply group flex flex-col focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded p-2 -m-2;
+  }
+  
+  .post-nav-direction {
+    @apply text-sm text-gray-500;
+  }
+  
+  .post-nav-title {
+    @apply text-lg font-medium group-hover:underline flex items-center;
+  }
+}
+
 @layer base {
   /* Headings */
   h1, h2, h3, h4, h5, h6 {
@@ -304,10 +395,11 @@
 }
 
 /* Override the specific tag styles from PostCard.astro */
-article a[href^="/tags/"] {
-  color: #111827 !important; /* text-gray-900 */
-  background-color: #f3f4f6; /* bg-gray-100 */
-}
+/* Remove duplicate styles as they're now in the tag component class */
+/* article a[href^="/tags/"] {
+  color: #111827 !important;
+  background-color: #f3f4f6;
+} */
 
 /* Animation for View Transitions - Only Fade */
 @keyframes fade-in {

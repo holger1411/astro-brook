@@ -59,7 +59,7 @@ const optimizedImagePath = image ? optimizeImagePath(image) : null;
     {showImage && optimizedImagePath && (
       <a 
         href={post.url} 
-        class="block aspect-video overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        class="block feature-image focus-ring"
         aria-label={`View ${title} article`}
       >
         <img
@@ -91,14 +91,4 @@ const optimizedImagePath = image ? optimizeImagePath(image) : null;
   </div>
 </article>
 
-<style>
-  /* Styles for tags */
-  article a[href^="/tags/"] {
-    background-color: #f3f4f6;
-    color: #333;
-  }
-  
-  article a[href^="/tags/"]:hover {
-    background-color: #e5e7eb;
-  }
-</style>
+<!-- Removed inline styles in favor of component classes -->
