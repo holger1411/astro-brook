@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { ViewTransitions } from 'astro:transitions';
 import DarkModeToggle from '../components/ui/DarkModeToggle.astro';
+import { Analytics } from '@vercel/analytics/astro';
 
 interface Props {
   title: string;
@@ -261,5 +262,6 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
         initThemeToggle();
       });
     </script>
+    <Analytics />
   </body>
 </html>
