@@ -106,14 +106,41 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
   </head>
   <body class="text-gray-900 bg-white">
     <div class="container-lg bg-white">
-      <header class="mx-auto max-w-4xl px-4 py-8 flex items-center justify-between">
-        <a href="/" class="text-2xl font-semibold" transition:animate="fade">Brook2</a>
-        
-        <nav class="flex items-center gap-6">
-          <a href="/" class="nav-link">Home</a>
-          <a href="/journal" class="nav-link">Journal</a>
-          <a href="/about" class="nav-link">About</a>
-          <a href="/styleguide" class="nav-link">Styleguide</a>
+      <header class="mx-auto max-w-4xl px-4 py-8">
+        <div class="flex items-center justify-between">
+          <a href="/" class="text-2xl font-semibold" transition:animate="fade">Brook2</a>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden md:flex items-center gap-6">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/journal" class="nav-link">Journal</a>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/styleguide" class="nav-link">Styleguide</a>
+          </nav>
+
+          <!-- Mobile Menu Button -->
+          <button
+            id="mobile-menu-button"
+            type="button"
+            class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+            aria-expanded="false"
+            aria-label="Toggle menu"
+          >
+            <svg id="menu-icon" class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <svg id="close-icon" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <nav id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+          <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Home</a>
+          <a href="/journal" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Journal</a>
+          <a href="/about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">About</a>
+          <a href="/styleguide" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Styleguide</a>
         </nav>
       </header>
       
@@ -137,5 +164,48 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
         </div>
       </footer>
     </div>
+
+    <script>
+      // Mobile menu toggle functionality
+      function initMobileMenu() {
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        if (!menuButton || !mobileMenu || !menuIcon || !closeIcon) return;
+
+        menuButton.addEventListener('click', () => {
+          const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+
+          // Toggle menu visibility
+          mobileMenu.classList.toggle('hidden');
+
+          // Toggle icons
+          menuIcon.classList.toggle('hidden');
+          closeIcon.classList.toggle('hidden');
+
+          // Update aria-expanded
+          menuButton.setAttribute('aria-expanded', String(!isExpanded));
+        });
+
+        // Close menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            menuIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+            menuButton.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      // Initialize on page load
+      initMobileMenu();
+
+      // Re-initialize after view transitions
+      document.addEventListener('astro:after-swap', initMobileMenu);
+    </script>
   </body>
 </html>
