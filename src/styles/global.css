@@ -79,15 +79,19 @@
   
   /* Post navigation */
   .post-nav-link {
-    @apply group flex flex-col focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded p-2 -m-2;
+    @apply flex flex-col focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded p-2 -m-2;
   }
-  
+
   .post-nav-direction {
     @apply text-sm text-gray-500;
   }
-  
+
   .post-nav-title {
-    @apply text-lg font-medium group-hover:underline flex items-center;
+    @apply text-lg font-medium flex items-center;
+  }
+
+  .post-nav-link:hover .post-nav-title {
+    @apply underline;
   }
 }
 
@@ -178,19 +182,17 @@
   }
   
   /* Navigation links in header and footer */
-  header a, footer a, 
+  header a, footer a,
   /* Post navigation (prev/next) links */
   nav a,
   /* View all posts, read more, and other template-generated links */
   a[href^="/tags/"],
-  .prose a.group,
   a[aria-label*="View all"],
   a[aria-label*="Read more"],
   a[aria-label*="View "],
   article h2 a,
   article a.block,
-  article a.text-sm,
-  .group-hover\:underline {
+  article a.text-sm {
     @apply text-black hover:underline;
   }
   

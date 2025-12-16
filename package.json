@@ -15,7 +15,7 @@
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^6.0.0",
-    "astro": "^5.5.2",
+    "astro": "^5.16.5",
     "date-fns": "^4.1.0",
     "hast-util-raw": "^9.1.0",
     "zwitch": "^2.0.0"
@@ -23,9 +23,9 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.14",
     "@tailwindcss/typography": "^0.5.10",
-    "@tailwindcss/vite": "^4.0.15",
+    "@tailwindcss/vite": "^4.1.18",
     "autoprefixer": "^10.4.21",
-    "tailwindcss": "^4.0.14",
+    "tailwindcss": "^4.1.18",
     "typescript": "^5.3.3"
   }
 }
