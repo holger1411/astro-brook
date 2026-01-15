@@ -1,6 +1,6 @@
 # Brook - A Minimalist Blog Template Built with Astro
 
-![Brook Blog](./public/og-image.png)
+![Brook Blog](./cover.png)
 
 Brook is a minimalist blog template for developers and writers that focuses on clean typography and a distraction-free reading experience.
 
@@ -26,7 +26,7 @@ Brook is a minimalist blog template for developers and writers that focuses on c
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/astro-brook.git
+git clone https://github.com/holger1411/astro-brook.git
 cd astro-brook
 
 # Install dependencies
@@ -50,8 +50,7 @@ Visit [http://localhost:4321](http://localhost:4321) to see the result.
 │   │   ├── PostNavigation.astro # Next/previous post navigation
 │   │   └── ui/                 # UI components
 │   ├── content/          # Content directory (using Astro Content Collections)
-│   │   ├── posts/        # Blog posts (Markdown/MDX)
-│   │   └── pages/        # Static pages (Markdown/MDX)
+│   │   └── posts/        # Blog posts (Markdown/MDX)
 │   ├── layouts/          # Astro layouts
 │   │   ├── BaseLayout.astro    # Base layout
 │   │   └── PostLayout.astro    # Layout for blog posts
@@ -59,7 +58,7 @@ Visit [http://localhost:4321](http://localhost:4321) to see the result.
 │   │   ├── about.astro         # About page
 │   │   ├── index.astro         # Homepage
 │   │   ├── journal.astro       # Blog overview page
-│   │   ├── posts/[...slug].astro # Dynamic blog post route
+│   │   ├── posts/[slug].astro    # Dynamic blog post route
 │   │   └── tags/[tag].astro    # Tag-based filtering
 │   ├── styles/           # Stylesheets
 │   └── utils/            # Helper functions and utilities
@@ -100,7 +99,7 @@ For images in your blog posts:
 
 ### Theme Customization
 
-The color palette and other design elements can be customized in the `tailwind.config.mjs` file and `src/styles/theme.css`:
+The color palette and other design elements can be customized in the `tailwind.config.mjs` file and `src/styles/global.css`:
 
 ```javascript
 // tailwind.config.mjs
@@ -132,7 +131,7 @@ The main layouts are located in the `src/layouts/` directory.
 
 ## 📦 Dependencies
 
-- `@astrojs/tailwind` - Tailwind CSS integration
+- `@tailwindcss/vite` - Tailwind CSS v4 integration
 - `@astrojs/mdx` - MDX support
 - `@astrojs/sitemap` - Sitemap generation
 - `@astrojs/rss` - RSS feed generation

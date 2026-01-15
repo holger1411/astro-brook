@@ -1,6 +1,6 @@
 ---
 title: What happens if a Zombie bites a Vampire? Is it a Zompier or a Vampie?
-date: 2024-03-14
+date: 2026-01-11
 excerpt: A pseudo-scientific investigation into the hypothetical outcome of an undead-on-undead attack, examining the taxonomy, characteristics, and existential implications of this monster mashup.
 image: /images/image2.png
 tags: [zombies, vampires, undead, monster science, humor]
