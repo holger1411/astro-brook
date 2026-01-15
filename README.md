@@ -2,6 +2,8 @@
 
 ![Brook Blog](./cover.png)
 
+**[Live Demo](https://brook2-astro-blog.vercel.app/)**
+
 Brook is a minimalist blog template for developers and writers that focuses on clean typography and a distraction-free reading experience.
 
 ## ✨ Features
