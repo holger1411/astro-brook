@@ -6,9 +6,9 @@ export default {
   darkMode: 'selector',
   theme: {
     fontFamily: {
-      sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+      sans: ['Geist Sans', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
       serif: ['ui-serif', 'Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
-      mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+      mono: ['Geist Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
     },
     extend: {
       typography: ({ theme }) => ({
@@ -20,7 +20,7 @@ export default {
             'code::after': {
               content: '""',
             },
-            // Set Inter as the font family for typography
+            // Set Geist Sans as the font family for typography
             fontFamily: theme('fontFamily.sans').join(', '),
             lineHeight: '1.8',
             p: {
