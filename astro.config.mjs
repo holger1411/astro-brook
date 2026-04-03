@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   output: 'static', // Explicitly specify static output (which is also the default)
-  site: 'https://astro-brook.example.com',
+  site: 'https://brook2-astro-blog.vercel.app',
   // Enable built-in image optimization with specific settings
   image: {
     service: {
