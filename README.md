@@ -1,3 +1,10 @@
+<!-- templatedeck-backlink -->
+> 🎨 **BROOK 2** is part of the [TemplateDeck](https://templatedeck.com) collection — handcrafted HTML and Astro templates for developers and designers.
+>
+> 📥 **[Download free on TemplateDeck](https://templatedeck.com/templates/brook2)** · 🌐 **[Browse all templates](https://templatedeck.com)**
+
+---
+
 # Brook - A Minimalist Blog Template Built with Astro
 
 ![Brook Blog](./cover.png)
