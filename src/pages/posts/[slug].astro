@@ -1,13 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import PostLayout from '../../layouts/PostLayout.astro';
 
 // Generate static paths for all posts
 export async function getStaticPaths() {
   const allPosts = await getCollection('posts');
-  
+
   // Sortiere Posts nach Datum (neueste zuerst)
-  const sortedPosts = allPosts.sort((a, b) => 
+  const sortedPosts = allPosts.sort((a, b) =>
     new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
   );
 
@@ -15,20 +15,20 @@ export async function getStaticPaths() {
     // Bestimme vorherigen und nächsten Post
     const prevPost = sortedPosts[index - 1]
       ? {
-          url: `/posts/${sortedPosts[index - 1].slug}`,
+          url: `/posts/${sortedPosts[index - 1].id}`,
           title: sortedPosts[index - 1].data.title
         }
       : null;
-    
+
     const nextPost = sortedPosts[index + 1]
       ? {
-          url: `/posts/${sortedPosts[index + 1].slug}`,
+          url: `/posts/${sortedPosts[index + 1].id}`,
           title: sortedPosts[index + 1].data.title
         }
       : null;
 
     return {
-      params: { slug: entry.slug },
+      params: { slug: entry.id },
       props: { entry, prevPost, nextPost },
     };
   });
@@ -36,7 +36,7 @@ export async function getStaticPaths() {
 
 // Get the post and navigation data for this page
 const { entry, prevPost, nextPost } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 
 <PostLayout frontmatter={entry.data} prevPost={prevPost} nextPost={nextPost}>

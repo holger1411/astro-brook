@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import DarkModeToggle from '../components/ui/DarkModeToggle.astro';
 import Analytics from '@vercel/analytics/astro';
 
@@ -73,7 +73,7 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Aktivieren der View Transitions -->
-    <ViewTransitions />
+    <ClientRouter />
 
     <!-- Dark mode initialization script according to official Tailwind documentation -->
     <script is:inline>

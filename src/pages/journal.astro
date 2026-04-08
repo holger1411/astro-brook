@@ -12,7 +12,7 @@ const sortedPosts = allPosts.sort((a, b) => {
 // Format posts for the PostList component
 const posts = sortedPosts.map(post => ({
   ...post,
-  url: `/posts/${post.slug}`,
+  url: `/posts/${post.id}`,
   frontmatter: post.data
 }));
 ---
