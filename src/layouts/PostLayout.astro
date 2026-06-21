@@ -67,7 +67,7 @@ const publishDate = new Date(date);
     )}
 
     <div class="max-w-3xl mx-auto prose prose-xl">
-      <slot />
+      <Fragment set:html={content} />
     </div>
 
     <div class="max-w-3xl mx-auto">
